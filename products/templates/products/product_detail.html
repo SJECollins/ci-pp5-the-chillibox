@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+    <div class="mt-4">
+        <!-- Link to return to products (and product dashboard for admin)-->
+        <a class="chilli-link big" href="{% url 'products:all' %}">&laquo; Back to All
+            Products</a>
+    </div>
+    <div class="row m-4">
+        <!-- Product image and description -->
+        <div class="col-lg-6 text-center">
+            <div>
+                <h1 class="headings">{{ product.name }}</h1>
+            </div>
+            {% if product.image %}
+            <div>
+                <img class="pics pics-lg" src="{{ product.image.url }}">
+            </div>
+            {% endif %}
+            <p class="m-5 text-start">{{ product.description }}</p>
+        </div>
+        <div class="col-lg-6 d-flex flex-column">
+            <!-- Table for product details -->
+            <div>
+                <h2 class="headings headings-sm">{{ product.name }} Details:</h2>
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Category: </th>
+                        <td>{{ product.category }}</td>
+                    </tr>
+                    <tr>
+                        <th>SubCategory: </th>
+                        <td>{{ product.subcategory }}</td>
+                    </tr>
+                    <tr>
+                        {% if product.growth_time %}
+                        <th>Growth time to maturity: </th>
+                        <td>{{ product.growth_time }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if product.heat_level %}
+                        <th>Heat: </th>
+                        <td>{{ product.heat_level }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if product.ingredients %}
+                        <th>Ingredients: </th>
+                        <td>{{ product.ingredients }}</td>
+                        {% endif %}
+                    </tr>
+                    {% if product.variants %}
+                    {% for variant in product.variants.all %}
+                    <tr>
+                        <th>Available Sizes: </th>
+                        <td>{{ variant.size }} €{{ variant.price }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    {% if product.box_contents.all %}
+                    <tr>
+                        <th class="align-top">Contents: </th>
+                        <td>{% for content in product.box_contents.all %}<p class="m-0">{{ content.name }}</p>
+                            {% endfor %}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th>Stock: </th>
+                        {% if product.in_stock %}
+                        {% if product.current_stock >= 10 %}
+                        <td>In stock</td>
+                        {% else %}
+                        <td>Less than 10 left!</td>
+                        {% endif %}
+                        {% else %}
+                        <td>Out of stock</td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

@@ -30,3 +30,13 @@ class CategoryView(View):
             'products': products,
         }
         return render(request, template_name, context)
+
+
+class ProductDetail(View):
+    def get(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
+        template_name = 'products/product_detail.html'
+        context = {
+            'product': product,
+        }
+        return render(request, template_name, context)

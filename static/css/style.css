@@ -53,6 +53,12 @@ h1, h2, h3, h4 {
     font-size: 0.75em;
 }
 
+.car-text {
+    color: var(--site-black);
+    background-color: var(--site-car-bg);
+    border-radius: 10px;
+}
+
 
 /* Link, List and Button styling*/
 
@@ -121,6 +127,28 @@ a {
 }
 
 
+/* Image styling */
+.pics {
+    border-radius: 10px;
+}
+
+.pics-lg {
+    max-width: 400px;
+    height: auto;
+    box-shadow: 0 4px 8px 0 var(--site-dark-green);
+}
+
+
+/* Cards */
+
+.chilli-card {
+    max-width: 240px;
+    height: 100%;
+    padding: 1em;
+    box-shadow: 0 2px 4px 0 var(--site-green);
+}
+
+
 /* Styling for specific templates */
 /* Nav styling */
 #navbar {
@@ -133,6 +161,15 @@ a {
     color: var(--site-white);
     font-size: 1.75rem;
     line-height: 1.5;
+}
+
+
+/* Index styling */
+#bs-carousel {
+    width: min(80vw, 1600px);
+    margin: 2em auto;
+    border-radius: 10px;
+    box-shadow: 0 0 8px 2px var(--site-dark-green);
 }
 
 
@@ -149,4 +186,12 @@ footer {
 .footer-socials {
     font-size: 2em;
     padding-left: 1em;
+}
+
+
+/* Media Queries */
+@media (min-width: 992px) and (max-width: 1920px) {
+    #bs-carousel {
+        max-width: 60vw !important;
+    }
 }

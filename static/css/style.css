@@ -45,6 +45,14 @@ h1, h2, h3, h4 {
     letter-spacing: 0;
 }
 
+.big {
+    font-size: 1.25rem;
+}
+
+.small {
+    font-size: 0.75em;
+}
+
 
 /* Link, List and Button styling*/
 
@@ -86,6 +94,30 @@ a {
 
 .nav-drop-bg {
     background-color: var(--site-black);
+}
+
+.chilli-link {
+    font-weight: 600;
+    color: var(--site-dark-green);
+    transition: all 0.2s linear;
+}
+
+.chilli-link:hover, .chilli-link:active {
+    color: var(--site-dark-red);
+}
+
+.chilli-btn {
+    padding: 0.25em 0.75em;
+    font-weight: 600;
+    color: var(--site-white);
+    background-color: var(--site-black);
+    border-radius: 8px;
+    transition: all 0.2s linear;
+}
+
+.chilli-btn:hover, .chilli-btn:active {
+    color: var(--site-white);
+    background-color: var(--site-grey);
 }
 
 

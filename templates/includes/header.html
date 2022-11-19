@@ -16,7 +16,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="navbar-links" href="">Home</a>
+                        <a class="navbar-links" href="{% url 'home:index' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -25,8 +25,20 @@
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
                             <li>
-                                <a class="navbar-links" href="">Products</a></li>
+                                <a class="navbar-links" href="{% url 'products:latest' %}">Latest</a></li>
                             <li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='sauces' %}">Sauces</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='seeds' %}">Seeds</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='saucebox' %}">SauceBoxes</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='seedbox' %}">SeedBoxes</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -45,7 +57,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="navbar-links" href="">Home</a>
+                        <a class="navbar-links" href="{% url 'home:index' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -54,7 +66,19 @@
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
                             <li>
-                                <a class="navbar-links" href="">Products</a>
+                                <a class="navbar-links" href="{% url 'products:latest' %}">Latest</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='sauces' %}">Sauces</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='seeds' %}">Seeds</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='saucebox' %}">SauceBoxes</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links" href="{% url 'products:category' slug='seedbox' %}">SeedBoxes</a>
                             </li>
                         </ul>
                     </li>

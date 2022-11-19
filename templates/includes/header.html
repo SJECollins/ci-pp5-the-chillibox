@@ -1,0 +1,81 @@
+{% load static %}
+<!-- Header from bootstrap -->
+<header>
+    <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="container-sm d-flex justify-content-between">
+            <a class="navbar-brand" href="" aria-label="Go to home page"><img width="90"
+                    height="64" src="{% static 'images/chilli-logo-white.png' %}" alt="The Chillibox Logo"></a>
+            <!-- Toggle dropdown -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="navbar-links" href="">Home</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            <li>
+                                <a class="navbar-links" href="">Products</a></li>
+                            <li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-links" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Profile / Logout
+                        </a>
+                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            <li><a class="navbar-links navbar-drop-link" href="">My Profile</a></li>
+                            <li><a class="navbar-links navbar-drop-link" href="">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="navbar-links" href="">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            <li>
+                                <a class="navbar-links" href="">Products</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-links" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link navbar-links dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Login / Register
+                        </a>
+                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            <li><a class="navbar-links navbar-drop-link" href="">Login</a></li>
+                            <li><a class="navbar-links navbar-drop-link" href="">Register</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

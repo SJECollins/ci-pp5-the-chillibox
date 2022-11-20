@@ -13,6 +13,8 @@ class UserProfile(models.Model):
     A user profile model for maintaining delivery information and order history
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=40, null=True, blank=True)
+    last_name = models.CharField(max_length=80, null=True, blank=True)
     display_name = models.CharField(max_length=40, null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     street_address1 = models.CharField(max_length=80, null=True, blank=True)

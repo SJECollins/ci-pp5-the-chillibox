@@ -63,18 +63,34 @@ class Product(models.Model):
                                     null=True, blank=True)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
-    description = models.TextField(null=True, blank=True)
-    excerpt = models.TextField(null=True, blank=True)
-    ingredients = models.CharField(max_length=140, null=True, blank=True)
-    growth_time = models.CharField(max_length=140, null=True, blank=True)
-    heat_level = models.CharField(max_length=140, null=True, blank=True)
-    box_contents = models.ManyToManyField('self', blank=True)
-    variants = models.ManyToManyField(ProductVariant, blank=True,
-                                      related_name='products')
+    description = models.TextField(null=True, blank=True,
+                                   help_text='Include a description for the \
+                                   product\'s page.')
+    excerpt = models.TextField(null=True, blank=True, help_text='Include a \
+                               brief summary of the product.')
+    ingredients = models.CharField(max_length=140, null=True, blank=True,
+                                   help_text='For sauces, please include the \
+                                   ingredients.')
+    growth_time = models.CharField(max_length=140, null=True, blank=True,
+                                   help_text='For seeds, please include the \
+                                   growth time to maturity.')
+    heat_level = models.CharField(max_length=140, null=True, blank=True,
+                                  help_text='In scovilles or more generally \
+                                  (eg \'hot\') where appropriate.')
+    box_contents = models.ManyToManyField('self', blank=True, help_text='Add \
+                                          products for seed and sauce boxes.')
+    variants = models.ManyToManyField(ProductVariant, related_name='products',
+                                      help_text='Must include at least one for\
+                                       default price and size.')
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
-    thumbnail = models.ImageField(upload_to='uploads/', null=True, blank=True)
-    current_stock = models.PositiveIntegerField(default=0)
-    in_stock = models.BooleanField(default=False)
+    thumbnail = models.ImageField(upload_to='uploads/', null=True, blank=True,
+                                  help_text='If not added, will be \
+                                  auto-generated from image.')
+    current_stock = models.PositiveIntegerField(default=0,
+                                                help_text='Default is 0.')
+    in_stock = models.BooleanField(default=False,
+                                   help_text='Updates when current stock \
+                                   updated.')
     added_on = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -112,6 +128,7 @@ class Product(models.Model):
         print(self.image)
         print(self.thumbnail)  # Check thumbnail -- don't forget to delete!!
         super(Product, self).save(*args, **kwargs)
-        if not self.thumbnail:  # Is this super hacky?! Find better solution??
-            self.thumbnail = self.make_thumbnail(self.image)
+        if self.image:
+            if not self.thumbnail:  # Is this super hacky?! Find better solution??
+                self.thumbnail = self.make_thumbnail(self.image)
         super(Product, self).save(*args, **kwargs)

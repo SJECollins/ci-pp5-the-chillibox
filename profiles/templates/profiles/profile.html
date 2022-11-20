@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ profile }}
+{% endblock %}
+
+{% block content %}
+<!-- User Profile Details -->
+<section class="col-12 col-md-6">
+    <div class="col-10 mx-auto">
+        <h1 class="headings">Your Details</h1>
+        <table class="table">
+            <tr>
+                <th>First Name: </th>
+                <td>{{ profile.user.first_name }} </td>
+            </tr>
+            <tr>
+                <th>Surname Name: </th>
+                <td>{{ profile.user.last_name }} </td>
+            </tr>
+            <tr>
+                <th>Username: </th>
+                <td>{{ profile.user.username }} </td>
+            </tr>
+            <tr>
+                <th>Display Name: </th>
+                <td>{{ profile.display_name }} </td>
+            </tr>
+            <tr>
+                <th>Phone Number: </th>
+                <td>{{ profile.phone_number }} </td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td>{{ profile.user.email }} </td>
+            </tr>
+        </table>
+        <h2 class="headings">Your Address</h2>
+        <table class="table">
+            <tr>
+                <th>Street Address: </th>
+                <td>{{ profile.street_address1 }} </td>
+                <td>{{ profile.street_address2 }} </td>
+            </tr>
+            <tr>
+                <th>Town Or City: </th>
+                <td>{{ profile.town_or_city }} </td>
+            </tr>
+            <tr>
+                <th>County: </th>
+                <td>{{ profile.county }} </td>
+            </tr>
+            <tr>
+                <th>Country: </th>
+                <td>{{ profile.country }} </td>
+            </tr>
+            <tr>
+                <th>Postcode: </th>
+                <td>{{ profile.postcode }} </td>
+            </tr>
+        </table>
+        <a class="chilli-btn" href="{% url 'profiles:edit_profile' %}">Edit Details</a>
+    </div>
+</section>
+
+<!-- User Order History -->
+<section class="col-12 col-md-6">
+
+</section>
+
+{% endblock %}

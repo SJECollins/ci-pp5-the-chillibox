@@ -34,7 +34,7 @@ class AddCategory(CreateView):
     model = Category
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class EditCategory(UpdateView):
@@ -42,14 +42,14 @@ class EditCategory(UpdateView):
     model = Category
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class DeleteCategory(DeleteView):
     """ Delete Category View for management dashboard """
     model = Category
     template_name = 'management/confirm_delete.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class AddSubCategory(CreateView):
@@ -57,7 +57,7 @@ class AddSubCategory(CreateView):
     model = SubCategory
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class EditSubCategory(UpdateView):
@@ -65,14 +65,14 @@ class EditSubCategory(UpdateView):
     model = SubCategory
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class DeleteSubCategory(DeleteView):
     """ Delete Subcategory View for management dashboard """
     model = SubCategory
     template_name = 'management/confirm_delete.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class AddProductVariant(CreateView):
@@ -80,7 +80,7 @@ class AddProductVariant(CreateView):
     model = ProductVariant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class EditProductVariant(UpdateView):
@@ -88,14 +88,14 @@ class EditProductVariant(UpdateView):
     model = ProductVariant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class DeleteProductVariant(DeleteView):
     """ Delete Variant View for management dashboard """
     model = ProductVariant
     template_name = 'management/confirm_delete.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class AddProduct(CreateView):
@@ -103,7 +103,7 @@ class AddProduct(CreateView):
     model = Product
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'
 
 
 class EditProduct(UpdateView):
@@ -120,4 +120,4 @@ class DeleteProduct(DeleteView):
     """ Delete Product View for management dashboard """
     model = Product
     template_name = 'management/confirm_delete.html'
-    success_url = '/management/dashboard/'
+    success_url = '/management/'

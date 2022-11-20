@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load cloudinary %}
+
+{% block title %}
+Product Management
+{% endblock %}
+
+{% block content %}
+<section class="container-md">
+    <div class="col-md-8 mx-auto">
+        <a class="chilli-link" href="{% url 'products:product_dashboard' %}">&laquo; Go To Product Dashboard</a>
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <button class="chilli-btn" type="submit chilli-go">Submit</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

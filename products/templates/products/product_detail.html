@@ -9,9 +9,13 @@
 <section class="container-fluid">
     <div class="mt-4">
         <!-- Link to return to products (and product dashboard for admin)-->
-        <a class="chilli-link big" href="{% url 'products:latest' %}">&laquo; Back to Latest
-            Products</a>
-            <!-- Consider link to return to category??-->
+        <a class="chilli-link big" href="{% url 'products:latest' %}">&laquo; To Latest
+            Products</a><br>
+        <a class="chilli-link big" href="{% url 'products:category' product.category.slug %}">&laquo; To {{ product.category }}</a>
+        <!-- Link for staff to management dashboard-->
+        {% if user.is_staff %}
+        <a class="chilli-link float-end" href="{% url 'management:dashboard' %}">Go To Dashboard &raquo;</a>
+        {% endif %}
     </div>
     <div class="row m-4">
         <!-- Product image and description -->
@@ -25,6 +29,11 @@
             </div>
             {% endif %}
             <p class="m-5 text-start">{{ product.description }}</p>
+            {% if user.is_staff %}
+                <!-- Edit and Delete for admin -->
+                <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>
+                <a class="chilli-btn chilli-dngr" href="{% url 'management:delete_product' product.pk %}">Delete Product</a>
+            {% endif %}
         </div>
         <div class="col-lg-6 d-flex flex-column">
             <!-- Table for product details -->
@@ -61,7 +70,7 @@
                     {% for variant in product.variants.all %}
                     <tr>
                         <th>Available Sizes: </th>
-                        <td>{{ variant.size }} €{{ variant.price }}</td>
+                        <td>{{ variant.size }} - €{{ variant.price }}</td>
                     </tr>
                     {% endfor %}
                     {% endif %}

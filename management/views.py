@@ -1,6 +1,8 @@
 from django.shortcuts import render, reverse
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 from products.models import Category, SubCategory, Product, ProductVariant
@@ -29,20 +31,22 @@ class ProductDashboard(View):
         return render(request, template_name, context)
 
 
-class AddCategory(CreateView):
+class AddCategory(SuccessMessageMixin, CreateView):
     """ Add Category view for management dashboard """
     model = Category
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was created'
 
 
-class EditCategory(UpdateView):
+class EditCategory(SuccessMessageMixin, UpdateView):
     """ Edit Category View for management dashboard """
     model = Category
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was updated'
 
 
 class DeleteCategory(DeleteView):
@@ -52,20 +56,22 @@ class DeleteCategory(DeleteView):
     success_url = '/management/'
 
 
-class AddSubCategory(CreateView):
+class AddSubCategory(SuccessMessageMixin, CreateView):
     """ Add Subcategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was created'
 
 
-class EditSubCategory(UpdateView):
+class EditSubCategory(SuccessMessageMixin, UpdateView):
     """ Edit Subategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was updated'
 
 
 class DeleteSubCategory(DeleteView):
@@ -75,20 +81,22 @@ class DeleteSubCategory(DeleteView):
     success_url = '/management/'
 
 
-class AddProductVariant(CreateView):
+class AddProductVariant(SuccessMessageMixin, CreateView):
     """ Add Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(size)s was created'
 
 
-class EditProductVariant(UpdateView):
+class EditProductVariant(SuccessMessageMixin, UpdateView):
     """ Edit Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was updated'
 
 
 class DeleteProductVariant(DeleteView):
@@ -98,22 +106,22 @@ class DeleteProductVariant(DeleteView):
     success_url = '/management/'
 
 
-class AddProduct(CreateView):
+class AddProduct(SuccessMessageMixin, CreateView):
     """ Add Product View for management dashboard """
     model = Product
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
+    success_message = '%(name)s was created'
 
 
-class EditProduct(UpdateView):
+class EditProduct(SuccessMessageMixin, UpdateView):
     """ Edit Product View for management dashboard """
     model = Product
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-
-    def get_success_url(self):
-        return reverse('products:product', args=(self.object.slug,))
+    success_url - '/management/'
+    success_message = '%(name)s was updated'
 
 
 class DeleteProduct(DeleteView):

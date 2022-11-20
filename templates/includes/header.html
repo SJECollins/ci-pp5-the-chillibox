@@ -50,8 +50,11 @@
                             Profile / Logout
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
-                            <li><a class="navbar-links navbar-drop-link" href="">My Profile</a></li>
-                            <li><a class="navbar-links navbar-drop-link" href="">Logout</a>
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'profiles:profile' %}">My Profile</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -91,8 +94,11 @@
                             Login / Register
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
-                            <li><a class="navbar-links navbar-drop-link" href="{% url 'account_login' %}">Login</a></li>
-                            <li><a class="navbar-links navbar-drop-link" href="">Register</a>
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'account_login' %}">Login</a>
+                            </li>
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
                         </ul>
                     </li>

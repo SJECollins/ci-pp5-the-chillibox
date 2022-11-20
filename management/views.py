@@ -19,7 +19,7 @@ class ProductDashboard(View):
         subcategories = SubCategory.objects.all()
         variants = ProductVariant.objects.all()
         products = Product.objects.all().order_by('category')
-        template_name = 'products/product_admin.html'
+        template_name = 'management/dashboard.html'
         context = {
             'categories': categories,
             'subcategories': subcategories,
@@ -33,84 +33,84 @@ class AddCategory(CreateView):
     """ Add Category view for management dashboard """
     model = Category
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class EditCategory(UpdateView):
     """ Edit Category View for management dashboard """
     model = Category
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class DeleteCategory(DeleteView):
     """ Delete Category View for management dashboard """
     model = Category
-    template_name = 'products/confirm_delete.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/confirm_delete.html'
+    success_url = '/management/dashboard/'
 
 
 class AddSubCategory(CreateView):
     """ Add Subcategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class EditSubCategory(UpdateView):
     """ Edit Subategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class DeleteSubCategory(DeleteView):
     """ Delete Subcategory View for management dashboard """
     model = SubCategory
-    template_name = 'products/confirm_delete.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/confirm_delete.html'
+    success_url = '/management/dashboard/'
 
 
 class AddProductVariant(CreateView):
     """ Add Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class EditProductVariant(UpdateView):
     """ Edit Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class DeleteProductVariant(DeleteView):
     """ Delete Variant View for management dashboard """
     model = ProductVariant
-    template_name = 'products/confirm_delete.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/confirm_delete.html'
+    success_url = '/management/dashboard/'
 
 
 class AddProduct(CreateView):
     """ Add Product View for management dashboard """
     model = Product
     fields = '__all__'
-    template_name = 'products/form.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/dashboard_form.html'
+    success_url = '/management/dashboard/'
 
 
 class EditProduct(UpdateView):
     """ Edit Product View for management dashboard """
     model = Product
     fields = '__all__'
-    template_name = 'products/form.html'
+    template_name = 'management/dashboard_form.html'
 
     def get_success_url(self):
         return reverse('products:product', args=(self.object.slug,))
@@ -119,5 +119,5 @@ class EditProduct(UpdateView):
 class DeleteProduct(DeleteView):
     """ Delete Product View for management dashboard """
     model = Product
-    template_name = 'products/confirm_delete.html'
-    success_url = '/products/product_admin/'
+    template_name = 'management/confirm_delete.html'
+    success_url = '/management/dashboard/'

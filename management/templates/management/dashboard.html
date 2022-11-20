@@ -13,7 +13,7 @@ Dashboard
             <!-- Manage Categories - necessary at this level? Creating a category requires new links etc, reconsider -->
             <div class="d-flex align-items-center">
                 <h1 class="headings">Categories</h1>
-                <a class="chilli-btn ms-5" href="{% url 'products:add_category' %}">Add New Category</a>
+                <a class="chilli-btn ms-5" href="{% url 'management:add_category' %}">Add New Category</a>
             </div>
             <table class="table">
                 <thead>
@@ -33,9 +33,9 @@ Dashboard
                     {% for cat in categories %}
                     <tr>
                         <td>{{ cat.name }}</td>
-                        <td><a class="chilli-btn" href="{% url 'products:edit_category' cat.pk %}">Edit</a></td>
+                        <td><a class="chilli-btn" href="{% url 'management:edit_category' cat.pk %}">Edit</a></td>
                         <td><a class="chilli-btn chilli-dngr"
-                                href="{% url 'products:delete_category' cat.pk %}">Delete</a></td>
+                                href="{% url 'management:delete_category' cat.pk %}">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -45,7 +45,7 @@ Dashboard
             <!-- Subcategory Management -->
             <div class="d-flex align-items-center">
                 <h1 class="headings">SubCategories</h1>
-                <a class="chilli-btn ms-5" href="{% url 'products:add_subcategory' %}">Add New SubCategory</a>
+                <a class="chilli-btn ms-5" href="{% url 'management:add_subcategory' %}">Add New SubCategory</a>
             </div>
             <table class="table">
                 <thead>
@@ -66,11 +66,11 @@ Dashboard
                     <tr>
                         <td>{{ subcat.name }}</td>
                         <td>
-                            <a class="chilli-btn" href="{% url 'products:edit_subcategory' subcat.pk %}">Edit</a>
+                            <a class="chilli-btn" href="{% url 'management:edit_subcategory' subcat.pk %}">Edit</a>
                         </td>
                         <td>
                             <a class="chilli-btn chilli-dngr"
-                                href="{% url 'products:delete_subcategory' subcat.pk %}">Delete</a>
+                                href="{% url 'management:delete_subcategory' subcat.pk %}">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -82,7 +82,7 @@ Dashboard
             <div class="d-flex align-items-center">
                 <!-- Product Variant Management-->
                 <h1 class="headings">Product Variants</h1>
-                <a class="chilli-btn ms-5" href="{% url 'products:add_variant' %}">Add New Product Variants</a>
+                <a class="chilli-btn ms-5" href="{% url 'management:add_variant' %}">Add New Product Variants</a>
             </div>
             <table class="table">
                 <thead>
@@ -105,11 +105,11 @@ Dashboard
                         <td>{{ variant.size }}</td>
                         <td>{{ variant.price }}</td>
                         <td>
-                            <a class="chilli-btn" href="{% url 'products:edit_variant' variant.pk %}">Edit</a>
+                            <a class="chilli-btn" href="{% url 'management:edit_variant' variant.pk %}">Edit</a>
                         </td>
                         <td>
                             <a class="chilli-btn chilli-dngr"
-                                href="{% url 'products:delete_variant' variant.pk %}">Delete</a>
+                                href="{% url 'management:delete_variant' variant.pk %}">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -123,7 +123,7 @@ Dashboard
         <!-- Right / Second Column: Product Management -->
         <div class="d-flex align-items-center">
             <h1 class="headings">Products</h1>
-            <a class="chilli-btn ms-5" href="{% url 'products:add_product' %}">Add New Product</a>
+            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
         </div>
         <!-- For now regroup - consider different ordering?? -->
         {% regroup products by category as products_by_category %}
@@ -156,14 +156,12 @@ Dashboard
                             <td>{% if product.thumbnail %}Yes{% else %}No{% endif %}</td>
                             <td>{{ product.in_stock }}</td>
                             <td>{{ product.current_stock }}</td>
-                            <td><a class="chilli-btn" data-hx-get="{% url 'products:update_stock' product.pk %}"
-                                    data-hx-target="#dialog">Update</a></td>
                             <td>
-                                <a class="chilli-btn" href="{% url 'products:edit_product' product.pk %}">Edit</a>
+                                <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit</a>
                             </td>
                             <td>
                                 <a class="chilli-btn chilli-dngr"
-                                    href="{% url 'products:delete_product' product.pk %}">Delete</a>
+                                    href="{% url 'management:delete_product' product.pk %}">Delete</a>
                             </td>
                         </tr>
                         {% endfor %}

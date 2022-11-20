@@ -22,5 +22,10 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('profiles/', include('profiles.urls')),
     path('products/', include('products.urls')),
-
 ]
+
+
+handler403 = "home.views.handle_403"
+handler404 = "home.views.handle_404"
+handler405 = "home.views.handle_405"
+handler500 = "home.views.handle_500"

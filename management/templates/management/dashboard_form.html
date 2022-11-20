@@ -9,11 +9,11 @@ Product Management
 {% block content %}
 <section class="container-md">
     <div class="col-md-8 mx-auto">
-        <a class="chilli-link" href="{% url 'products:product_dashboard' %}">&laquo; Go To Product Dashboard</a>
+        <a class="chilli-link" href="{% url 'management:dashboard' %}">&laquo; Back To Dashboard</a>
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ form|crispy}}
-            <button class="chilli-btn" type="submit chilli-go">Submit</button>
+            <button class="chilli-btn chilli-go" type="submit">Submit</button>
         </form>
     </div>
 </section>

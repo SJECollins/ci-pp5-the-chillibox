@@ -127,6 +127,22 @@ a {
     background-color: var(--site-grey);
 }
 
+.chilli-dngr {
+    background-color: var(--site-dark-red);
+}
+
+.chilli-dngr:hover, .chilli-dngr:active {
+    background-color: var(--site-red);
+}
+
+.chilli-go {
+    background-color: var(--site-dark-green);
+}
+
+.chilli-go:hover, .chilli-go:active {
+    background-color: var(--site-green);
+}
+
 
 /* Image styling */
 .pics {

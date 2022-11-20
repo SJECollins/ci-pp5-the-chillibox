@@ -8,7 +8,7 @@
 {% block content %}
 <section class="container-md">
     <div class="d-flex justify-content-between">
-        <a class="chilli-link bigger" href="{% url 'products:all' %}">&laquo; View all products</a>
+        <a class="chilli-link bigger" href="{% url 'products:latest' %}">&laquo; View all products</a>
     </div>
     <div class="d-flex align-items-center">
         <h1 class="headings">{{ category }}</h1>
@@ -67,6 +67,4 @@
     {% endfor %}
 </div>
 </section>
-
-
 {% endblock %}

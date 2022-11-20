@@ -9,8 +9,9 @@
 <section class="container-fluid">
     <div class="mt-4">
         <!-- Link to return to products (and product dashboard for admin)-->
-        <a class="chilli-link big" href="{% url 'products:all' %}">&laquo; Back to All
+        <a class="chilli-link big" href="{% url 'products:latest' %}">&laquo; Back to Latest
             Products</a>
+            <!-- Consider link to return to category??-->
     </div>
     <div class="row m-4">
         <!-- Product image and description -->
@@ -88,3 +89,4 @@
         </div>
     </div>
 </section>
+{% endblock %}

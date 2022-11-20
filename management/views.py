@@ -120,7 +120,7 @@ class EditProduct(SuccessMessageMixin, UpdateView):
     model = Product
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
-    success_url - '/management/'
+    success_url = '/management/'
     success_message = '%(name)s was updated'
 
 

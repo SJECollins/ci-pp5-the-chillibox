@@ -9,6 +9,7 @@
     --site-dark-red:#bd0000;
     --site-green: #568729;
     --site-dark-green: #326300;
+    --site-text-bg: rgba(49, 99, 0, 0.2);
     --site-car-bg: rgba(245, 241, 238, 0.61);
 }
 
@@ -60,6 +61,11 @@ h1, h2, h3, h4 {
     border-radius: 10px;
 }
 
+.excerpt {
+    margin: 0.5em -1em;
+    font-family: 'Dosis', sans-serif;
+    background-color: var(--site-text-bg);
+}
 
 /* Link, List and Button styling*/
 

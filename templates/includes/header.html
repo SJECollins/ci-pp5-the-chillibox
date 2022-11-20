@@ -3,21 +3,23 @@
 <header>
     <nav id="navbar" class="navbar navbar-expand-lg">
         <div class="container-sm d-flex justify-content-between">
+            <!-- Navbar logo-->
             <a class="navbar-brand" href="{% url 'home:index' %}" aria-label="Go to home page"><img width="90"
                     height="64" src="{% static 'images/chilli-logo-white.png' %}" alt="The Chillibox Logo"></a>
-            
+            <!-- Logo with home link -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
-
+            <!-- Collapsible navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <!-- Staff link to management dashboard, users link to home -->
                     {% if user.is_staff %}
-                        <li class="nav-item">
-                            <a class="navbar-links" href="{% url 'management:dashboard' %}">Management</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="navbar-links" href="{% url 'management:dashboard' %}">Management</a>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="navbar-links" href="{% url 'home:index' %}">Home</a>
@@ -39,16 +41,19 @@
                                 <a class="navbar-links" href="{% url 'products:category' slug='seeds' %}">Seeds</a>
                             </li>
                             <li>
-                                <a class="navbar-links" href="{% url 'products:category' slug='saucebox' %}">SauceBoxes</a>
+                                <a class="navbar-links"
+                                    href="{% url 'products:category' slug='saucebox' %}">SauceBoxes</a>
                             </li>
                             <li>
-                                <a class="navbar-links" href="{% url 'products:category' slug='seedbox' %}">SeedBoxes</a>
+                                <a class="navbar-links"
+                                    href="{% url 'products:category' slug='seedbox' %}">SeedBoxes</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="navbar-links" href="#">Contact Us</a>
                     </li>
+                    <!-- Authenticated users link to profile & logout, guests link to signup/login -->
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -57,7 +62,8 @@
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
                             <li>
-                                <a class="navbar-links navbar-drop-link" href="{% url 'profiles:profile' %}">My Profile</a>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'profiles:profile' %}">My
+                                    Profile</a>
                             </li>
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'account_logout' %}">Logout</a>
@@ -81,9 +87,10 @@
                     </li>
                     {% endif %}
                 </ul>
-                <a class="navbar-links" data-bs-toggle="offcanvas" href="#theCart" role="button" aria-controls="offcanvasExample">
+                <a class="navbar-links" data-bs-toggle="offcanvas" href="#theCart" role="button"
+                    aria-controls="offcanvasExample">
                     <i class="fa-solid fa-cart-shopping"></i>
-                  </a>
+                </a>
             </div>
         </div>
     </nav>

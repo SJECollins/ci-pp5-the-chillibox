@@ -186,6 +186,19 @@ a {
     line-height: 1.5;
 }
 
+/* Alert styling */
+
+.custom-alert {
+    min-width: 300px;
+    position: fixed;
+    top: 6em;
+    right: 1em;   
+    padding: 0.5em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 var(--site-grey);
+}
+
 
 /* Index styling */
 #bs-carousel {

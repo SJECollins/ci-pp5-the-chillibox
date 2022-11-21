@@ -116,10 +116,10 @@
                         <label class="me-4"><strong>Select Quantity: </strong></label>
                         <div id="change_qty" class="d-inline">
                             {% if product.current_stock > 0 %}
-                            <button id="dec_qty" class="chilli-btn">-</button>
+                            <button type="button" id="dec_qty" class="chilli-btn">-</button>
                             <input class="text-center" data-item_id="{{ product.id }}" name="quantity" id="product_qty"
                                 type="number" value="1" min="0" max="99">
-                            <button id="inc_qty" class="chilli-btn">+</button>
+                            <button type="button" id="inc_qty" class="chilli-btn">+</button>
                             {% endif %}
                             <p id="qty_warning"><em>No more available</em></p>
                         </div>

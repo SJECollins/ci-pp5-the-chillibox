@@ -15,19 +15,17 @@ def cart_contents(request):
     for item_id, item_data in cart.items():
         if isinstance(item_data, int):
             product = get_object_or_404(Product, id=item_id)
-            variant = get_object_or_404(ProductVariant, products=product)
-            total += item_data * variant.price
+            total += item_data * price
             product_count += item_data
             cart_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'variant': variant,
             })
         else:
             product = get_object_or_404(Product, pk=item_id)
-            variant = get_object_or_404(ProductVariant, products=product)
             for size, quantity in item_data['items_by_size'].items():
+                variant = get_object_or_404(ProductVariant, size=size)
                 total += quantity * variant.price
                 product_count += quantity
                 cart_items.append({

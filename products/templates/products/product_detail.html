@@ -97,7 +97,7 @@
             </div>
             <div class="order-1 order-lg-2">
                 <h3 class="headings big">Add To Cart:</h3>
-                <form action="" method="POST"></form>
+                <form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
                     {% csrf_token %}
                     <div>
                         <label class="me-4"><strong>Select Options:</strong></label>

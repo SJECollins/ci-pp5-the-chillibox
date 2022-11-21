@@ -21,7 +21,7 @@ class UpdateProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = UserProfile
     form_class = ProfileForm
     template_name = 'profiles/profile_form.html'
-    success_url = '/profiles/'
+    success_url = '/profiles/profile/'
     success_message = 'Your details were updated successfully.'
 
     def get_object(self):

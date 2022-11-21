@@ -96,7 +96,7 @@ class EditProductVariant(SuccessMessageMixin, UpdateView):
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
-    success_message = '%(name)s was updated'
+    success_message = '%(size)s was updated'
 
 
 class DeleteProductVariant(DeleteView):

@@ -42,6 +42,23 @@
             {% endfor %}
         {% endif %}
 
+        <!-- Bootstrap Offcanvas for cart -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="theCart" aria-labelledby="theCartLabel">
+            <div class="offcanvas-header">
+                <h1 class="headings mx-auto" id="theCartLabel">Your Cart</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="row mx-1 text-center">
+                <a class="chilli-btn rounded-0 mb-1" href="">View Your Cart</a>
+                <a class="chilli-btn rounded-0" href="">Go To Checkout</a>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <!-- Include cart here -->
+                </div>
+            </div>
+            </div>
+
         <!-- Footer and scripts  -->
         {% include 'includes/footer.html' %}
 

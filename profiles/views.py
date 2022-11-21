@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.views.generic import UpdateView
 
@@ -15,11 +17,12 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, template_name, context)
 
 
-class UpdateProfile(LoginRequiredMixin, UpdateView):
+class UpdateProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = UserProfile
     form_class = ProfileForm
     template_name = 'profiles/profile_form.html'
     success_url = '/profiles/'
+    success_message = 'Your details were updated successfully.'
 
     def get_object(self):
         return self.request.user.userprofile

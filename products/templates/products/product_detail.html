@@ -112,10 +112,10 @@
                         <label class="me-4"><strong>Select Quantity: </strong></label>
                         <div id="change_qty" class="d-inline">
                             {% if product.current_stock > 0 %}
-                            <span id="dec_qty" class="chilli-btn">-</span>
+                            <button id="dec_qty" class="chilli-btn">-</button>
                             <input class="text-center" data-item_id="{{ product.id }}" name="quantity" id="product_qty"
                                 type="number" value="1" min="0" max="99">
-                            <span id="inc_qty" class="chilli-btn">+</span>
+                            <button id="inc_qty" class="chilli-btn">+</button>
                             {% endif %}
                             <p id="qty_warning"><em>No more available</em></p>
                         </div>
@@ -126,4 +126,47 @@
         </div>
     </div>
 </section>
+<!-- Current stock of product - could alternatively display in product details instead of boolean?? -->
+{{ product.current_stock|json_script:'current_stock' }}
+
+<!-- Script for quantity selection-->
+<script type="text/javascript">
+    const decrease = document.getElementById("dec_qty")
+    const increase = document.getElementById("inc_qty")
+    const quantity = document.getElementById("product_qty")
+    const warning = document.getElementById("qty_warning")
+    const stock = JSON.parse(document.getElementById("current_stock").textContent)
+
+    decrease.addEventListener("click", decQty)
+    increase.addEventListener("click", incQty)
+
+    if (stock == 0) {
+        quantity.value = 0
+        warning.style.display = "block"
+    } else {
+        warning.style.display = "none"
+    }
+
+    let qty = Number(quantity.value)
+
+    function decQty() {
+        if (qty > 1) {
+            qty--
+            quantity.value = qty
+        }
+        if (qty < stock || qty == 99) {
+            warning.style.display = "none"
+        }
+    }
+
+    function incQty() {
+        if (qty < stock && qty < 99) {
+            qty++
+            quantity.value = qty
+        }
+        if (qty == stock || qty == 99) {
+            warning.style.display = "block"
+        }
+    }
+</script>
 {% endblock %}

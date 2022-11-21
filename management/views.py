@@ -4,6 +4,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+from .mixins import StaffRequiredMixin
+
 
 from products.models import Category, SubCategory, Product, ProductVariant
 
@@ -12,7 +14,7 @@ Revisit for messages and restrict login to superusers
 """
 
 
-class ProductDashboard(View):
+class ProductDashboard(StaffRequiredMixin, View):
     """
     View for admin accessible management dashboard.
     """
@@ -31,7 +33,7 @@ class ProductDashboard(View):
         return render(request, template_name, context)
 
 
-class AddCategory(SuccessMessageMixin, CreateView):
+class AddCategory(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Category view for management dashboard """
     model = Category
     fields = '__all__'
@@ -40,7 +42,7 @@ class AddCategory(SuccessMessageMixin, CreateView):
     success_message = '%(name)s was created'
 
 
-class EditCategory(SuccessMessageMixin, UpdateView):
+class EditCategory(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     """ Edit Category View for management dashboard """
     model = Category
     fields = '__all__'
@@ -49,14 +51,14 @@ class EditCategory(SuccessMessageMixin, UpdateView):
     success_message = '%(name)s was updated'
 
 
-class DeleteCategory(DeleteView):
+class DeleteCategory(StaffRequiredMixin, DeleteView):
     """ Delete Category View for management dashboard """
     model = Category
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
 
 
-class AddSubCategory(SuccessMessageMixin, CreateView):
+class AddSubCategory(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Subcategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
@@ -65,7 +67,7 @@ class AddSubCategory(SuccessMessageMixin, CreateView):
     success_message = '%(name)s was created'
 
 
-class EditSubCategory(SuccessMessageMixin, UpdateView):
+class EditSubCategory(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     """ Edit Subategory View for management dashboard """
     model = SubCategory
     fields = '__all__'
@@ -74,14 +76,14 @@ class EditSubCategory(SuccessMessageMixin, UpdateView):
     success_message = '%(name)s was updated'
 
 
-class DeleteSubCategory(DeleteView):
+class DeleteSubCategory(StaffRequiredMixin, DeleteView):
     """ Delete Subcategory View for management dashboard """
     model = SubCategory
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
 
 
-class AddProductVariant(SuccessMessageMixin, CreateView):
+class AddProductVariant(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
@@ -90,7 +92,7 @@ class AddProductVariant(SuccessMessageMixin, CreateView):
     success_message = '%(size)s was created'
 
 
-class EditProductVariant(SuccessMessageMixin, UpdateView):
+class EditProductVariant(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     """ Edit Variant View for management dashboard """
     model = ProductVariant
     fields = '__all__'
@@ -99,14 +101,14 @@ class EditProductVariant(SuccessMessageMixin, UpdateView):
     success_message = '%(size)s was updated'
 
 
-class DeleteProductVariant(DeleteView):
+class DeleteProductVariant(StaffRequiredMixin, DeleteView):
     """ Delete Variant View for management dashboard """
     model = ProductVariant
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
 
 
-class AddProduct(SuccessMessageMixin, CreateView):
+class AddProduct(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Product View for management dashboard """
     model = Product
     fields = '__all__'
@@ -115,7 +117,7 @@ class AddProduct(SuccessMessageMixin, CreateView):
     success_message = '%(name)s was created'
 
 
-class EditProduct(SuccessMessageMixin, UpdateView):
+class EditProduct(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     """ Edit Product View for management dashboard """
     model = Product
     fields = '__all__'
@@ -124,7 +126,7 @@ class EditProduct(SuccessMessageMixin, UpdateView):
     success_message = '%(name)s was updated'
 
 
-class DeleteProduct(DeleteView):
+class DeleteProduct(StaffRequiredMixin, DeleteView):
     """ Delete Product View for management dashboard """
     model = Product
     template_name = 'management/confirm_delete.html'

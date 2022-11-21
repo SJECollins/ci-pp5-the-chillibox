@@ -162,6 +162,13 @@ a {
 }
 
 
+.cart-pics {
+    max-height: 80px;
+    width: auto;
+    /* object-fit: contain; */
+}
+
+
 /* Cards */
 
 .chilli-card {
@@ -171,6 +178,14 @@ a {
     box-shadow: 0 2px 4px 0 var(--site-green);
 }
 
+.cart-card {
+    max-width: 300px;
+    max-height: 150px;
+    padding: 1em;
+    margin: 1em auto;
+    background-color: var(--site-white);
+    border-radius: 4px;
+}
 
 /* Styling for specific templates */
 /* Nav styling */

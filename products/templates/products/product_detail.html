@@ -67,12 +67,16 @@
                         {% endif %}
                     </tr>
                     {% if product.variants %}
-                    {% for variant in product.variants.all %}
                     <tr>
                         <th>Available Sizes: </th>
-                        <td>{{ variant.size }} - €{{ variant.price }}</td>
+                        
+                        <td>
+                            {% for variant in product.variants.all %}
+                            <p class="mb-0">{{ variant.size }} - €{{ variant.price }}</p>
+                            {% endfor %}
+                        </td>
                     </tr>
-                    {% endfor %}
+                    
                     {% endif %}
                     {% if product.box_contents.all %}
                     <tr>

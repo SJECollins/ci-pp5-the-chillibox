@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 Checkout
@@ -7,27 +8,38 @@ Checkout
 
 {% block content %}
 <!-- Order summary section -->
-<section class="col-md-6">
-    <h1 class="headings headings-sm">Order Summary: </h1>
-    <p><strong>Total Items: </strong>{{ product_count }}</p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart_items %}
-            <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.variant.price }}</td>
-            {% endfor %}
-            <!-- Consider case of empty cart!! -->
-        </tbody>
-    </table>
+<section class="row">
+    <div class="col-md-6">
+        <h1 class="headings" >Checkout</h1>
+        <h2 class="headings headings-sm">Order Summary: </h2>
+        <p><strong>Total Items: </strong>{{ product_count }}</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.variant.price }}</td>
+                {% endfor %}
+                <!-- Consider case of empty cart!! -->
+            </tbody>
+        </table>
+    </div>
+<!-- Delivery details -->
+    <div class="col-md-6">
+        <h2 class="headings headings-sm">Your Details:</h2>
+        <form class="col-8 mx-auto">
+            {% csrf_token %}
+            {{ order_form|crispy }}
+        </form>
+    </div>
 </section>
 {% endblock %}

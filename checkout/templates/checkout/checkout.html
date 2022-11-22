@@ -12,33 +12,43 @@ Checkout
     <div class="col-md-6">
         <h1 class="headings" >Checkout</h1>
         <h2 class="headings headings-sm">Order Summary: </h2>
-        <p><strong>Total Items: </strong>{{ product_count }}</p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Item</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in cart_items %}
-                <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.variant.price }}</td>
-                {% endfor %}
-                <!-- Consider case of empty cart!! -->
-            </tbody>
-        </table>
+        <div class="col-md-8 mx-auto">
+            <p><strong>Total Items: </strong>{{ product_count }}</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.variant.price }}</td>
+                    {% endfor %}
+                    <!-- Consider case of empty cart!! -->
+                </tbody>
+            </table>
+            <p><strong>Delivery: </strong>{{ delivery|floatformat:2 }}</p>
+            <p><strong>Grand Total: </strong>{{ grand_total|floatformat:2 }}</p>
+        </div>
     </div>
 <!-- Delivery details -->
     <div class="col-md-6">
         <h2 class="headings headings-sm">Your Details:</h2>
-        <form class="col-8 mx-auto">
+        <form class="col-8 mx-auto" action="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
             {{ order_form|crispy }}
+            {% if user.is_authenticated %}
+                <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+            {% endif %}
+            <p>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></p>
+            <button type="submit" class="chilli-btn">Complete Order</button>
         </form>
     </div>
 </section>

@@ -6,7 +6,7 @@ Success
 {% endblock %}
 
 {% block content %}
-<section class="row d-flex justify-content-between">
+<section class="d-flex flex-row justify-content-between">
     <div>
         <a class="chilli-link" href="{% url 'home:index' %}">Go Home</a>
     </div>
@@ -24,9 +24,9 @@ Success
         <h4 class="headings headings-sm">Order Info:</h4>
         <p><strong>Order Number: </strong>{{ order.order_number }}</p>
         <p><strong>Placed On: </strong>{{ order.date }}</p>
-        <p><strong>Order Total: </strong>{{ order.total }}</p>
-        <p><strong>Delivery: </strong>{{ order.delivery_cost }}</p>
-        <p><strong>Grand Total: </strong>{{ order.grand_total }}</p>
+        <p><strong>Order Total: </strong>{{ order.order_total|floatformat:2 }}</p>
+        <p><strong>Delivery: </strong>{{ order.delivery_cost|floatformat:2 }}</p>
+        <p><strong>Grand Total: </strong>{{ order.grand_total|floatformat:2 }}</p>
         <table class="table">
             <tr>
                 {% for item in order.lineitems.all %}

@@ -87,7 +87,7 @@
                     {% endif %}
                     <tr>
                         <th>Stock: </th>
-                        {% if product.in_stock %}
+                        <!-- {% if product.in_stock %}
                         {% if product.current_stock >= 10 %}
                         <td>In stock</td>
                         {% else %}
@@ -95,7 +95,8 @@
                         {% endif %}
                         {% else %}
                         <td>Out of stock</td>
-                        {% endif %}
+                        {% endif %} -->
+                        <td>{{ product.current_stock }}</td>
                     </tr>
                 </table>
             </div>

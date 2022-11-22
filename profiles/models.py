@@ -24,6 +24,9 @@ class UserProfile(models.Model):
     country = CountryField(blank_label='Country', null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "User Profiles"
+
     def __str__(self):
         return self.display_name
 

@@ -46,6 +46,9 @@ class ProductVariant(models.Model):
     size = models.CharField(max_length=80)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
+    class Meta:
+        verbose_name_plural = 'Product Variants'
+
     def __str__(self):
         return self.size
 

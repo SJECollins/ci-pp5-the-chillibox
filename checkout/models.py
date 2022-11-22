@@ -76,7 +76,7 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE,
                               related_name='lineitems')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variant = models.CharField(ProductVariant, on_delete=models.SET_NULL)
+    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          editable=False)

@@ -25,10 +25,12 @@ Checkout
                 </thead>
                 <tbody>
                     {% for item in cart_items %}
-                    <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
-                    <td>{{ item.product.name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.variant.price }}</td>
+                    <tr>
+                        <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.variant.price }}</td>
+                    </tr>
                     {% endfor %}
                     <!-- Consider case of empty cart!! -->
                 </tbody>

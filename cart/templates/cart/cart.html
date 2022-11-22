@@ -22,17 +22,10 @@ Your Cart
                         <th>Total Items:</th>
                         <td>{{ product_count }}</td>
                     </tr>
-                    {% if delivery > 0 %}
                     <tr>
                         <th>Total <small><em>(excl. delivery)</em></small>:</th>
                         <td>€{{ total|floatformat:2 }}</td>
                     </tr>
-                    {% else %}
-                    <tr>
-                        <th>Total:</th>
-                        <td>€{{ total }}</td>
-                    </tr>
-                    {% endif %}
                     <tr>
                         <th>Delivery:</th>
                         <td>€{{ delivery|floatformat:2 }}</td>
@@ -46,9 +39,7 @@ Your Cart
                 <p class="text-center">Spend €{{ free_delivery_delta }} more for free delivery!</p>
                 {% endif %}
             </div>
-
         </div>
-
         <div class="col-sm-8">
         {% for item in cart_items %}
             <div class="col-12 col-md-4 col-lg-4">

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.views import View
 
 from .models import Category, SubCategory, Variant, Product
@@ -40,3 +41,11 @@ class ProductDetail(View):
             'product': product,
         }
         return render(request, template_name, context)
+
+
+def current_stock(request):
+    variant_id = request.GET.get('product_variant')
+    print(variant_id)
+    variant = Variant.objects.get(id=variant_id)
+    current_stock = variant.current_stock
+    return HttpResponse(current_stock)

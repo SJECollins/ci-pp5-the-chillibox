@@ -52,7 +52,7 @@ Your Cart
                         <p><strong>Size: </strong> {{ item.size }}</p>
                         <p><strong>Qty: </strong> {{ item.quantity }}</p>
                         <form class="mb-2" action="{% url 'cart:adjust_cart' item.item_id %}" method="POST">
-                            <input class="stock" data-item_id="{{ item.item_id }}" name="stock_{{ item.item_id }}" value="{{ item.product.current_stock }}" hidden>
+                            <input class="stock" data-item_id="{{ item.item_id }}" name="stock_{{ item.item_id }}" value="{{ item.variant.current_stock }}" hidden>
                             <button type="button" id="dec_{{ item.item_id }}" class="chilli-btn rounded-0 decrease">-</button>
                             <input class="text-center quantity" data-item_id="{{ item.item_id }}" name="quantity" id="qty_{{ item.item_id }}" type="number" value="{{ item.quantity }}" min="0"
                                 max="99">

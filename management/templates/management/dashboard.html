@@ -6,126 +6,92 @@ Dashboard
 
 {% block content %}
 <section class="row">
-    <a class="chilli-link" href="{% url 'home:index' %}">&laquo; Go Home</a>
-    <div class="col-12 col-lg-6">
-        <!-- Left / Top Column -->
-        <div class="col-12">
-            <!-- Manage Categories - necessary at this level? Creating a category requires new links etc, reconsider -->
-            <div class="d-flex align-items-center">
-                <h1 class="headings">Categories</h1>
-                <a class="chilli-btn ms-5" href="{% url 'management:add_category' %}">Add New Category</a>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>
-                            <button role="button" data-bs-toggle="collapse" data-bs-target="#collapse-cat"
-                                aria-expanded="false" aria-controls="collapse-cat">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="collapse" id="collapse-cat">
-                    {% for cat in categories %}
-                    <tr>
-                        <td>{{ cat.name }}</td>
-                        <td><a class="chilli-btn" href="{% url 'management:edit_category' cat.pk %}">Edit</a></td>
-                        <td><a class="chilli-btn chilli-dngr"
-                                href="{% url 'management:delete_category' cat.pk %}">Delete</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-12">
-            <!-- Subcategory Management -->
-            <div class="d-flex align-items-center">
-                <h1 class="headings">SubCategories</h1>
-                <a class="chilli-btn ms-5" href="{% url 'management:add_subcategory' %}">Add New SubCategory</a>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>
-                            <button role="button" data-bs-toggle="collapse" data-bs-target="#collapse-subcat"
-                                aria-expanded="false" aria-controls="collapse-subcat">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="collapse" id="collapse-subcat">
-                    {% for subcat in subcategories %}
-                    <tr>
-                        <td>{{ subcat.name }}</td>
-                        <td>
-                            <a class="chilli-btn" href="{% url 'management:edit_subcategory' subcat.pk %}">Edit</a>
-                        </td>
-                        <td>
-                            <a class="chilli-btn chilli-dngr"
-                                href="{% url 'management:delete_subcategory' subcat.pk %}">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="col-12">
-            <div class="d-flex align-items-center">
-                <!-- Product Variant Management-->
-                <h1 class="headings">Product Variants</h1>
-                <a class="chilli-btn ms-5" href="{% url 'management:add_variant' %}">Add New Product Variants</a>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>
-                            <button role="button" data-bs-toggle="collapse" data-bs-target="#collapse-variants"
-                                aria-expanded="false" aria-controls="collapse-variants">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="collapse" id="collapse-variants">
-                    {% for variant in variants %}
-                    <tr>
-                        <td>{{ variant.size }}</td>
-                        <td>{{ variant.price }}</td>
-                        <td>
-                            <a class="chilli-btn" href="{% url 'management:edit_variant' variant.pk %}">Edit</a>
-                        </td>
-                        <td>
-                            <a class="chilli-btn chilli-dngr"
-                                href="{% url 'management:delete_variant' variant.pk %}">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="d-flex justify-content-evenly">
+        <a class="chilli-link big" href="{% url 'home:index' %}">&laquo; Go Home</a>
+        <h1 class="headings">Products</h1>
+        <div>
+            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
+            <a class="chilli-btn" href="{% url 'management:add_variant' %}">Add New Variant</a>       
         </div>
     </div>
-    <!-- Could be side by side on larger screens?? -->
-    <!-- Probably want to be able to filter and search - consider sorting/admin search -->
     <div class="col-12 col-lg-6">
-        <!-- Right / Second Column: Product Management -->
-        <div class="d-flex align-items-center">
-            <h1 class="headings">Products</h1>
-            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
-        </div>
-        <!-- For now regroup - consider different ordering?? -->
+        <h2 class="headings">Seeds</h2>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Thumbnail</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>
+                        <button role="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-seed" aria-expanded="false"
+                            aria-controls="collapse-seed">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="collapse" id="collapse-seed">
+                {% for seed in seeds %}
+                <tr>
+                    <td>{{ seed.name }}</td>
+                    <td>{% if seed.thumbnail %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <a class="chilli-btn" href="{% url 'management:edit_product' seed.id %}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="chilli-btn chilli-dngr"
+                            href="{% url 'management:delete_product' seed.id %}">Delete</a>
+                    </td>
+                </tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Update Stock</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>
+                                <button role="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-{{ seed.id }}" aria-expanded="false"
+                                aria-controls="collapse-{{ seed.id }}">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="collapse" id="collapse-{{ seed.id }}">
+                        {% for variant in seed.variants.all %}
+                        <tr>
+                            <td>{{ variant.size }}</td>
+                            <td>{{ variant.price }}</td>
+                            <td>{{ variant.current_stock }}</td>
+                            <td>Update Filler</td>
+                            <td>
+                                <a class="chilli-btn" href="{% url 'management:edit_variant' variant.id %}">Edit</a>
+                            </td>
+                            <td>
+                                <a class="chilli-btn chilli-dngr" href="{% url 'management:delete_variant' variant.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <div class="col-12 col-lg-6">
+
         {% regroup products by category as products_by_category %}
         {% for category in products_by_category %}
         <div class="row">

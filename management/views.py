@@ -19,16 +19,16 @@ class ProductDashboard(StaffRequiredMixin, View):
     View for admin accessible management dashboard.
     """
     def get(self, request):
-        categories = Category.objects.all()
-        subcategories = SubCategory.objects.all()
-        variants = Variant.objects.all()
-        products = Product.objects.all().order_by('category')
+        seeds = Product.objects.filter(category__slug='seeds')
+        sauces = Product.objects.filter(category__slug='sauces')
+        seedboxes = Product.objects.filter(category__slug='seedbox')
+        sauceboxes = Product.objects.filter(category__slug='saucebox')
         template_name = 'management/dashboard.html'
         context = {
-            'categories': categories,
-            'subcategories': subcategories,
-            'variants': variants,
-            'products': products,
+            'seeds': seeds,
+            'sauces': sauces,
+            'seedboxes': seedboxes,
+            'sauceboxes': sauceboxes,
         }
         return render(request, template_name, context)
 

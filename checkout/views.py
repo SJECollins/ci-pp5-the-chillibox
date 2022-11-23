@@ -7,7 +7,7 @@ from django.views import View
 
 from cart.contexts import cart_contents
 
-from products.models import Product, ProductVariant
+from products.models import Product, Variant
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
 
@@ -67,7 +67,7 @@ def checkout(request):
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
-                            variant = get_object_or_404(ProductVariant, size=size)
+                            variant = get_object_or_404(Variant, size=size)
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,

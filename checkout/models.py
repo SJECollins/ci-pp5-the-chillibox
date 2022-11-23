@@ -6,7 +6,7 @@ from django.conf import settings
 
 from django_countries.fields import CountryField
 
-from products.models import Product, ProductVariant
+from products.models import Product, Variant
 from profiles.models import UserProfile
 
 
@@ -76,7 +76,7 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE,
                               related_name='lineitems')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
+    variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          editable=False)

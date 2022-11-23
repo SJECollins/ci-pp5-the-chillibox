@@ -2,7 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 
-from products.models import Product, ProductVariant
+from products.models import Product, Variant
 
 
 def cart_contents(request):
@@ -25,7 +25,7 @@ def cart_contents(request):
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
-                variant = get_object_or_404(ProductVariant, size=size)
+                variant = get_object_or_404(Variant, size=size)
                 total += quantity * variant.price
                 product_count += quantity
                 cart_items.append({

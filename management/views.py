@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .mixins import StaffRequiredMixin
 
 
-from products.models import Category, SubCategory, Product, ProductVariant
+from products.models import Category, SubCategory, Product, Variant
 
 """
 Revisit for messages and restrict login to superusers
@@ -21,7 +21,7 @@ class ProductDashboard(StaffRequiredMixin, View):
     def get(self, request):
         categories = Category.objects.all()
         subcategories = SubCategory.objects.all()
-        variants = ProductVariant.objects.all()
+        variants = Variant.objects.all()
         products = Product.objects.all().order_by('category')
         template_name = 'management/dashboard.html'
         context = {
@@ -83,27 +83,27 @@ class DeleteSubCategory(StaffRequiredMixin, DeleteView):
     success_url = '/management/'
 
 
-class AddProductVariant(StaffRequiredMixin, SuccessMessageMixin, CreateView):
+class AddVariant(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Variant View for management dashboard """
-    model = ProductVariant
+    model = Variant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
     success_message = '%(size)s was created'
 
 
-class EditProductVariant(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
+class EditVariant(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     """ Edit Variant View for management dashboard """
-    model = ProductVariant
+    model = Variant
     fields = '__all__'
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
     success_message = '%(size)s was updated'
 
 
-class DeleteProductVariant(StaffRequiredMixin, DeleteView):
+class DeleteVariant(StaffRequiredMixin, DeleteView):
     """ Delete Variant View for management dashboard """
-    model = ProductVariant
+    model = Variant
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
 

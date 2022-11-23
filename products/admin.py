@@ -1,20 +1,18 @@
 from django.contrib import admin
 
-from .models import Category, SubCategory, ProductVariant, Product
+from .models import Category, SubCategory, Variant, Product
 
 
-@admin.register(ProductVariant)
-class ProductVariantAdmin(admin.ModelAdmin):
-    list_filter = ('size',)
-    list_display = ('size', 'price',)
-    search_fields = ('size',)
+class VariantAdminInline(admin.TabularInline):
+    model = Variant
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_filter = ('category', 'subcategory', 'in_stock',)
-    list_display = ('name', 'category', 'subcategory', 'current_stock',
-                    'in_stock')
+    inlines = (VariantAdminInline,)
+
+    list_filter = ('category', 'subcategory',)
+    list_display = ('name', 'category', 'subcategory',)
     search_fields = ('name', 'category', 'subcategory',)
 
 

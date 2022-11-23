@@ -38,21 +38,6 @@ class SubCategory(models.Model):
         return self.name
 
 
-class ProductVariant(models.Model):
-    """
-    ProductVariant model. To manage options for sizes and prices.
-    String representation returns variant size.
-    """
-    size = models.CharField(max_length=80)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-
-    class Meta:
-        verbose_name_plural = 'Product Variants'
-
-    def __str__(self):
-        return self.size
-
-
 class Product(models.Model):
     """
     Product model.
@@ -82,18 +67,10 @@ class Product(models.Model):
                                   (eg \'hot\') where appropriate.')
     box_contents = models.ManyToManyField('self', blank=True, help_text='Add \
                                           products for seed and sauce boxes.')
-    variants = models.ManyToManyField(ProductVariant, related_name='products',
-                                      help_text='Must include at least one for\
-                                       default price and size.')
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
     thumbnail = models.ImageField(upload_to='uploads/', null=True, blank=True,
                                   help_text='If not added, will be \
                                   auto-generated from image.')
-    current_stock = models.PositiveIntegerField(default=0,
-                                                help_text='Default is 0.')
-    in_stock = models.BooleanField(default=False,
-                                   help_text='Updates when current stock \
-                                   updated.')
     added_on = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -124,10 +101,6 @@ class Product(models.Model):
         return thumbnail
 
     def save(self, *args, **kwargs):
-        if self.current_stock < 1:
-            self.in_stock = False
-        elif self.current_stock >= 1:
-            self.in_stock = True
         print(self.image)
         print(self.thumbnail)  # Check thumbnail -- don't forget to delete!!
         super(Product, self).save(*args, **kwargs)
@@ -135,3 +108,36 @@ class Product(models.Model):
             if not self.thumbnail:  # Is this super hacky?! Find better solution??
                 self.thumbnail = self.make_thumbnail(self.image)
         super(Product, self).save(*args, **kwargs)
+
+
+class Variant(models.Model):
+    """
+    ProductVariant model. To manage options for sizes and prices.
+    String representation returns variant size.
+    """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
+    size = models.CharField(max_length=80)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    current_stock = models.PositiveIntegerField(default=0,
+                                                help_text='Default is 0.')
+    in_stock = models.BooleanField(default=False,
+                                   help_text='Updates when current stock \
+                                   updated.')
+
+    class Meta:
+        verbose_name_plural = 'Variants'
+
+    def __str__(self):
+        return self.size
+
+    def save(self, *args, **kwargs):
+        if self.current_stock < 1:
+            self.in_stock = False
+        elif self.current_stock >= 1:
+            self.in_stock = True
+        super(Variant, self).save(*args, **kwargs)
+
+
+class VariantManager(models.Manager):
+    def all(self):
+        return super(VariantManager, self).filter(in_stock=True)

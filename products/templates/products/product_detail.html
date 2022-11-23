@@ -68,15 +68,13 @@
                     </tr>
                     {% if product.variants %}
                     <tr>
-                        <th>Available Sizes: </th>
-                        
+                        <th>Options: </th>
                         <td>
                             {% for variant in product.variants.all %}
                             <p class="mb-0">{{ variant.size }} - €{{ variant.price }}</p>
                             {% endfor %}
                         </td>
                     </tr>
-                    
                     {% endif %}
                     {% if product.box_contents.all %}
                     <tr>
@@ -85,19 +83,6 @@
                             {% endfor %}</td>
                     </tr>
                     {% endif %}
-                    <tr>
-                        <th>Stock: </th>
-                        <!-- {% if product.in_stock %}
-                        {% if product.current_stock >= 10 %}
-                        <td>In stock</td>
-                        {% else %}
-                        <td>Less than 10 left!</td>
-                        {% endif %}
-                        {% else %}
-                        <td>Out of stock</td>
-                        {% endif %} -->
-                        <td>{{ product.variants.current_stock }}</td>
-                    </tr>
                 </table>
             </div>
             <div class="order-1 order-lg-2">

@@ -12,8 +12,12 @@ from .forms import ProfileForm
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         profile = get_object_or_404(UserProfile, user=request.user)
+        orders = profile.orders.all().order_by('-date')
         template_name = 'profiles/profile.html'
-        context = {'profile': profile, }
+        context = {
+            'profile': profile,
+            'orders': orders,
+            }
         return render(request, template_name, context)
 
 

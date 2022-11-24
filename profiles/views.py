@@ -5,6 +5,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.views.generic import UpdateView
 
+from checkout.models import Order
+
 from .models import UserProfile
 from .forms import ProfileForm
 
@@ -30,3 +32,13 @@ class UpdateProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get_object(self):
         return self.request.user.userprofile
+
+
+class OrderHistory(LoginRequiredMixin, View):
+    def get(self, request, order_number):
+        order = get_object_or_404(Order, order_number=order_number)
+        template_name = 'checkout/checkout_success.html'
+        context = {
+            'order': order,
+        }
+        return render(request, template_name, context)

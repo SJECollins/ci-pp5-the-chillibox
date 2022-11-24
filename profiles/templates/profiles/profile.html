@@ -84,7 +84,9 @@
                         <td>{{ order.date|date:'d/m/y' }}</td>
                         <td>{{ order.grand_total }}</td>
                         <td>
-                            <a class="chilli-btn" href="">View</a>
+                            <a class="chilli-btn" href="{% url 'profiles:order_history' order.order_number %}">
+                                View
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -80,6 +80,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def check_stock(self, *args, **kwargs):
+        in_stock = False
+        for variant in self.variants.all():
+            if variant.in_stock:
+                in_stock = True
+        return in_stock
+
     def make_thumbnail(self, image):
         """
         Create thumbnail from uploaded image

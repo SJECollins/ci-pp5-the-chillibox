@@ -22,7 +22,7 @@ Shop
                 <p>No thumbnail</p>
                 {% endif %}
                 <p class="excerpt">{{ sauce.excerpt }}</p>
-                <p>{% if sauce.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
+                <p>{% if sauce.check_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
                 <a class="chilli-link" href="{% url 'products:product' sauce.slug %}">View {{ sauce.name }}</a>
             </div>
         </div>
@@ -46,7 +46,7 @@ Shop
                 <p>No thumbnail</p>
                 {% endif %}
                 <p class="excerpt">{{ saucebox.excerpt }}</p>
-                <p>{% if saucebox.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
+                <p>{% if saucebox.check_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
                 <a class="chilli-link" href="{% url 'products:product' saucebox.slug %}">View {{ saucebox.name }}</a>
             </div>
         </div>
@@ -70,7 +70,7 @@ Shop
                 <p>No thumbnail</p>
                 {% endif %}
                 <p class="excerpt">{{ seed.excerpt }}</p>
-                <p>{% if seed.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
+                <p>{% if seed.check_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
                 <a class="chilli-link" href="{% url 'products:product' seed.slug %}">View {{ seed.name }}</a>
             </div> 
         </div>
@@ -94,7 +94,7 @@ Shop
                 <p>No thumbnail</p>
                 {% endif %}
                 <p class="excerpt">{{ seedbox.excerpt }}</p>
-                <p>{% if seedbox.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
+                <p>{% if seedbox.check_stock %}In Stock{% else %}Out of Stock{% endif %}</p>
                 <a class="chilli-link" href="{% url 'products:product' seedbox.slug %}">View {{ seedbox.name }}</a>
             </div>
         </div>

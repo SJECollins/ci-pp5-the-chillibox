@@ -23,14 +23,20 @@ def add_to_cart(request, item_id):
     if item_id in list(cart.keys()):
         if size in cart[item_id]['items_by_size'].keys():
             cart[item_id]['items_by_size'][size] += quantity
+            variant.current_stock -= quantity
             messages.success(request, f'Updated {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
         else:
             cart[item_id]['items_by_size'][size] = quantity
+            variant.current_stock -= quantity
             messages.success(request, f'Added {size} {product.name} to cart')
     else:
         cart[item_id] = {'items_by_size': {size: quantity}}
+        variant.current_stock -= quantity
         messages.success(request, f'Added {size} {product.name} to cart')
 
+    print(cart[item_id]['items_by_size'][size])
+    print(cart[item_id]['items_by_size'])
+    variant.save()
     request.session['cart'] = cart
     return redirect('products:product', product.slug)
 
@@ -46,13 +52,16 @@ def adjust_cart(request, item_id):
 
     if quantity > 0:
         cart[item_id]['items_by_size'][size] = quantity
+        variant.current_stock -= quantity
         messages.success(request, f'Updated {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
     else:
         del cart[item_id]['items_by_size'][size]
+        variant.current_stock += quantity
         if not cart[item_id]['items_by_size']:
             cart.pop(item_id)
         messages.success(request, f'Removed {size} {product.name} from cart')
 
+    variant.save()
     request.session['cart'] = cart
     return redirect(reverse('cart:view_cart'))
 
@@ -66,11 +75,14 @@ def remove_item(request, item_id):
         price = variant.price
         cart = request.session.get('cart', {})
 
+        variant.current_stock += int(cart[item_id]['items_by_size'][size])
         del cart[item_id]['items_by_size'][size]
+
         if not cart[item_id]['items_by_size']:
             cart.pop(item_id)
         messages.success(request, f'Removed {size} {product.name} from cart')
 
+        variant.save()
         request.session['cart'] = cart
         return redirect(reverse('cart:view_cart'))
 

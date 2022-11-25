@@ -92,7 +92,7 @@
                     <div>
                         <label class="me-4"><strong>Select Options:</strong></label>
                         <select id="prices" name="product_variant" id="product_variant" class="border rounded-3" data-hx-get="/products/current_stock/" data-hx-target="#current_stock">
-                            <option>Please select an option...</option>
+                            <option value="default">Please select an option...</option>
                             {% for variant in product.variants.all %}
                             <option data-variant_id="{{ variant.id }}" value="{{ variant.id }}">{{ variant.size }}
                                 €{{ variant.price }}</option>
@@ -110,7 +110,7 @@
                             <p id="qty_warning"><em>No more available</em></p>
                         </div>
                     </div>
-                    <button class="chilli-btn my-2 d-block" type="submit">Add To Cart</button>
+                    <button id="add" class="chilli-btn my-2 d-block" type="submit" disabled>Add To Cart</button>
                 </form>
             </div>
         </div>
@@ -124,12 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const decrease = document.getElementById("dec_qty")
     const increase = document.getElementById("inc_qty")
     const prices = document.getElementById("prices")
+    const addBtn = document.getElementById("add")
     const warning = document.getElementById("qty_warning")
     const stock = document.getElementById("current_stock")
 
     // Mutation Observer for stock - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
     // FIVE HOURS TO FIND A SOLUTION NOT INVOLVING jQuery
-    const targetNode = stock
     const config = { childList: true }
     const callback = (mutationList, observer) => {
         for (const mutation of mutationList) {
@@ -142,7 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     const observer = new MutationObserver(callback)
-    observer.observe(targetNode, config)
+    observer.observe(stock, config)
+
+    prices.addEventListener("change", changeAddBtn)
+
+    function changeAddBtn() {
+        if (prices.value == "default") {
+            addBtn.disabled = true
+        } else {
+            addBtn.disabled = false
+        }
+    }
 
     decrease.addEventListener("click", decQty)
     increase.addEventListener("click", incQty)

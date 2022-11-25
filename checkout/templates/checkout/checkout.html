@@ -29,14 +29,14 @@ Checkout
                         <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
                         <td>{{ item.product.name }}</td>
                         <td>{{ item.quantity }}</td>
-                        <td>{{ item.variant.price }}</td>
+                        <td>€{{ item.variant.price }}</td>
                     </tr>
                     {% endfor %}
                     <!-- Consider case of empty cart!! -->
                 </tbody>
             </table>
-            <p><strong>Delivery: </strong>{{ delivery|floatformat:2 }}</p>
-            <p><strong>Grand Total: </strong>{{ grand_total|floatformat:2 }}</p>
+            <p><strong>Delivery: </strong>€{{ delivery|floatformat:2 }}</p>
+            <p><strong>Grand Total: </strong>€{{ grand_total|floatformat:2 }}</p>
         </div>
     </div>
 <!-- Delivery details -->

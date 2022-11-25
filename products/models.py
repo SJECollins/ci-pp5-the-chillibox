@@ -143,8 +143,3 @@ class Variant(models.Model):
         elif self.current_stock >= 1:
             self.in_stock = True
         super(Variant, self).save(*args, **kwargs)
-
-
-class VariantManager(models.Manager):
-    def all(self):
-        return super(VariantManager, self).filter(in_stock=True)

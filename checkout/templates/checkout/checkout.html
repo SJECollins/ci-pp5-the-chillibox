@@ -9,8 +9,8 @@ Checkout
 {% block content %}
 <!-- Order summary section -->
 <section class="row">
+    <h1 class="headings" >Checkout</h1>
     <div class="col-md-6">
-        <h1 class="headings" >Checkout</h1>
         <h2 class="headings headings-sm">Order Summary: </h2>
         <div class="col-md-8 mx-auto">
             <p><strong>Total Items: </strong>{{ product_count }}</p>
@@ -42,7 +42,7 @@ Checkout
 <!-- Delivery details -->
     <div class="col-md-6">
         <h2 class="headings headings-sm">Your Details:</h2>
-        <form class="col-8 mx-auto" action="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
+        <form class="col-10 col-lg-8 mx-auto" action="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
             {{ order_form|crispy }}
             {% if user.is_authenticated %}

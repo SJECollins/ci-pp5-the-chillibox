@@ -6,18 +6,6 @@ from . import views
 app_name = 'management'
 urlpatterns = [
     path('', views.ProductDashboard.as_view(), name='dashboard'),
-    path('add_category/', views.AddCategory.as_view(),
-         name='add_category'),
-    path('edit_category/<pk>', views.EditCategory.as_view(),
-         name='edit_category'),
-    path('delete_category/<pk>', views.DeleteCategory.as_view(),
-         name='delete_category'),
-    path('add_subcategory/', views.AddSubCategory.as_view(),
-         name='add_subcategory'),
-    path('edit_subcategory/<pk>', views.EditSubCategory.as_view(),
-         name='edit_subcategory'),
-    path('delete_subcategory/<pk>', views.DeleteSubCategory.as_view(),
-         name='delete_subcategory'),
     path('add_variant/<slug>', views.AddVariant.as_view(),
          name='add_variant'),
     path('edit_variant/<pk>', views.EditVariant.as_view(),

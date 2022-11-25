@@ -75,8 +75,6 @@ def checkout(request):
                                 variant=variant,
                             )
                             order_line_item.save()
-                    variant.current_stock = variant.current_stock - order_line_item.quantity
-                    variant.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your cart wasn't found in our database. "

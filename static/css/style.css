@@ -223,6 +223,14 @@ a {
     box-shadow: 0 0 8px 2px var(--site-dark-green);
 }
 
+/* Contact styling */
+
+#map {
+    height: 360px;
+    width: auto;
+    /* position: absolute !important; */
+    object-fit: contain;
+}
 
 /* Footer styling */
 footer {

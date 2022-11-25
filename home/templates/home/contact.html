@@ -14,18 +14,19 @@ Contact Us
     </div>
 </section>
 <section class="row">
-    <div class="col-12 col-md-6">
-        <h2 class="headings headings-sm text-center">Send us a message</h2>
-        <form id="contact-form" method="POST" class="col-8 mx-auto">
+    <div class="col-12 col-md-5">
+        <h2 class="headings headings-sm text-center">Send us a message:</h2>
+        <form id="contact-form" method="POST" class="col-10 mx-auto">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="contact_name" class="form-label">Name:</label>
-                <input type="text" name="contact_name" class="form-control" id="contact_name" placeholder="Your Name" required>
+                <input type="text" name="contact_name" class="form-control" id="contact_name" placeholder="Your Name"
+                    required>
             </div>
             <div class="mb-3">
                 <label for="contact_email" class="form-label">Email address:</label>
-                <input type="email" name="contact_email" class="form-control" id="contact_email" placeholder="name@example.com"
-                required>
+                <input type="email" name="contact_email" class="form-control" id="contact_email"
+                    placeholder="name@example.com" required>
             </div>
             <div class="mb-3">
                 <label for="contact_message" class="form-label">Your Message:</label>
@@ -34,36 +35,68 @@ Contact Us
             <button type="submit" class="chilli-btn float-end">Send Message</button>
         </form>
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-7">
         <h2 class="headings headings-sm text-center">Our Location</h2>
-        <table>
-            <tr>
-                <th>Call Us: </th>
-                <td><a href="tel:+35311111111">+353 1 111 1111</a></td>
-            </tr>
-            <tr>
-                <th>Email Us: </th>
-                <td><a href="mailto:portprojtest@gmail.com">Email The Chillibox</a></td>
-            </tr>
-            <tr>
-                <th class="align-top">Find Us: </th>
-                <td>No. 1, <br>
-                    SomeRoad<br>
-                    SomeTown</td>
-            </tr>
-            <tr>
-                <th>Facebook Us: </th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Tweet Us: </th>
-                <td></td>
-            </tr>
-        </table>
-        <div>
+        <div class="row">
+            <div class="col-xl-4">
+                <table class="mx-auto">
+                    <tr>
+                        <th>Call Us: </th>
+                        <td><a href="tel:+35311111111">+353 1 111 1111</a></td>
+                    </tr>
+                    <tr>
+                        <th>Email Us: </th>
+                        <td><a href="mailto:portprojtest@gmail.com">Email The Chillibox</a></td>
+                    </tr>
+                    <tr>
+                        <th class="align-top">Find Us: </th>
+                        <td>666 Main St, <br>
+                            Kill,<br>
+                            Co. Kildare<br>
+                            Ireland</td>
+                    </tr>
+                    <tr>
+                        <th>Facebook Us: </th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Tweet Us: </th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xl-8 pe-5">
+                <div id="map">
 
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF3YYrvSP4ocz-eg3sbbAcf8lAqDnqO2g&callback=initMap&v=weekly"
+    defer></script>
+<script>
+    var map;
+    const ourLocation = {
+        lat: 53.248417,
+        lng: -6.591386
+    }
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: ourLocation,
+            zoom: 17
+        });
+        const chilli = "../static/images/favicon.ico"
+        const marker = new google.maps.Marker({
+            position: ourLocation,
+            map: map,
+            icon: chilli,
+            title: "The Chillibox"
+        });
+    }
+</script>
 
 {% endblock %}

@@ -18,7 +18,7 @@ urlpatterns = [
          name='edit_subcategory'),
     path('delete_subcategory/<pk>', views.DeleteSubCategory.as_view(),
          name='delete_subcategory'),
-    path('add_variant/', views.AddVariant.as_view(),
+    path('add_variant/<slug>', views.AddVariant.as_view(),
          name='add_variant'),
     path('edit_variant/<pk>', views.EditVariant.as_view(),
          name='edit_variant'),

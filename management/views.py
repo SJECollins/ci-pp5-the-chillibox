@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
@@ -33,63 +33,18 @@ class ProductDashboard(StaffRequiredMixin, View):
         return render(request, template_name, context)
 
 
-class AddCategory(StaffRequiredMixin, SuccessMessageMixin, CreateView):
-    """ Add Category view for management dashboard """
-    model = Category
-    fields = '__all__'
-    template_name = 'management/dashboard_form.html'
-    success_url = '/management/'
-    success_message = '%(name)s was created'
-
-
-class EditCategory(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
-    """ Edit Category View for management dashboard """
-    model = Category
-    fields = '__all__'
-    template_name = 'management/dashboard_form.html'
-    success_url = '/management/'
-    success_message = '%(name)s was updated'
-
-
-class DeleteCategory(StaffRequiredMixin, DeleteView):
-    """ Delete Category View for management dashboard """
-    model = Category
-    template_name = 'management/confirm_delete.html'
-    success_url = '/management/'
-
-
-class AddSubCategory(StaffRequiredMixin, SuccessMessageMixin, CreateView):
-    """ Add Subcategory View for management dashboard """
-    model = SubCategory
-    fields = '__all__'
-    template_name = 'management/dashboard_form.html'
-    success_url = '/management/'
-    success_message = '%(name)s was created'
-
-
-class EditSubCategory(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
-    """ Edit Subategory View for management dashboard """
-    model = SubCategory
-    fields = '__all__'
-    template_name = 'management/dashboard_form.html'
-    success_url = '/management/'
-    success_message = '%(name)s was updated'
-
-
-class DeleteSubCategory(StaffRequiredMixin, DeleteView):
-    """ Delete Subcategory View for management dashboard """
-    model = SubCategory
-    template_name = 'management/confirm_delete.html'
-    success_url = '/management/'
-
-
 class AddVariant(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     """ Add Variant View for management dashboard """
     model = Variant
-    fields = '__all__'
+    fields = ('size', 'price', 'current_stock',)
     template_name = 'management/dashboard_form.html'
     success_url = '/management/'
     success_message = '%(size)s was created'
+
+    def form_valid(self, form):
+        product = get_object_or_404(Product, slug=self.kwargs['slug'])
+        form.instance.product = product
+        return super(AddVariant, self).form_valid(form)
 
 
 class EditVariant(StaffRequiredMixin, SuccessMessageMixin, UpdateView):

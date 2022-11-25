@@ -15,6 +15,12 @@ class IndexView(View):
         return render(request, template_name, context)
 
 
+class ContactView(View):
+    def get(self, request):
+        template_name = 'home/contact.html'
+        return render(request, template_name)
+
+
 def handle_403(request, exception, template_name="errors/403.html"):
     """
     Renders custom 403 page

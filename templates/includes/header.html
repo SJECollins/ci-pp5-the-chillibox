@@ -51,7 +51,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-links" href="#">Contact Us</a>
+                        <a class="navbar-links" href="{% url 'home:contact' %}">Contact Us</a>
                     </li>
                     <!-- Authenticated users link to profile & logout, guests link to signup/login -->
                     {% if user.is_authenticated %}

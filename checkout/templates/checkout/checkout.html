@@ -49,7 +49,7 @@ Checkout
                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
             {% endif %}
-            <p>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></p>
+            <p>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></p>
             <button type="submit" class="chilli-btn">Complete Order</button>
         </form>
     </div>

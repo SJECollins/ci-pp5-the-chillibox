@@ -119,6 +119,16 @@ a {
     color: var(--site-dark-red);
 }
 
+.chilli-link-alt {
+    font-weight: 600;
+    color: var(--site-red);
+    transition: all 0.2s linear;
+}
+
+.chilli-link-alt:hover, .chilli-link-alt:active {
+    color: var(--site-green);
+}
+
 .chilli-btn {
     padding: 0.25em 0.75em;
     font-weight: 600;
@@ -233,7 +243,6 @@ a {
 #map {
     height: 360px;
     width: auto;
-    /* position: absolute !important; */
     object-fit: contain;
 }
 

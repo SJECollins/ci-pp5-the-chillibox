@@ -94,7 +94,9 @@
                 </ul>
                 <a class="navbar-links" data-bs-toggle="offcanvas" href="#theCart" role="button"
                     aria-controls="offcanvasExample">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping big">
+                        {% if product_count > 0 %}<span class="small">{{ product_count }}</span>{% endif %}
+                    </i>
                 </a>
             </div>
         </div>

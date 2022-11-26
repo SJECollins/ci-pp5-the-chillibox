@@ -1,8 +1,10 @@
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 from products.models import Product
+from .forms import ContactForm
 
 
 class IndexView(View):
@@ -15,10 +17,20 @@ class IndexView(View):
         return render(request, template_name, context)
 
 
-class ContactView(View):
+class ContactView(SuccessMessageMixin, View):
     def get(self, request):
         template_name = 'home/contact.html'
-        return render(request, template_name)
+        context = {
+            'messaged': False,
+        }
+        return render(request, template_name, context)
+
+    def post(self, request):
+        template_name = 'home/contact.html'
+        context = {
+            'messaged': True,
+        }
+        return render(request, template_name, context)
 
 
 def handle_403(request, exception, template_name="errors/403.html"):

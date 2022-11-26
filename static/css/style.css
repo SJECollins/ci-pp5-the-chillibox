@@ -224,6 +224,11 @@ a {
 }
 
 /* Contact styling */
+.contact-text {
+    max-width: 600px;
+    height: auto;
+    margin: 1em auto;
+}
 
 #map {
     height: 360px;

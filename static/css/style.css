@@ -171,13 +171,16 @@ a {
     box-shadow: 0 4px 8px 0 var(--site-dark-green);
 }
 
-
 .cart-pics {
     max-height: 80px;
     width: auto;
     /* object-fit: contain; */
 }
 
+.rate-pics {
+    max-height: 28px;
+    width: auto;
+}
 
 /* Cards */
 

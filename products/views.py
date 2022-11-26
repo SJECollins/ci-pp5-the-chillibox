@@ -2,7 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import ListView
-from django.db.models import Q
+from django.db.models import Q, Avg
+from django.db.models.functions import Round
+# from django.contrib.auth import authenticate
+
+from profiles.forms import ReviewForm
+from profiles.models import Reviews
 
 from .models import Category, SubCategory, Variant, Product
 
@@ -38,10 +43,47 @@ class CategoryView(View):
 class ProductDetail(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
+        reviews = product.reviews.order_by('-added_on')
+        avg_rating = reviews.aggregate(rounded=Round(Avg('rating')))
         template_name = 'products/product_detail.html'
         context = {
             'product': product,
+            'reviews': reviews,
+            'avg_rating': avg_rating,
+            'reviewed': False,
+            'review_form': ReviewForm(),
         }
+        return render(request, template_name, context)
+
+    def post(self, request, slug, *args, **kwargs):
+        product = get_object_or_404(Product, slug=slug)
+        reviews = product.reviews.order_by('-added_on')
+        avg_rating = reviews.aggregate(Avg('rating'))
+        template_name = 'products/product_detail.html'
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            if request.user.is_authenticated:
+                review_form.instance.reviewer = request.user.userprofile
+                review = review_form.save(commit=False)
+                review.product = product
+                review.save()
+            else:
+                review = review_form.save(commit=False)
+                review.product = product
+                review.save()
+        else:
+            review_form = ReviewForm()
+
+        context = {
+            'product': product,
+            'reviews': reviews,
+            'avg_rating': avg_rating,
+            'reviewed': True,
+            'review_form': review_form,
+        }
+
         return render(request, template_name, context)
 
 

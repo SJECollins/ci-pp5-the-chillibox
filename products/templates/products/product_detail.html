@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 {{ product.name }}
@@ -37,7 +38,7 @@
         </div>
         <div class="col-lg-6 d-flex flex-column">
             <!-- Table for product details -->
-            <div>
+            <div class="order-2 order-lg-1">
                 <h2 class="headings headings-sm">{{ product.name }} Details:</h2>
                 <table class="table table-borderless">
                     <tr>
@@ -83,6 +84,25 @@
                             {% endfor %}</td>
                     </tr>
                     {% endif %}
+                    {% if avg_rating.rounded is not None %}
+                    <tr>
+                        <th>Avg. Rating: </th>
+                        <td>{% if avg_rating.rounded == 1 %}
+                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                            {% elif avg_rating.rounded == 2 %}
+                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                            {% elif avg_rating.rounded == 3 %}
+                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                            {% elif avg_rating.rounded == 4 %}
+                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                            {% else %}
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                            {% endif %}
+                            <strong>/</strong>
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                        </td>
+                    </tr>
+                    {% endif %}
                 </table>
             </div>
             <div class="order-1 order-lg-2">
@@ -118,6 +138,49 @@
                             <p class="small">{{ product }} already in cart.</p>
                         {% endif %}
                     {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="headings">Reviews</h1>
+            {% if reviewed %}
+            <p><strong>Thank you for your review! If you'd like to get in touch with any concerns, please visit our <a
+                        class="chilli-link" href="{% url 'home:contact' %}">contact page</a>.</strong></p>
+            {% else %}
+            <h3>Write a review for {{ product }}:</h3>
+            <p><strong>Or if you would like to get in touch with any concerns, please visit our <a
+                class="chilli-link" href="{% url 'home:contact' %}">contact page</a>.</strong></p>
+            <form class="col-lg-4 mb-5" method="post">
+                {% csrf_token %}
+                {{ review_form | crispy }}
+                <p>Posting as: {% if user.is_authenticated %}{{ user }}{% else %}Anonymous{% endif %}</p>
+                <button type="submit" class="chilli-btn">Submit</button>
+            </form>
+            {% endif %}
+            <div class="row">
+                {% for review in reviews %}
+                <div class="card col-sm-6 col-md-4">
+                    <h2 class="headings big">
+                        {% if review.reviewer is not None %}{{ review.reviewer.display_name }}{% else %}Anonymous{% endif %} <span
+                            class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
+                    <p>{{ review }}</p>
+                    <p><strong>Rating: </strong>
+                        {% if review.rating == 1 %}
+                        <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                        {% elif review.rating == 2 %}
+                        <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                        {% elif review.rating == 3 %}
+                        <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                        {% elif review.rating == 4 %}
+                        <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                        {% else %}
+                        <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                        {% endif %}
+                </div>
+                {% empty %}
+                <p><strong>No reviews yet. Be the first to write one!</strong></p>
                 {% endfor %}
             </div>
         </div>

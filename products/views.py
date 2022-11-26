@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
+from django.views.generic import ListView
+from django.db.models import Q
 
 from .models import Category, SubCategory, Variant, Product
 
@@ -41,6 +43,18 @@ class ProductDetail(View):
             'product': product,
         }
         return render(request, template_name, context)
+
+
+class SearchResults(ListView):
+    model = Product
+    template_name = 'products/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        product_list = Product.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+        return product_list
 
 
 def current_stock(request):

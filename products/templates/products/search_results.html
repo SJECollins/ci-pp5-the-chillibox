@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+
+<section class="container-md">
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <a class="chilli-link bigger" href="{% url 'products:latest' %}"><i class="fa-solid fa-angles-left"></i> View
+                latest products</a>
+            {% if user.is_superuser %}
+            <a class="chilli-link" href="{% url 'management:dashboard' %}">Go to Product Dashboard</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <h1 class="headings headings-sm">
+                {% if product_list|length > 0 %}
+                {{ product_list|length }} products found
+                {% else %}
+                No products found
+                {% endif %}
+            </h1>
+        </div>
+        <div class="row d-flex justify-content-evenly">
+            {% for product in product_list %}
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
+                <div class="h-100 border-0 chilli-card text-center mx-auto">
+                    <div>
+                        <h2 class="headings headings-sm">{{ product.name }}</h2>
+                    </div>
+                    {% if product.thumbnail %}
+                    <div class="my-3">
+                        <img class="pics" src="{{ product.thumbnail.url }}">
+                    </div>
+                    {% endif %}
+                    <div>
+                        <div class="row">
+                            <div class="col">
+                                {% if product.excerpt %}
+                                <p class="excerpt">{{ product.excerpt }}</p>
+                                {% else %}
+                                <p class="excerpt">Currently no info.</p>
+                                {% endif %}
+                                {% if product.check_stock %}
+                                <p>In stock.</p>
+                                {% else %}
+                                <p>Out of stock.</p>
+                                {% endif %}
+                                <a class="chilli-link" href="{% url 'products:product' product.slug %}">View
+                                    {{ product.name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if user.is_superuser %}
+                <div class="my-3">
+                    <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'management:delete_product' product.pk %}">Delete
+                        Product</a>
+                </div>
+                {% endif %}
+            </div>
+            {% if forloop.counter|divisibleby:1 %}
+            <div class="col-12 d-sm-none my-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-12 d-none d-sm-block d-md-block d-lg-none my-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:3 %}
+            <div class="col-12 d-none d-lg-block d-xl-none my-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:4 %}
+            <div class="col-12 d-none d-xl-block my-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

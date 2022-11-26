@@ -58,6 +58,7 @@ class Reviews(models.Model):
     content = models.TextField()
     rating = models.PositiveIntegerField()
     added_on = models.DateTimeField(auto_now_add=True)
+    last_edited = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.content

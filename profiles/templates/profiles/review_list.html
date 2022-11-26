@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Your Reviews
+{% endblock title %}
+
+{% block content %}
+<section class="container-fluid">
+    <div class="col-12">
+        <h1 class="headings text-center">Your Reviews</h1>
+        <div class="col-10 mx-auto">
+            {% for review in reviews_list %}
+            <div class="col-md-6 mx-auto">
+                <h2 class="headings big">
+                    Review for {{ review.product}} <span class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
+                <p class="card p-2">{{ review }}</p>
+                <p><strong>Rating: </strong>
+                    {% if review.rating == 1 %}
+                    <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                    {% elif review.rating == 2 %}
+                    <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                    {% elif review.rating == 3 %}
+                    <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                    {% elif review.rating == 4 %}
+                    <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                    {% else %}
+                    <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                    {% endif %}
+                </p>
+                <div class="d-flex flex-row justify-content-evenly">
+                    <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_review' review.pk %}">Edit Review</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_review' review.pk %}">Delete Review</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>You haven't written any reviews yet!</p>
+            {% endfor %}
+        </div>
+    </div>
+        
+
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number" class="page-link">&laquo; PREV</a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number" class="page-link">NEXT &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+</section>
+{% endblock content %}

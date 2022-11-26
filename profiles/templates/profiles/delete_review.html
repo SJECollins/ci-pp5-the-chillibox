@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Confirm Delete
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6 mx-auto">
+    <a class="chilli-link" href="{% url 'profiles:review_list' %}">&laquo; Back To Your Reviews</a>
+
+    <form method="POST">
+        {% csrf_token %}
+        <h1 class="headings headings-sm">Are you sure?</h1>
+        <button class="chilli-btn chilli-dngr" type="submit">Yes, delete</button>
+    </form>
+</div>
+
+{% endblock %}

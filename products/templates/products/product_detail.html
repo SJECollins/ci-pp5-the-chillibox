@@ -161,7 +161,7 @@
             {% endif %}
             <div class="row">
                 {% for review in reviews %}
-                <div class="card col-sm-6 col-md-4">
+                <div class="card col-sm-6 col-md-4 mb-3">
                     <h2 class="headings big">
                         {% if review.reviewer is not None %}{{ review.reviewer.display_name }}{% else %}Anonymous{% endif %} <span
                             class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
@@ -179,6 +179,11 @@
                         <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
                         {% endif %}
                     </p>
+                    {% if user.is_staff %}
+                        <div>
+                            <a class="chilli-btn chilli-dngr float-end my-2" href="{% url 'profiles:delete_review' review.pk %}">Delete Review</a>
+                        </div>
+                    {% endif %}
                 </div>
                 {% empty %}
                 <p><strong>No reviews yet. Be the first to write one!</strong></p>

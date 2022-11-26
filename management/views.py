@@ -1,8 +1,10 @@
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+
+from profiles.models import Reviews
 
 from .mixins import StaffRequiredMixin
 
@@ -86,3 +88,32 @@ class DeleteProduct(StaffRequiredMixin, DeleteView):
     model = Product
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
+
+
+class ReviewDashboard(StaffRequiredMixin, View):
+    """
+    View for admin accessible review dashboard.
+    """
+    def get(self, request):
+        reviews = Reviews.objects.all().order_by('-added_on')
+        template_name = 'management/user_reviews.html'
+        context = {
+            'reviews': reviews,
+        }
+        return render(request, template_name, context)
+
+
+class RemoveReview(StaffRequiredMixin, DeleteView):
+    model = Reviews
+    template_name = 'management/confirm_delete.html'
+    success_url = '/management/user_reviews'
+
+
+def approve_review(request, pk):
+    if request.user.is_staff:
+        review = get_object_or_404(Reviews, pk=pk)
+        review.approved = True
+        review.save()
+        return redirect('management:user_reviews')
+    else:
+        return redirect('account_login')

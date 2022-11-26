@@ -6,11 +6,17 @@ Dashboard
 
 {% block content %}
 <section class="row">
-    <div class="d-flex justify-content-evenly">
-        <a class="chilli-link big" href="{% url 'home:index' %}">&laquo; Go Home</a>
-        <h1 class="headings">Products</h1>
+    <div class="d-flex justify-content-evenly align-items-center">
         <div>
-            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
+            <a class="chilli-link big" href="{% url 'management:user_reviews' %}">Go To User Reviews</a>
+        </div>
+        
+        <div>
+            <h1 class="headings">Products</h1>
+            <a class="chilli-btn" href="{% url 'management:add_product' %}">Add New Product</a>
+        </div>
+        <div>
+            
         </div>
     </div>
     <div class="col-12 col-lg-6">

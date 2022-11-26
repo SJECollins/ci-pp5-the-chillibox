@@ -181,7 +181,7 @@
                     </p>
                     {% if user.is_staff %}
                         <div>
-                            <a class="chilli-btn chilli-dngr float-end my-2" href="{% url 'profiles:delete_review' review.pk %}">Delete Review</a>
+                            <a class="chilli-btn chilli-dngr float-end my-2" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
                         </div>
                     {% endif %}
                 </div>

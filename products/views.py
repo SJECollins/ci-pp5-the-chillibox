@@ -43,7 +43,7 @@ class CategoryView(View):
 class ProductDetail(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
-        reviews = product.reviews.order_by('-added_on')
+        reviews = product.reviews.filter(approved=True).order_by('-added_on')
         avg_rating = reviews.aggregate(rounded=Round(Avg('rating')))
         template_name = 'products/product_detail.html'
         context = {
@@ -57,7 +57,7 @@ class ProductDetail(View):
 
     def post(self, request, slug, *args, **kwargs):
         product = get_object_or_404(Product, slug=slug)
-        reviews = product.reviews.order_by('-added_on')
+        reviews = product.reviews.filter(approved=True).order_by('-added_on')
         avg_rating = reviews.aggregate(rounded=Round(Avg('rating')))
         template_name = 'products/product_detail.html'
 

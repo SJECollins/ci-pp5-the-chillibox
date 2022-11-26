@@ -112,6 +112,13 @@
                     </div>
                     <button id="add" class="chilli-btn my-2 d-block" type="submit" disabled>Add To Cart</button>
                 </form>
+                {% for item in cart_items %}
+                    {% if forloop.first %}
+                        {% if product.id == item.product.id %}
+                            <p class="small">{{ product }} already in cart.</p>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

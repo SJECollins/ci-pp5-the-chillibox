@@ -6,17 +6,17 @@
             <!-- Navbar logo-->
             <a class="navbar-brand" href="{% url 'home:index' %}" aria-label="Go to home page"><img width="90"
                     height="64" src="{% static 'images/chilli-logo-white.png' %}" alt="The Chillibox Logo"></a>
+            <!-- Search -->
+            <form class="ms-md-5" action="{% url 'products:search_results' %}" method="GET">
+                <input name="q" type="text" placeholder="Search...">
+                <button type="submit" class="chilli-link rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
             <!-- Logo with home link -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <!-- Search -->
-            <form class="ms-md-5" action="{% url 'products:search_results' %}" method="GET">
-                <input name="q" type="text" placeholder="Search...">
-                <button type="submit" class="chilli-link rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
             <!-- Collapsible navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

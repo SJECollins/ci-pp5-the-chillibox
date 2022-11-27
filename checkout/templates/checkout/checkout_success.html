@@ -10,9 +10,10 @@ Success
     <div>
         <a class="chilli-link" href="{% url 'home:index' %}">Go Home</a>
     </div>
-    <div>
+    <div class="text-center">
         <h1 class="headings">Thank you!</h1>
-        <h2 class="headings headings-sm">We have your order.</h2> 
+        <h2 class="headings headings-sm">We have your order.</h2>
+        <a class="chilli-btn" href="{% url 'checkout:order_pdf' order.pk %}">View PDF</a> 
     </div>
     <div>
         <a class="chilli-link" href="{% url 'profiles:profile' %}">View Your Profile</a>
@@ -24,14 +25,14 @@ Success
         <h4 class="headings headings-sm">Order Info:</h4>
         <p><strong>Order Number: </strong>{{ order.order_number }}</p>
         <p><strong>Placed On: </strong>{{ order.date }}</p>
-        <p><strong>Order Total: </strong>{{ order.order_total|floatformat:2 }}</p>
-        <p><strong>Delivery: </strong>{{ order.delivery_cost|floatformat:2 }}</p>
-        <p><strong>Grand Total: </strong>{{ order.grand_total|floatformat:2 }}</p>
+        <p><strong>Order Total: </strong>€{{ order.order_total|floatformat:2 }}</p>
+        <p><strong>Delivery: </strong>€{{ order.delivery_cost|floatformat:2 }}</p>
+        <p><strong>Grand Total: </strong>€{{ order.grand_total|floatformat:2 }}</p>
         <table class="table">
             <tr>
                 {% for item in order.lineitems.all %}
                 <th>{{ item.product }} - {{ item.variant.size }}</th>
-                <td>{{ item.quantity }} at {{ item.variant.price }} each</td>
+                <td>{{ item.quantity }} at €{{ item.variant.price }} each</td>
                 {% endfor %}
             </tr>
         </table>

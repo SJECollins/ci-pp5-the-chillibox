@@ -5,6 +5,13 @@ from django.contrib import messages
 from django.conf import settings
 from django.views import View
 
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import cm
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import Table
+
 from cart.contexts import cart_contents
 
 from products.models import Product, Variant
@@ -170,3 +177,60 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+def order_pdf(request, pk):
+    buffer = io.BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    c.translate(0, 29.7 * cm)
+    c.setFont('Helvetica', 12)
+
+    order = Order.objects.get(pk=pk)
+
+    # User address
+    textobject = c.beginText(1.5 * cm, -2.5 * cm)
+    textobject.textLine('Delivering to: ')
+    textobject.textLine("")
+    textobject.textLine(order.first_name + " " + order.last_name)
+    textobject.textLine(order.phone_number)
+    textobject.textLine(order.street_address1)
+    if order.street_address2:
+        textobject.textLine(order.street_address2)
+    textobject.textLine(order.town_or_city)
+    if order.county:
+        textobject.textLine(order.county)
+    textobject.textLine(str(order.country))
+    if order.postcode:
+        textobject.textLine(order.postcode)
+    c.drawText(textobject)
+
+    # Order details
+    textobject = c.beginText(4 * cm, -7.5 * cm)
+    textobject.textLine('Order #: ' + order.order_number)
+    textobject.textLine('Ordered on: ' + order.date.strftime('%d %b %Y'))
+    textobject.textLine('Delivery cost: €' + str(order.delivery_cost))
+    textobject.textLine('Grand Total: €' + str(order.grand_total))
+    c.drawText(textobject)
+
+    # Order Items
+    textobject = c.beginText(1.5 * cm, -10.5 * cm)
+    textobject.textLine('Your Items: ')
+    c.drawText(textobject)
+
+    data = []
+    for item in order.lineitems.all():
+        data.append([
+            item.product,
+            item.variant,
+            item.quantity,
+            item.variant.price
+        ])
+    table = Table(data, colWidths=[6 * cm, 6 * cm, 2 * cm, 2 * cm])
+    tw, th, = table.wrapOn(c, 15 * cm, 19 * cm)
+    table.drawOn(c, 1.5 * cm, -11 * cm - th)
+
+    c.showPage()
+    c.save()
+    buffer.seek(0)
+
+    return FileResponse(buffer, as_attachment=True, filename='order.pdf')

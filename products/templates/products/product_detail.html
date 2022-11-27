@@ -179,11 +179,14 @@
                         <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
                         {% endif %}
                     </p>
-                    {% if user.is_staff %}
-                        <div>
-                            <a class="chilli-btn chilli-dngr float-end my-2" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
+                        <div class="d-flex flex-row justify-content-between my-2">
+                            {% if user.userprofile == review.reviewer %}
+                                <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_review' review.pk %}">Edit Review</a>
+                            {% endif %}
+                            {% if user.is_staff %}
+                                <a class="chilli-btn chilli-dngr" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
+                            {% endif %}
                         </div>
-                    {% endif %}
                 </div>
                 {% empty %}
                 <p><strong>No reviews yet. Be the first to write one!</strong></p>

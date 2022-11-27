@@ -1,0 +1,18 @@
+
+{% block content %}
+{% load crispy_forms_tags %}
+<form data-hx-post="{{ request.path }}" class="modal-content">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h1 class="headings heading-sm">Update Stock</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        {{ form|crispy }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="chilli-btn" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="chilli-btn chilli-go">Save changes</button>
+    </div>
+</form>
+{% endblock %}

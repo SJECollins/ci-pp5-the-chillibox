@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
+from django.http import HttpResponse
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
@@ -7,6 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from profiles.models import Reviews
 
 from .mixins import StaffRequiredMixin
+from .forms import StockForm
 
 
 from products.models import Category, SubCategory, Product, Variant
@@ -117,3 +119,19 @@ def approve_review(request, pk):
         return redirect('management:user_reviews')
     else:
         return redirect('account_login')
+
+
+def update_stock(request, pk):
+    variant = Variant.objects.get(pk=pk)
+    form = StockForm(request.POST or None, instance=variant)
+    if form.is_valid():
+        form.save()
+        messages.success(request, f'{variant.size} stock updated.')
+        return HttpResponse(status=204)
+    else:
+        form = StockForm(request.POST or None, instance=variant)
+    context = {
+        'variant': variant,
+        'form': form,
+    }
+    return render(request, 'management/update_stock.html', context)

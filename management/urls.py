@@ -22,4 +22,5 @@ urlpatterns = [
      path('approve_review/<pk>', views.approve_review, name='approve_review'),
      path('remove_review/<pk>', views.RemoveReview.as_view(),
           name='remove_review'),
+     path('update_stock/<pk>', views.update_stock, name='update_stock'),
 ]

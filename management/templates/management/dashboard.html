@@ -78,7 +78,9 @@ Dashboard
                             <td>{{ variant.size }}</td>
                             <td>{{ variant.price }}</td>
                             <td>{{ variant.current_stock }}</td>
-                            <td>Update Filler</td>
+                            <td><a class="chilli-btn"
+                                data-hx-get="{% url 'management:update_stock' variant.pk %}"
+                                data-hx-target="#dialog">Update</a></td>
                             <td>
                                 <a class="chilli-btn" href="{% url 'management:edit_variant' variant.id %}">Edit</a>
                             </td>

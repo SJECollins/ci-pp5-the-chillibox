@@ -91,7 +91,7 @@ Shop
                 {% if seedbox.thumbnail %}
                 <img class="pics" src="{{ seedbox.thumbnail.url }}">
                 {% else %}
-                <p>No thumbnail</p>
+                <img width="160" height="160" class="pics" src="{% static 'images/placeholder.png' %}">
                 {% endif %}
                 <p class="excerpt">{{ seedbox.excerpt }}</p>
                 <p>{% if seedbox.check_stock %}In Stock{% else %}Out of Stock{% endif %}</p>

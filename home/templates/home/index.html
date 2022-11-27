@@ -77,7 +77,9 @@ Home
                 <div class="chilli-card text-center">
                 <h4>{{ product.name }}</h4>
                 {% if product.thumbnail %}
-                    <img src="{{ product.thumbnail.url }}">
+                    <img class="pics" src="{{ product.thumbnail.url }}">
+                {% else %}
+                    <img width="160" height="160" class="pics" src="{% static 'images/placeholder.png' %}">
                 {% endif %}
                 <p class="excerpt">{{ product.excerpt }}</p>
                 <a class="chilli-link" href="{% url 'products:product' product.slug %}">View {{ product.name }}</a>

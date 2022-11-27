@@ -24,11 +24,15 @@
             <div>
                 <h1 class="headings">{{ product.name }}</h1>
             </div>
-            {% if product.image %}
+            
             <div>
-                <img class="pics pics-lg" src="{{ product.image.url }}">
+                {% if product.image %}
+                    <img class="pics pics-lg" src="{{ product.image.url }}">
+                {% else %}
+                    <img class="pics pics-lg" src="{% static 'images/placeholder.png' %}">
+                {% endif %}
             </div>
-            {% endif %}
+            
             <p class="m-5 text-start">{{ product.description }}</p>
             {% if user.is_staff %}
                 <!-- Edit and Delete for admin -->
@@ -45,10 +49,12 @@
                         <th>Category: </th>
                         <td>{{ product.category }}</td>
                     </tr>
+                    {% if product.subcategory is not None %}
                     <tr>
                         <th>SubCategory: </th>
                         <td>{{ product.subcategory }}</td>
                     </tr>
+                    {% endif %}
                     <tr>
                         {% if product.growth_time %}
                         <th>Growth time to maturity: </th>

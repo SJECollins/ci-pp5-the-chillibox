@@ -31,11 +31,15 @@ Search Results
                     <div>
                         <h2 class="headings headings-sm">{{ product.name }}</h2>
                     </div>
-                    {% if product.thumbnail %}
+                    
                     <div class="my-3">
-                        <img class="pics" src="{{ product.thumbnail.url }}">
+                        {% if product.thumbnail %}
+                            <img class="pics" src="{{ product.thumbnail.url }}">
+                        {% else %}
+                            <img width="160" height="160" class="pics" src="{% static 'images/placeholder.png' %}">
+                        {% endif %}
                     </div>
-                    {% endif %}
+                    
                     <div>
                         <div class="row">
                             <div class="col">

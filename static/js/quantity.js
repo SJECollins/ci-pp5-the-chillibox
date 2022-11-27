@@ -10,14 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function decQty(e) {
         let input = e.target.nextElementSibling
         let qty = Number(input.value)
-        let stock = e.target.parentElement.firstElementChild
-        let current_stock = Number(stock.value)
-
-        console.log(stock)
-        console.log(current_stock)
-        console.log(input)
-        console.log(typeof input)
-        console.log(qty)
 
         if (qty > 1) {
             qty --
@@ -30,12 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let qty = Number(input.value)
         let stock = e.target.parentElement.firstElementChild
         let current_stock = Number(stock.value)
-
-        console.log(stock)
-        console.log(current_stock)
-        console.log(input)
-        console.log(typeof input)
-        console.log(qty)
 
         if (qty < current_stock && qty < 99) {
             qty++

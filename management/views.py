@@ -23,16 +23,10 @@ class ProductDashboard(StaffRequiredMixin, View):
     View for admin accessible management dashboard.
     """
     def get(self, request):
-        seeds = Product.objects.filter(category__slug='seeds')
-        sauces = Product.objects.filter(category__slug='sauces')
-        seedboxes = Product.objects.filter(category__slug='seedbox')
-        sauceboxes = Product.objects.filter(category__slug='saucebox')
+        products = Product.objects.all()
         template_name = 'management/dashboard.html'
         context = {
-            'seeds': seeds,
-            'sauces': sauces,
-            'seedboxes': seedboxes,
-            'sauceboxes': sauceboxes,
+            'products': products,
         }
         return render(request, template_name, context)
 

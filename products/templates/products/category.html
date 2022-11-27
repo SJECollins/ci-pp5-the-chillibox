@@ -88,4 +88,16 @@
         {% endfor %}
     </div>
 </section>
+<div>
+    <a id="scroll-btn" class="chilli-btn float-end me-5">
+        <i class="fas fa-arrow-up mx-auto my-auto"></i>
+    </a>	
+</div>
+
+<script>
+    const scrollBtn = document.getElementById("scroll-btn")
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo(0, 0)
+    })
+</script>
 {% endblock %}

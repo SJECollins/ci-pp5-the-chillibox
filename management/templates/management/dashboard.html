@@ -42,7 +42,8 @@ Dashboard
             {% for product in category.list %}
             <tbody class="collapse" id="collapse-{{ category.grouper }}">
                 <tr>
-                    <td>{{ product.name }}</td>
+                    <td><a class="chilli-link" href="{% url 'products:product' product.slug %}">
+                        {{ product.name }}</a></td>
                     <td>{% if product.thumbnail %}Yes{% else %}No{% endif %}</td>
                     <td>
                         <a class="chilli-btn" href="{% url 'management:edit_product' product.id %}">Edit</a>

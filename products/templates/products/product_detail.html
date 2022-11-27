@@ -183,7 +183,7 @@
                             {% if user.userprofile == review.reviewer %}
                                 <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_review' review.pk %}">Edit Review</a>
                             {% endif %}
-                            {% if user.is_staff %}
+                            {% if user.is_staff or user.userprofile == review.reviewer %}
                                 <a class="chilli-btn chilli-dngr" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
                             {% endif %}
                         </div>

@@ -101,7 +101,10 @@ class SearchResults(ListView):
 
 def current_stock(request):
     variant_id = request.GET.get('product_variant')
-    print(variant_id)
-    variant = Variant.objects.get(id=variant_id)
-    current_stock = variant.current_stock
-    return HttpResponse(current_stock)
+    if variant_id == 'default':
+        return HttpResponse('')
+    else:
+        print(variant_id)
+        variant = Variant.objects.get(id=variant_id)
+        current_stock = variant.current_stock
+        return HttpResponse(current_stock)

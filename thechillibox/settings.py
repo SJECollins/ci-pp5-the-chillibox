@@ -185,6 +185,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
 
+# Holding time for stock
+CART_HOLD_TIME_MINUTES = 120
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 35

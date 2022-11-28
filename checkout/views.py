@@ -18,6 +18,8 @@ from products.models import Product, Variant
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
 
+from cart.models import HeldCart, HeldItems
+
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
@@ -43,6 +45,7 @@ def checkout(request):
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
+        held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
 
         form_data = {
             'first_name': request.POST['first_name'],
@@ -74,7 +77,8 @@ def checkout(request):
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
-                            variant = get_object_or_404(Variant, size=size)
+                            variant = product.variants.get(size=size)
+                            held_variant = held_cart.held_items.get(variant=variant)
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
@@ -82,6 +86,9 @@ def checkout(request):
                                 variant=variant,
                             )
                             order_line_item.save()
+                            variant.current_stock -= held_variant.qty
+                            variant.save()
+                            held_variant.delete()
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your cart wasn't found in our database. "

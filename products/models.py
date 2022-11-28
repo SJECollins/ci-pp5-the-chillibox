@@ -1,6 +1,7 @@
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db.models import Sum
 
 from django.db import models
 
@@ -136,6 +137,14 @@ class Variant(models.Model):
 
     def __str__(self):
         return self.size
+
+    @property
+    def fulfillable_qty(self):
+        qty_held = self.held_stock.aggregate(Sum('qty'))
+        if qty_held['qty__sum'] is not None:
+            return self.current_stock - int(qty_held['qty__sum'])
+        else:
+            return self.current_stock
 
     def save(self, *args, **kwargs):
         if self.current_stock < 1:

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for held_cart in held_items %}
+
+{{ held_cart.cart_key }}
+<br>
+{{ held_cart.owner }}
+<br>
+{{ held_cart.hold_time_start }}
+<br>
+{{ held_cart.held_items.all }}
+<br>
+{{ held_cart.held_items.variant }}
+<br>
+{{ held_cart.held_items.variant.id }}
+<br>
+{% for item in held_cart.held_items.all %}
+{{ item.product }}
+<br>
+{{ item.variant }}
+<br>
+{{ item.variant.id }}
+<br>
+{{ item.qty }}
+<br>
+{% endfor %}
+
+{% endfor %}
+
+{% endblock %}

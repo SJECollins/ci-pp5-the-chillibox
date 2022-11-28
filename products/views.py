@@ -106,5 +106,5 @@ def current_stock(request):
     else:
         print(variant_id)
         variant = Variant.objects.get(id=variant_id)
-        current_stock = variant.current_stock
+        current_stock = variant.fulfillable_qty
         return HttpResponse(current_stock)

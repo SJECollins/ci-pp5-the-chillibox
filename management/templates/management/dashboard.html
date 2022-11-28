@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Dashboard
@@ -53,7 +54,7 @@ Dashboard
                             href="{% url 'management:delete_product' product.id %}">Delete</a>
                     </td>
                     <td>
-                        <a class="chilli-btn" href="{% url 'management:add_variant' product.slug %}">Add Variant</a>
+                        <a class="chilli-btn" href="{% url 'management:add_variant' product.slug %}">Add</a>
                     </td>
                 </tr>
                 <thead>

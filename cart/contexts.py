@@ -25,7 +25,7 @@ def cart_contents(request):
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
-                variant = get_object_or_404(Variant, size=size)
+                variant = product.variants.get(size=size)
                 total += quantity * variant.price
                 product_count += quantity
                 cart_items.append({

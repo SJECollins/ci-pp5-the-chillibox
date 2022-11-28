@@ -15,7 +15,7 @@ def add_to_cart(request, item_id):
     product = get_object_or_404(Product, id=item_id)
     quantity = int(request.POST.get('quantity'))
     get_variant = request.POST.get('product_variant')
-    variant = get_object_or_404(Variant, id=get_variant)
+    variant = product.variants.get(id=get_variant)
     size = variant.size
     price = variant.price
     cart = request.session.get('cart', {})
@@ -45,7 +45,7 @@ def adjust_cart(request, item_id):
     product = get_object_or_404(Product, id=item_id)
     new_quantity = int(request.POST.get('quantity'))
     get_variant = request.POST.get('product_variant')
-    variant = get_object_or_404(Variant, id=get_variant)
+    variant = product.variants.get(id=get_variant)
     size = variant.size
     price = variant.price
     cart = request.session.get('cart', {})
@@ -70,7 +70,7 @@ def remove_item(request, item_id):
     try:
         product = get_object_or_404(Product, id=item_id)
         get_variant = request.POST.get('product_variant')
-        variant = get_object_or_404(Variant, id=get_variant)
+        variant = product.variants.get(id=get_variant)
         size = variant.size
         price = variant.price
         cart = request.session.get('cart', {})

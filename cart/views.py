@@ -43,23 +43,23 @@ def add_to_cart(request, item_id):
 
 def adjust_cart(request, item_id):
     product = get_object_or_404(Product, id=item_id)
-    quantity = int(request.POST.get('quantity'))
+    new_quantity = int(request.POST.get('quantity'))
     get_variant = request.POST.get('product_variant')
     variant = get_object_or_404(Variant, id=get_variant)
     size = variant.size
     price = variant.price
     cart = request.session.get('cart', {})
 
-    if quantity > 0:
-        cart[item_id]['items_by_size'][size] = quantity
-        variant.current_stock -= quantity
-        messages.success(request, f'Updated {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
-    else:
-        del cart[item_id]['items_by_size'][size]
-        variant.current_stock += quantity
-        if not cart[item_id]['items_by_size']:
-            cart.pop(item_id)
-        messages.success(request, f'Removed {size} {product.name} from cart')
+    if new_quantity > cart[item_id]['items_by_size'][size]:
+        difference = new_quantity - cart[item_id]['items_by_size'][size]
+        cart[item_id]['items_by_size'][size] = new_quantity
+        variant.current_stock -= difference
+        messages.success(request, f'Increased {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
+    elif new_quantity < cart[item_id]['items_by_size'][size]:
+        difference = cart[item_id]['items_by_size'][size] - new_quantity
+        cart[item_id]['items_by_size'][size] = new_quantity
+        variant.current_stock += difference
+        messages.success(request, f'Reduced {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
 
     variant.save()
     request.session['cart'] = cart

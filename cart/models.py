@@ -8,7 +8,7 @@ from products.models import Product, Variant
 
 class HeldCart(models.Model):
     cart_key = models.CharField(max_length=80)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True,
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
                               blank=True)
     hold_time_start = models.DateTimeField(auto_now=True)
 

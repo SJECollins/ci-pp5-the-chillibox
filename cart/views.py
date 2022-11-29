@@ -20,8 +20,14 @@ def add_to_cart(request, item_id):
     size = variant.size
     price = variant.price
     cart = request.session.get('cart', {})
-    get_held_cart = HeldCart.objects.get_or_create(cart_key=request.session.session_key, owner=request.user)
-    held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
+    if not request.session.session_key:
+        request.session.save()
+    session_key = request.session.session_key
+    held_cart = HeldCart.objects.get_or_create(cart_key=session_key)
+    if request.user.is_authenticated:
+        get_held_cart.owner = request.user
+        get_held_cart.save()
+    held_cart = HeldCart.objects.get(cart_key=session_key)
 
     if item_id in list(cart.keys()):
         held_variant = held_cart.held_items.get(variant__id=get_variant)
@@ -93,14 +99,13 @@ def remove_item(request, item_id):
         held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
         held_variant = held_cart.held_items.get(variant=variant)
 
-        held_variant.qty -= int(cart[item_id]['items_by_size'][size])
+        held_variant.delete()
         del cart[item_id]['items_by_size'][size]
 
         if not cart[item_id]['items_by_size']:
             cart.pop(item_id)
         messages.success(request, f'Removed {size} {product.name} from cart')
 
-        held_variant.save()
         request.session['cart'] = cart
         return redirect(reverse('cart:view_cart'))
 
@@ -111,7 +116,11 @@ def remove_item(request, item_id):
 
 class ViewHeld(View):
     def get(self, request):
+        session_key = request.session.session_key
         held_items = HeldCart.objects.all()
         template_name = 'cart/view_held.html'
-        context = {'held_items': held_items, }
+        context = {
+            'held_items': held_items,
+            'session_key': session_key,
+            }
         return render(request, template_name, context)

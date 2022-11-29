@@ -7,10 +7,10 @@ from products.models import Product, Variant
 
 
 class HeldCart(models.Model):
-    cart_key = models.CharField(max_length=32)
+    cart_key = models.CharField(max_length=80)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True,
                               blank=True)
-    hold_time_start = models.DateTimeField(auto_now_add=True)
+    hold_time_start = models.DateTimeField(auto_now=True)
 
     def check_time(self):
         time_passed = (timezone.now() - self.hold_time_start)
@@ -24,3 +24,9 @@ class HeldItems(models.Model):
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE,
                                 related_name='held_stock')
     qty = models.PositiveIntegerField(default=0)
+    added_on = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.cart.hold_time_start = self.added_on
+        self.cart.save()

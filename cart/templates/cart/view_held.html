@@ -2,6 +2,9 @@
 
 {% block content %}
 
+{{ session_key }}
+<br>
+
 {% for held_cart in held_items %}
 
 {{ held_cart.check_time }}

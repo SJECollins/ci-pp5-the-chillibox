@@ -185,13 +185,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
 
-# Holding time for stock
-CART_HOLD_TIME_MINUTES = 120
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 35
 STANDARD_DELIVERY_COST = 4.50
-STRIPE_CURRENCY = 'usd'
+STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+
+
+# Restocking
+CART_HOLD_TIME_MINUTES = 120
+
+# Sessions settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 7200
+SESSION_SAVE_EVERY_REQUEST = True

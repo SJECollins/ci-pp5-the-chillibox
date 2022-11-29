@@ -6,6 +6,10 @@ from products.models import Product, Variant
 
 
 def cart_contents(request):
+    """
+    Function for cart contents, to make available across site.
+    Based on CI boutique_ado
+    """
 
     cart_items = []
     total = 0

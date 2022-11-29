@@ -7,12 +7,18 @@ from .models import HeldCart, HeldItems
 
 
 class ViewCart(View):
+    """
+    View for cart.
+    """
     def get(self, request):
         template_name = 'cart/cart.html'
         return render(request, template_name)
 
 
 def add_to_cart(request, item_id):
+    """
+    Add to cart based on CI boutique_ado
+    """
     product = get_object_or_404(Product, id=item_id)
     quantity = int(request.POST.get('quantity'))
     get_variant = request.POST.get('product_variant')
@@ -20,15 +26,18 @@ def add_to_cart(request, item_id):
     size = variant.size
     price = variant.price
     cart = request.session.get('cart', {})
+    # If session_key is none, create and save a new one for HeldCart
     if not request.session.session_key:
         request.session.save()
     session_key = request.session.session_key
-    held_cart = HeldCart.objects.get_or_create(cart_key=session_key)
+    # Get HeldCart to manage item quantities
+    get_held_cart = HeldCart.objects.get_or_create(cart_key=session_key)
     if request.user.is_authenticated:
         get_held_cart.owner = request.user
         get_held_cart.save()
     held_cart = HeldCart.objects.get(cart_key=session_key)
 
+    # If item's id already in cart update if same size or add a new size
     if item_id in list(cart.keys()):
         held_variant = held_cart.held_items.get(variant__id=get_variant)
         if size in cart[item_id]['items_by_size'].keys():
@@ -42,6 +51,7 @@ def add_to_cart(request, item_id):
             held_variant.save()
             messages.success(request, f'Added {size} {product.name} to cart')
     else:
+        # Add the item to the cart, and create a new item in HeldItems
         cart[item_id] = {'items_by_size': {size: quantity}}
         held_item = HeldItems(
             cart=held_cart,
@@ -52,14 +62,14 @@ def add_to_cart(request, item_id):
         held_item.save()
         messages.success(request, f'Added {size} {product.name} to cart')
 
-    print(cart[item_id]['items_by_size'][size])
-    print(cart[item_id]['items_by_size'])
-
     request.session['cart'] = cart
     return redirect('products:product', product.slug)
 
 
 def adjust_cart(request, item_id):
+    """
+    Adjust cart based on CI boutique_ado
+    """
     product = get_object_or_404(Product, id=item_id)
     new_quantity = int(request.POST.get('quantity'))
     get_variant = request.POST.get('product_variant')
@@ -69,18 +79,15 @@ def adjust_cart(request, item_id):
     cart = request.session.get('cart', {})
     held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
     held_variant = held_cart.held_items.get(variant=variant)
-    print(held_variant)
-    print(held_variant.qty)
 
+    # Set quantities for items in cart and the held variant
     if new_quantity > cart[item_id]['items_by_size'][size]:
         cart[item_id]['items_by_size'][size] = new_quantity
         held_variant.qty = new_quantity
-        print(held_variant.qty)
         messages.success(request, f'Increased {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
     elif new_quantity < cart[item_id]['items_by_size'][size]:
         cart[item_id]['items_by_size'][size] = new_quantity
         held_variant.qty = new_quantity
-        print(held_variant.qty)
         messages.success(request, f'Reduced {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
 
     held_variant.save()
@@ -89,6 +96,9 @@ def adjust_cart(request, item_id):
 
 
 def remove_item(request, item_id):
+    """
+    Remove item from cart based on CI boutique_ado
+    """
     try:
         product = get_object_or_404(Product, id=item_id)
         get_variant = request.POST.get('product_variant')
@@ -99,6 +109,8 @@ def remove_item(request, item_id):
         held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
         held_variant = held_cart.held_items.get(variant=variant)
 
+        # Restock and delete the held variant when removed
+        variant.current_stock += cart[item_id]['items_by_size'][size]
         held_variant.delete()
         del cart[item_id]['items_by_size'][size]
 
@@ -115,6 +127,9 @@ def remove_item(request, item_id):
 
 
 class ViewHeld(View):
+    """
+    Temporary view for held cart and items - TO DELETE
+    """
     def get(self, request):
         session_key = request.session.session_key
         held_items = HeldCart.objects.all()

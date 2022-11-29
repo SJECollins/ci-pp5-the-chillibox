@@ -6,7 +6,7 @@ Your Cart
 {% endblock %}
 
 {% block content %}
-<!-- Temp cart to check views and contexts actually working -->
+<!-- Cart to check views and contexts actually working -->
 <div class="col-12">
     <div class="row">
         <div class="col-sm-4">
@@ -17,6 +17,7 @@ Your Cart
                 </div>
             </div>
             <div>
+                <!-- Summary of cart contents, including costs -->
                 <table class="table">
                     <tr>
                         <th>Total Items:</th>
@@ -40,6 +41,7 @@ Your Cart
                 {% endif %}
             </div>
         </div>
+        <!-- More detailed list of items in cart -->
         <div class="col-sm-8">
         {% for item in cart_items %}
             <div class="col-12 col-md-4 col-lg-4">
@@ -75,6 +77,7 @@ Your Cart
 </div>
 {% endblock %}
 
+<!-- Script to adjust cart items -->
 {% block additional_script %}
 <script type="text/javascript" src="{% static 'js/quantity.js' %}"></script>
 {% endblock %}

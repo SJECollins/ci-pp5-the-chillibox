@@ -4,6 +4,9 @@ from .job import restock
 
 
 def start():
+    """
+    Scheduling for restock function
+    """
     scheduler = BackgroundScheduler()
-    scheduler.add_job(restock, 'interval', minutes=2)
+    scheduler.add_job(restock, 'interval', minutes=15)
     scheduler.start()

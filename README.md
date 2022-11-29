@@ -11,8 +11,31 @@
 
 
 # Features
+## General
+
+## Products
+
+## Cart
+
+## Purchasing
+
+## User Profiles
+
+## Reviews
+
+## Management
+### Products
+
+### Stock
+
+### Reviews
+
+## Admin
 
 # Agile Methodology
+## Epics
+
+## User Stories
 
 # Design
 

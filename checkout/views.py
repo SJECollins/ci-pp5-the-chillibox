@@ -42,6 +42,12 @@ from .models import Order, OrderLineItem
 
 
 def checkout(request):
+    """
+    Checkout function based on CI's boutiquq_ado
+    Takes form data, attempts to prefill delivery information
+    Creates order
+    Reduces stock for ordered variants
+    """
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
@@ -144,6 +150,8 @@ def checkout(request):
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
+    Saves registered user's data
+    Deletes HeldCart
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
@@ -189,6 +197,9 @@ def checkout_success(request, order_number):
 
 
 def order_pdf(request, pk):
+    """
+    Function to create pdf of the order using reportlab
+    """
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
     c.translate(0, 29.7 * cm)
@@ -226,6 +237,7 @@ def order_pdf(request, pk):
     textobject.textLine('Your Items: ')
     c.drawText(textobject)
 
+    # Table of ordered items
     data = []
     for item in order.lineitems.all():
         data.append([

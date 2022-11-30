@@ -6,7 +6,8 @@ from django.db.models import Sum
 from django.db import models
 
 
-SUBCATEGORIES = (('Mild', 'Mild'), ('Medium', 'Medium'), ('Hot', 'Hot'), ('Mega Hot', 'Mega Hot'))
+SUBCATEGORIES = (('Mild', 'Mild'), ('Medium', 'Medium'), ('Hot', 'Hot'),
+                 ('Mega Hot', 'Mega Hot'))
 
 
 class Category(models.Model):
@@ -24,7 +25,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-        
+
 
 class Product(models.Model):
     """
@@ -35,7 +36,8 @@ class Product(models.Model):
     """
     category = models.ForeignKey(Category, on_delete=models.SET_NULL,
                                  null=True, blank=True, related_name='product')
-    subcategory = models.CharField(max_length=8, choices=SUBCATEGORIES, blank=True)
+    subcategory = models.CharField(max_length=8, choices=SUBCATEGORIES,
+                                   blank=True)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(null=True, blank=True,
@@ -52,6 +54,8 @@ class Product(models.Model):
     heat_level = models.CharField(max_length=140, null=True, blank=True,
                                   help_text='In scovilles or more generally \
                                   (eg \'hot\') where appropriate.')
+    origin = models.CharField(max_length=80, null=True, blank=True,
+                              help_text='Origin of the seeds.')
     box_contents = models.ManyToManyField('self', blank=True, help_text='Add \
                                           products for seed and sauce boxes.')
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
@@ -99,7 +103,7 @@ class Product(models.Model):
         print(self.thumbnail)  # Check thumbnail -- don't forget to delete!!
         super(Product, self).save(*args, **kwargs)
         if self.image:
-            if not self.thumbnail:  # Is this super hacky?! Find better solution??
+            if not self.thumbnail:
                 self.thumbnail = self.make_thumbnail(self.image)
         super(Product, self).save(*args, **kwargs)
 
@@ -109,7 +113,8 @@ class Variant(models.Model):
     ProductVariant model. To manage options for sizes and prices.
     String representation returns variant size.
     """
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='variants')
     size = models.CharField(max_length=80)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     current_stock = models.PositiveIntegerField(default=0,

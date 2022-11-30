@@ -116,16 +116,19 @@ def approve_review(request, pk):
 
 
 def update_stock(request, pk):
-    variant = Variant.objects.get(pk=pk)
-    form = StockForm(request.POST or None, instance=variant)
-    if form.is_valid():
-        form.save()
-        messages.success(request, f'{variant.size} stock updated.')
-        return HttpResponse(status=204)
-    else:
+    if request.user.is_staff:
+        variant = Variant.objects.get(pk=pk)
         form = StockForm(request.POST or None, instance=variant)
-    context = {
-        'variant': variant,
-        'form': form,
-    }
-    return render(request, 'management/update_stock.html', context)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'{variant.size} stock updated.')
+            return HttpResponse(status=204)
+        else:
+            form = StockForm(request.POST or None, instance=variant)
+        context = {
+            'variant': variant,
+            'form': form,
+        }
+        return render(request, 'management/update_stock.html', context)
+    else:
+        return redirect('account_login')

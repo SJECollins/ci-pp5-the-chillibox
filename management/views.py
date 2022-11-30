@@ -11,7 +11,7 @@ from .mixins import StaffRequiredMixin
 from .forms import StockForm
 
 
-from products.models import Category, SubCategory, Product, Variant
+from products.models import Category, Product, Variant
 
 """
 Revisit for messages and restrict login to superusers

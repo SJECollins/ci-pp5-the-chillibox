@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, SubCategory, Variant, Product
+from .models import Category, Variant, Product
 
 
 class VariantAdminInline(admin.TabularInline):
@@ -17,4 +17,3 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category)
-admin.site.register(SubCategory)

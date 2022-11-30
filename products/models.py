@@ -24,23 +24,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class SubCategory(models.Model):
-    """
-    Subcategory model.
-    Order by name.
-    String representation returns name.
-    """
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name_plural = 'Subcategories'
-
-    def __str__(self):
-        return self.name
-
+        
 
 class Product(models.Model):
     """

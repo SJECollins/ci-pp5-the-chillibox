@@ -9,7 +9,7 @@ from django.db.models.functions import Round
 from profiles.forms import ReviewForm
 from profiles.models import Reviews
 
-from .models import Category, SubCategory, Variant, Product
+from .models import Category, Variant, Product
 
 
 class LatestProducts(View):

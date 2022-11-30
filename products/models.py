@@ -6,6 +6,9 @@ from django.db.models import Sum
 from django.db import models
 
 
+SUBCATEGORIES = (('Mild', 'Mild'), ('Medium', 'Medium'), ('Hot', 'Hot'), ('Mega Hot', 'Mega Hot'))
+
+
 class Category(models.Model):
     """
     Category model.
@@ -48,8 +51,7 @@ class Product(models.Model):
     """
     category = models.ForeignKey(Category, on_delete=models.SET_NULL,
                                  null=True, blank=True, related_name='product')
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL,
-                                    null=True, blank=True)
+    subcategory = models.CharField(max_length=8, choices=SUBCATEGORIES, blank=True)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(null=True, blank=True,

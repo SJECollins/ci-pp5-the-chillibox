@@ -32,9 +32,6 @@ def add_to_cart(request, item_id):
     session_key = request.session.session_key
     # Get HeldCart to manage item quantities
     get_held_cart = HeldCart.objects.get_or_create(cart_key=session_key)
-    if request.user.is_authenticated:
-        get_held_cart.owner = request.user
-        get_held_cart.save()
     held_cart = HeldCart.objects.get(cart_key=session_key)
 
     # If item's id already in cart update if same size or add a new size

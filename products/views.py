@@ -29,15 +29,28 @@ class LatestProducts(View):
 
 
 class CategoryView(View):
-    def get(self, request, slug):
+    def get(self, request, slug, *args, **kwargs):
         category = get_object_or_404(Category, slug=slug)
-        products = Product.objects.filter(category__slug=slug).all()
+        products_list = Product.objects.filter(category__slug=slug).all()
         template_name = 'products/category.html'
+        filterkey = self.request.GET.get('filter_subcat')
+        if filterkey != 'default':
+            products = products_list.filter(subcategory=filterkey.title())
+        else:
+            products = products_list
+
         context = {
             'category': category,
             'products': products,
+            'current_filterkey': filterkey,
         }
         return render(request, template_name, context)
+
+    def get_queryset(self):
+        products = Product.objects.filter(category__slug=slug).all()
+        if filterkey is not "default":
+            products = products.filter(subcategory='filterkey')
+        return products
 
 
 class ProductDetail(View):

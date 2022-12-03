@@ -7,16 +7,21 @@
 
 {% block content %}
 <section class="container-md">
-    <div class="d-flex justify-content-between mx-5">
-        <!-- Links to Latest Products, and Dashboard for staff-->
-        <a class="chilli-link bigger" href="{% url 'products:latest' %}">&laquo; To Latest Products</a>
-        {% if user.is_staff %}
-        <a class="chilli-link" href="{% url 'management:dashboard' %}">Go to Management Dashboard &raquo;</a>
-        {% endif %}
-    </div>
-    <div class="d-flex align-items-center">
+    <div>
         <!-- Category heading with add button for staff -->
-        <h1 class="headings">{{ category }}</h1>
+        <div class="d-flex flex-row align-items-center justify-content-between">
+            <h1 class="headings">{{ category }}</h1>
+            <form action="{% url 'products:category' category.slug %}" method="GET">
+                <select id="filter_subcat" name="filter_subcat" id="filter_subcat" class="border rounded-0">
+                    <option value="default" {% if current_filterkey == "None" %}selected{% endif %}>All {{ category }}</option>
+                    <option value="mild" {% if current_filterkey == "mild" %}selected{% endif %}>Mild</option>
+                    <option value="medium" {% if current_filterkey == "medium" %}selected{% endif %}>Medium</option>
+                    <option value="hot" {% if current_filterkey == "hot" %}selected{% endif %}>Hot</option>
+                    <option value="mega hot" {% if current_filterkey == "mega hot" %}selected{% endif %}>Mega Hot</option>
+                </select>
+                <button class="chilli-btn px-1 py-0 rounded-1">Go</button>
+            </form>
+        </div>
         {% if user.is_staff %}
         <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
         {% endif %}

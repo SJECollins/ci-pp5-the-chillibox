@@ -27,6 +27,9 @@
         </div>
     {% endfor %}   
 </div>
+<div class="text-center">
+    <a class="chilli-btn chilli-dngr" href="{% url 'cart:clear_cart' %}">Clear Cart</a>
+</div>
 {% else %}
 <p class="text-center my-5">Your cart is empty.</p>
 {% endif %}

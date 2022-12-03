@@ -123,6 +123,24 @@ def remove_item(request, item_id):
         return HttpResponse(status=500)
 
 
+def clear_cart(request):
+    if 'cart' in request.session:
+        try:
+            held_cart = get_object_or_404(HeldCart, cart_key=request.session.session_key)
+            for held_item in held_cart.held_items.all():
+                variant = Variant.objects.get(id=held_item.variant.id)
+                variant.current_stock += held_item.qty
+                held_item.delete()
+            if not held_cart.held_items.exists():
+                held_cart.delete()
+                del request.session['cart']
+            messages.success(request, 'Your cart is empty.')
+            return redirect('/')
+        except Exception as e:
+            messages.error(request, f'Error emptying cart: {e}')
+            return HttpResponse(status=500)
+
+
 class ViewHeld(View):
     """
     Temporary view for held cart and items - TO DELETE

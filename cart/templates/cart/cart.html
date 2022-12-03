@@ -10,11 +10,8 @@ Your Cart
 <div class="col-12">
     <div class="row">
         <div class="col-sm-4">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center">
                 <h1 class="headings heading-sm">Your Cart: </h1>
-                <div>
-                    <a class="chilli-btn chilli-go" href="{% url 'checkout:checkout' %}">Checkout</a>
-                </div>
             </div>
             <div>
                 <!-- Summary of cart contents, including costs -->
@@ -39,6 +36,10 @@ Your Cart
                 {% if free_delivery_delta > 0 %}
                 <p class="text-center">Spend €{{ free_delivery_delta }} more for free delivery!</p>
                 {% endif %}
+            </div>
+            <div class="d-flex flex-row justify-content-between">
+                <a class="chilli-btn chilli-dngr" href="{% url 'cart:clear_cart' %}">Clear Cart</a>
+                <a class="chilli-btn chilli-go" href="{% url 'checkout:checkout' %}">Checkout</a>
             </div>
         </div>
         <!-- More detailed list of items in cart -->

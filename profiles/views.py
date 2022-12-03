@@ -1,14 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View, generic
 from django.views.generic import UpdateView, DeleteView
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 from checkout.models import Order
 
 from .models import UserProfile, Reviews
-from .forms import ProfileForm
+from .forms import ProfileForm, DeleteAccountForm
 
 
 class ProfileView(LoginRequiredMixin, View):
@@ -32,6 +34,33 @@ class UpdateProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get_object(self):
         return self.request.user.userprofile
+
+
+class DeleteAccount(LoginRequiredMixin, View):
+    """
+    Deletes the currently signed-in user.
+    """
+    def get(self, request, *args, **kwargs):
+        form = DeleteAccountForm()
+        template_name = 'profiles/confirm_delete.html'
+        context = {
+            'form': form,
+        }
+        return render(request, template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        template_name = 'profiles/confirm_delete.html'
+        form = DeleteAccountForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            logout(request)
+            user.delete()
+            messages.success(request, 'You account was deleted.')
+            return redirect('/')
+        context = {
+            'form': form,
+        }
+        return render(request, template_name, context)
 
 
 class ReviewList(LoginRequiredMixin, generic.ListView):

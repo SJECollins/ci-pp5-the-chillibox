@@ -9,6 +9,13 @@ class ProfileForm(forms.ModelForm):
         exclude = ['user']
 
 
+class DeleteAccountForm(forms.Form):
+    """
+    Simple form that provides a checkbox that signals deletion.
+    """
+    delete = forms.BooleanField(required=True)
+
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Reviews

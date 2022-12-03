@@ -60,7 +60,10 @@
                     <td>{{ profile.postcode }} </td>
                 </tr>
             </table>
-            <a class="chilli-btn" href="{% url 'profiles:edit_profile' %}">Edit Details</a>
+            <div class="d-flex flex-row justify-content-between">
+                <a class="chilli-btn" href="{% url 'profiles:edit_profile' %}">Edit Details</a>
+                <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_account' %}">Delete Account</a>
+            </div>
             <div>
                 <p><a class="chilli-link" href="{% url 'profiles:review_list' %}">Go here</a>
                  to view your reviews.</p>

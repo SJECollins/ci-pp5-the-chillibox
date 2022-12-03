@@ -22,7 +22,7 @@ Home
             <img src="{% static 'images/chillisauce.jpg' %}" class="d-block w-100 pics" alt="The Chillibox hot sauce">
             <div class="carousel-caption d-none d-sm-block car-text">
                 <h5>Spice up your life with our hot sauces!</h5>
-                <a class="chilli-link" href="">Go To Sauces &raquo;</a>
+                <a class="chilli-link big" href="{% url 'products:category' slug='sauces' %}">Go To Sauces &raquo;</a>
             </div>
         </div>
         <div class="carousel-item">
@@ -30,7 +30,7 @@ Home
                 alt="The Chillibox chilli varieties">
             <div class="carousel-caption d-none d-sm-block car-text">
                 <h5>Grow your own with our variety of chilli seeds!</h5>
-                <a class="chilli-link" href="">Go To Seeds &raquo;</a>
+                <a class="chilli-link big" href="{% url 'products:category' slug='seeds' %}">Go To Seeds &raquo;</a>
             </div>
         </div>
     </div>

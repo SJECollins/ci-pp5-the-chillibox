@@ -49,27 +49,32 @@ Home
     <!-- This row has header and blurb-->
     <div class="row">
         <h1 class="headings">Welcome to The Chillibox!</h1>
-        <p>Paragraph of text about the site</p>
+        <p>At The Chillibox love all things <strong>spicy</strong>!</p>
+        <p>We offer a selection of seeds of different heat levels to grow your own chilli pepper plants. And a variety of hot sauces made in-house from our own plants grown here in Ireland.</p>
     </div>
     <!-- This row is more specific -->
     <div class="row">
         <div class="col-md-6">
-            <h2 class="headings headings-sm">The Boxes</h2>
-            <p>Paragraph of text giving an explanation about the boxes</p>
-            <a class="chilli-link big" href="{% url 'products:category' slug='seedbox' %}">Go To SauceBoxes</a>
-            <br>
-            <a class="chilli-link big" href="{% url 'products:category' slug='saucebox' %}">Go To SeedBoxes</a>
-        </div>
-        <div class="col-md-6">
-            <h2 class="headings headings-sm">The Seeds & Sauces</h2>
-            <p>Paragraph of text giving an explanation about the seeds and sauces</p>
+            <h2 class="headings headings-sm">The Sauces & Seeds</h2>
+            <p>We have a passion for spicy food and make all our hot sauces in house. Take a look at our <a class="chilli-link" href="{% url 'products:category' slug='sauces' %}">hot sauces</a> to find a delicious addition to your cupboard.</p>
+            <p>Want to have a go at making your own hot sauce using the same varities of chilli peppers as us? Browse our selection of <a class="chilli-link" href="{% url 'products:category' slug='seeds' %}">seeds</a> and get started on growing your own chilli plants at home!</p>
             <a class="chilli-link big" href="{% url 'products:category' slug='sauces' %}">Go To Sauces</a>
             <br>
             <a class="chilli-link big" href="{% url 'products:category' slug='seeds' %}">Go To Seeds</a>
         </div>
+        <div class="col-md-6">
+            <h2 class="headings headings-sm">The Boxes</h2>
+            <p>Not sure exactly what you're looking for?</p>
+            <p>Our <a class="chilli-link" href="{% url 'products:category' slug='saucebox' %}">seedboxes</a> come in a variety of options. Just pick which heat level suits you best and you'll receive a carefully selected combination of seeds to grow at home.</p>
+            <p>Feeling adventurous, starting your own hot sauce collection, or looking for a gift for a friend who's a hot sauce fiend? Visit our <a class="chilli-link" href="{% url 'products:category' slug='seedbox' %}">sauceboxes</a> and find a carefully curated collection of sauces that suits you.</p>
+            <a class="chilli-link big" href="{% url 'products:category' slug='seedbox' %}">Go To SeedBoxes</a>
+            <br>
+            <a class="chilli-link big" href="{% url 'products:category' slug='saucebox' %}">Go To SauceBoxes</a>
+        </div>
     </div>
     <div class="row">
-        <h3 class="headings headings-sm">Newest Products:</h3>
+        <h3 class="headings headings-sm mb-1">Newest Products:</h3>
+        <p>Take a look at these products we've just added:</p>
         <!-- Latest products?? OR should this go at top? -->
         <!-- Should style with cards similar to product layout OR just links?? Prob best to include thumbnails tho-->
         {% for product in latest_products %}

@@ -1,0 +1,116 @@
+import datetime
+import pytz
+from django.test import TestCase
+from django.urls import reverse
+from django.contrib.auth.models import User
+
+from products.models import Category, Product
+from checkout.models import Order, OrderLineItem
+from .models import Reviews
+
+
+class TestProfiles(TestCase):
+    """
+    Test profile view.
+    """
+    def setUp(self):
+        self.category_a = Category.objects.create(
+            name='Test Category',
+            slug='test-cat'
+        )
+        self.category_a.save()
+        self.product_a = Product.objects.create(
+            category=self.category_a,
+            name='Test Pepper',
+            slug='test-pepper',
+            added_on=datetime.datetime(2021, 12, 3, 0, 0, 0, tzinfo=pytz.utc),
+        )
+        self.product_a.save()
+        self.review_a = Reviews.objects.create(
+            product=self.product_a,
+            content='Test content',
+            rating=5,
+            added_on=datetime.datetime(2021, 12, 3, 0, 0, 0, tzinfo=pytz.utc),
+            approved=True,
+        )
+        self.review_a.save()
+        self.order = Order.objects.create(
+            order_number='xyz',
+            first_name='Test',
+            last_name='User',
+            email='test@email.com',
+            phone_number='1111111',
+            country='IE',
+            town_or_city='SomeTown',
+            street_address1='1 First St',
+            date=datetime.datetime(2022, 12, 3, 0, 0, 0, tzinfo=pytz.utc),
+            order_total=2.99,
+            grand_total=7.49,
+        )
+        self.order.save()
+
+    def test_profile_view(self):
+        """
+        Test get profile view if not logged in.
+        Should redirect to login.
+        """
+        response = self.client.get('/profiles/', follow=True)
+        self.assertRedirects(response, '/accounts/login/?next=/profiles/',
+                             status_code=302, target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_update_profiles(self):
+        """
+        Test update profile.
+        """
+        response = self.client.get('/profiles/edit_profile/')
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/profiles/edit_profile/',
+                             status_code=302, target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_review_list(self):
+        """
+        Test view reviews.
+        """
+        response = self.client.get('/profiles/review_list/', follow=True)
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/profiles/review_list/',
+                             status_code=302, target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_edit_review(self):
+        """
+        Test edit reviews.
+        """
+        review = self.review_a.id
+        response = self.client.get(reverse('profiles:edit_review',
+                                   args=[review]))
+        self.assertRedirects(
+            response, '/accounts/login/?next=/profiles/edit_review/1',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_delete_review(self):
+        """
+        Test delete review.
+        """
+        review = self.review_a.id
+        response = self.client.get(reverse('profiles:delete_review',
+                                   args=[review]))
+        self.assertRedirects(
+            response, '/accounts/login/?next=/profiles/delete_review/1',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_order_history_view(self):
+        """
+        Test order history.
+        """
+        order_id = self.order.id
+        response = self.client.get(reverse('profiles:order_history',
+                                   args=[order_id]))
+        self.assertRedirects(
+            response, '/accounts/login/?next=/profiles/order_history/1',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)

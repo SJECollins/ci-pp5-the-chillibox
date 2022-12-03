@@ -30,15 +30,43 @@ Contact Us
 <!-- Contact form -->
 <section>
     <h1 class="headings text-center">Contact Us</h1>
-    <div class="contact-text">
-        <p>If you have any general inquiries, please send us a message in the form below and the team will be in contact shortly.</p>
-        <p>If you need to speak to someone urgently, please give us a call on the number below.</p>
-        <p>You can find us in person at our shop in Kill Village. Our location is marked on the map below.</p>
+    <div>
+        <table class="mx-auto">
+            <tr>
+                <th>Call Us: </th>
+                <td><a href="tel:+35311111111">+353 45 123 456</a></td>
+            </tr>
+            <tr>
+                <th>Email Us: </th>
+                <td><a href="mailto:portprojtest@gmail.com">Email The Chillibox</a></td>
+            </tr>
+            <tr>
+                <th class="align-top">Find Us: </th>
+                <td>666 Main St, <br>
+                    Kill,<br>
+                    Co. Kildare<br>
+                    Ireland</td>
+            </tr>
+            <tr>
+                <th>Facebook Us: </th>
+                <td>
+                        <a class="chilli-link footer-socials" href="https://facebook.com" target="_blank" rel="noopener"
+            aria-label="Find us on Facebook (opens in new tab)"><i class="fa-brands fa-facebook"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Tweet Us: </th>
+                <td>
+                    <a class="chilli-link footer-socials" href="https://twitter.com" target="_blank" rel="noopener"
+            aria-label="Find us on Twitter (opens in new tab)"><i class="fa-brands fa-twitter"></i></a>
+                </td>
+            </tr>
+        </table>
     </div>
 </section>
 <section class="row">
-    <div class="col-12 col-md-5">
-        <h2 class="headings headings-sm text-center">Send us a message:</h2>
+    <div class="col-12 col-md-6">
+        <h2 class="headings headings-sm text-center">Send us a message</h2>
         {% if messaged %}
         <div class="text-center mt-5">
             <p>Your message has been sent.</p>
@@ -65,43 +93,10 @@ Contact Us
         </form>
         {% endif %}
     </div>
-    <div class="col-12 col-md-7">
+    <div class="col-12 col-md-6">
         <h2 class="headings headings-sm text-center">Our Location</h2>
         <div class="row">
-            <div class="col-xl-4">
-                <table class="mx-auto">
-                    <tr>
-                        <th>Call Us: </th>
-                        <td><a href="tel:+35311111111">+353 1 111 1111</a></td>
-                    </tr>
-                    <tr>
-                        <th>Email Us: </th>
-                        <td><a href="mailto:portprojtest@gmail.com">Email The Chillibox</a></td>
-                    </tr>
-                    <tr>
-                        <th class="align-top">Find Us: </th>
-                        <td>666 Main St, <br>
-                            Kill,<br>
-                            Co. Kildare<br>
-                            Ireland</td>
-                    </tr>
-                    <tr>
-                        <th>Facebook Us: </th>
-                        <td>
-                                <a class="chilli-link footer-socials" href="https://facebook.com" target="_blank" rel="noopener"
-                    aria-label="Find us on Facebook (opens in new tab)"><i class="fa-brands fa-facebook"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Tweet Us: </th>
-                        <td>
-                            <a class="chilli-link footer-socials" href="https://twitter.com" target="_blank" rel="noopener"
-                    aria-label="Find us on Twitter (opens in new tab)"><i class="fa-brands fa-twitter"></i></a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-xl-8 pe-5">
+            <div class="pe-5">
                 <div id="map">
 
                 </div>

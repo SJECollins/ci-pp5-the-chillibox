@@ -4,8 +4,7 @@ from django.test import TestCase
 class TestCart(TestCase):
     def test_cart_view(self):
         """
-        Try to get cart view if cart empty.
-        Should redirect if no products.
+        Try to get cart view.
         """
         response = self.client.get('/cart/')
         self.assertEqual(response.status_code, 200)

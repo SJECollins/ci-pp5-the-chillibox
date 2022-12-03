@@ -105,7 +105,7 @@ class Product(models.Model):
         if self.image:
             if not self.thumbnail:
                 self.thumbnail = self.make_thumbnail(self.image)
-        super(Product, self).save(*args, **kwargs)
+                super(Product, self).save(*args, **kwargs)
 
 
 class Variant(models.Model):

@@ -19,12 +19,15 @@ Submitted Recipes
         </div>
         <div class="d-flex flex-row justify-content-center">
             <div class="border border-2 p-1">
-                <a class="chilli-link" href="{% url 'management:user_recipes' %}">Submitted Recipes</a>
+                <a class="chilli-link" href="{% url 'management:recipes' %}">Recipes</a>
             </div>
             <div class="border border-2 p-1">
                 <a class="chilli-link" href="{% url 'management:recipe_comments' %}">Recipe Comments</a>
             </div>
         </div>
+    </div>
+    <div class="col-10 col-md-8 mx-auto">
+        <p>These recipes have been submitted by users for consideration to publish on the website. Please review, and if suitable to submit, remember to credit the author and mark the recipe as 'published' to notify the user.</p>
     </div>
     <div class="col-12">
         <div class="col-10 mx-auto">
@@ -46,20 +49,18 @@ Submitted Recipes
                         {{ recipe.notes|linebreaks }}
                     </div>
                 </div>
-                <div>
+                <div class="d-flex flex-row justify-content-evenly">
                     {% if recipe.publish %}
                     <span><strong>Published</strong></span>
                     {% else %}
                     <form action="{% url 'management:publish_submitted' recipe.pk %}" method="POST">
                         {% csrf_token %}
                         <input type="checkbox">
-                        <button type="submit" class="chilli-btn chilli-go">Approve</button>
+                        <button type="submit" class="chilli-btn chilli-go">Published</button>
                     </form>
+                    <span><small>Mark as published if used.</small></span>
                     {% endif %}
-                </div>
-                <div class="d-flex flex-row justify-content-evenly">
-                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
-                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_submitted' recipe.pk %}">Delete recipe</a>
                 </div>
             </div>
             {% empty %}

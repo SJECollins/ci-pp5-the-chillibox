@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 
@@ -9,7 +10,7 @@ class Recipe(models.Model):
     slug = models.SlugField(max_length=40, unique=True)
     intro = models.TextField()
     ingredients = models.TextField()
-    direction = models.TextField()
+    directions = models.TextField()
     outro = models.TextField(null=True, blank=True)
     excerpt = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

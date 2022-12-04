@@ -251,6 +251,17 @@ a {
     margin: 1em auto;
 }
 
+/* Recipe styling */
+
+.recipe-ingredients > li {
+    margin-left: 2em;
+    list-style-type: disc;
+}
+
+.recipe-directions > li {
+    list-style-type: upper-roman;
+}
+
 #map {
     height: 360px;
     width: auto;

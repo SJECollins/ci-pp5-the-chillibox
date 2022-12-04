@@ -24,9 +24,9 @@ class RecipeList(generic.ListView):
 class ViewRecipe(StaffRequiredMixin, View):
     def get(self, request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
-        comments = recipe.comments.filter(approved=True).order_by('-created')
+        comments = recipe.comments.filter(approved=True).order_by('-added_on')
         template_name = 'recipes/recipe_detail.html'
-        context - {
+        context = {
             'recipe': recipe,
             'comments': comments,
             'commented': False,
@@ -36,7 +36,7 @@ class ViewRecipe(StaffRequiredMixin, View):
 
     def post(self, request, slug, *args, **kwargs):
         recipe = get_object_or_404(Recipe, slug=slug)
-        comments = recipe.comments.filter(approved=True).order_by('-created')
+        comments = recipe.comments.filter(approved=True).order_by('-added_on')
         template_name = 'recipes/recipe_detail.html'
         form = CommentForm(data=request.POST)
 

@@ -7,23 +7,35 @@
 
 {% block content %}
 <section class="container-fluid">
-    <div class="col">
-        <h1 class="headings text-center">{{ recipe }}</h1>
-        <span class="text-center">Added on {{ recipe.added_on }}</span>
+    <div class="col-sm-10 col-md-8 mx-auto recipe-card">
+        <div class="text-center">
+            <h1 class="headings mb-2">{{ recipe }}</h1>
+            <span><small>Added on {{ recipe.created }}</small></span>
+        </div>
+        <hr>
         <div class="col-8 mx-auto">
             <div>
-                {{ recipe.description }}
+                {{ recipe.intro|linebreaks }}
             </div>
         </div>
+        <hr>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-4">
                 <h2 class="headings headings-sm">Ingredients</h2>
-                {{ recipe.ingredients }}
+                <ul class="recipe-ingredients">
+                    {{ recipe.ingredients|safe }}
+                </ul>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-8">
                 <h2 class="headings headings-sm">Directions</h2>
-                {{ recipe.directions }}
+                <ol class="recipe-directions">
+                    {{ recipe.directions|safe }}                    
+                </ol>
             </div>
+        </div>
+        <hr>
+        <div class="col-8 mx-auto">
+            {{ recipe.outro|linebreaks }}
         </div>
     </div>
 </section>

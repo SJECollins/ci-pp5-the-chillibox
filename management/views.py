@@ -142,7 +142,7 @@ class RecipeList(StaffRequiredMixin, generic.ListView):
 def publish_recipe(request, pk):
     if request.user.is_staff:
         recipe = get_object_or_404(Recipe, pk=pk)
-        recipe.approved = True
+        recipe.published = True
         recipe.save()
         return redirect('management:recipes')
     else:
@@ -182,7 +182,7 @@ class UserRecipeList(StaffRequiredMixin, generic.ListView):
 def publish_submitted_recipe(request, pk):
     if request.user.is_staff:
         recipe = get_object_or_404(SubmittedRecipe, pk=pk)
-        recipe.approved = True
+        recipe.published = True
         recipe.save()
         return redirect('management:user_recipes')
     else:

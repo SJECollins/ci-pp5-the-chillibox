@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View, generic
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -55,8 +56,8 @@ class ViewRecipe(StaffRequiredMixin, View):
         context = {
             'recipe': recipe,
             'comments': comments,
-            'reviewed': True,
             'form': form,
+            'commented': True,
         }
         return render(request, template_name, context)
 
@@ -67,18 +68,53 @@ class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
               'outro',)
     template_name = 'recipes/recipe_form.html'
     success_url = '/management/'
-    success_message = 'Your recipe was created'
+    success_message = 'Your recipe was created.'
 
 
 class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Recipes
-    fields = ('title', 'excerpt', 'ingredients', 'directions',)
+    fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
+              'outro')
     template_name = 'recipes/recipe_form.html'
     success_url = '/management/'
-    success_message = 'Your recipe was updated'
+    success_message = 'Your recipe was updated.'
 
 
 class DeleteRecipe(StaffRequiredMixin, DeleteView):
     model = Recipes
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
+
+
+class EditComment(LoginRequiredMixin, UpdateView):
+    model = Comment
+    template_name = 'management/comment_form.html'
+    success_url = '/recipes/'
+
+
+class DeleteComment(LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'management/confirm_delete.html'
+    success_url = '/recipes/'
+
+
+class SubmitRecipe(SuccessMessageMixin, CreateView):
+    model = SubmittedRecipe
+    fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
+    template_name = 'recipes/recipe_form.html'
+    success_url = '/recipes/'
+    success_message = 'Your recipe has been submitted.'
+
+
+class EditSubmittedRecipe(SuccessMessageMixin, UpdateView):
+    model = SubmittedRecipe
+    fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
+    template_name = 'recipes/recipe_form.html'
+    success_url = '/recipes/'
+    success_message = 'Your recipe has been edited.'
+
+
+class DeleteSubmittedRecipe(SuccessMessageMixin, DeleteView):
+    model = SubmittedRecipe
+    template_name = 'management/confirm_delete.html'
+    success_url = '/recipes/'

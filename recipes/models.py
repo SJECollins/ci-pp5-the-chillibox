@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Recipe(models.Model):
@@ -38,7 +39,8 @@ class Comment(models.Model):
 
 
 class SubmittedRecipe(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+                             blank=True)
     recipe_title = models.CharField(max_length=140)
     ingredients = models.TextField()
     directions = models.TextField()

@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 
 from checkout.models import Order
+from recipes.models import SubmittedRecipe
 
 from .models import UserProfile, Reviews
 from .forms import ProfileForm, DeleteAccountForm
@@ -95,3 +96,13 @@ class OrderHistory(LoginRequiredMixin, View):
             'order': order,
         }
         return render(request, template_name, context)
+
+
+class UserRecipeList(generic.ListView):
+    model = SubmittedRecipe
+    template_name = 'profiles/user_recipes.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = SubmittedRecipe.objects.filter(user=self.request.user).order_by('-submitted_on')
+        return queryset

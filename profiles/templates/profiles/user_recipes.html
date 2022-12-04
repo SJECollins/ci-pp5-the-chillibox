@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Your Recipes
+{% endblock title %}
+
+{% block content %}
+<section class="container-fluid">
+    <div class="text-center">
+        <h1 class="headings mb-2">Your Recipes</h1>
+        <div class="d-flex flex-row justify-content-center">
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'profiles:profile' %}">Your Profile</a>
+            </div>
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'profiles:review_list' %}">Your Reviews</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="col-10 mx-auto">
+            {% for recipe in recipes_list %}
+            <div class="col-md-6 mx-auto">
+                <h2 class="headings big"><a href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a></h2>
+                <div>
+                    <span class="small">Submitted on {{ recipe.submitted_on|date:'d/m/y' }}</span>
+                </div>
+                <div>
+                    {{ recipe.ingredients }}
+                </div>
+                <div>
+                    {{ recipe.directions }}
+                </div>
+                <div>
+                    {{ recipe.notes }}
+                </div>
+                {% if recipe.published %}
+                <p>
+                    Your submitted recipe has been publish! If you make any changes to your submitted recipe they will not be reflected in the published version.
+                </p>
+                {% else %}
+                <p>
+                    Your recipe has been submitted. We will update you here if it is published.
+                </p>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <div class="d-flex flex-row justify-content-evenly">
+                    <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_recipe' recipe.pk %}">Edit recipe</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_recipe' recipe.pk %}">Delete recipe</a>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <p>You haven't submitted any recipes yet!</p>
+            {% endfor %}
+        </div>
+    </div>
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number" class="page-link">&laquo; PREV</a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number" class="page-link">NEXT &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+</section>
+{% endblock content %}

@@ -7,9 +7,24 @@
 {% block content %}
 <!-- User Profile Details -->
 <section class="row">
-    <div class="col-12 col-md-6">
+    <div class="text-center">
+        <h1 class="headings mb-2">Your Profile</h1>
+        <div class="d-flex flex-row justify-content-center">
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'profiles:review_list' %}">Your Reviews</a>
+            </div>
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'profiles:user_recipes' %}">Your Recipes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">    
         <div class="col-10 mx-auto">
-            <h1 class="headings">Your Details</h1>
+            <h1 class="headings mb-2">Your Details</h1>
+            <div class="d-flex flex-row justify-content-between mb-3">
+                <a class="chilli-btn" href="{% url 'profiles:edit_profile' %}">Edit Details</a>
+                <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_account' %}">Delete Account</a>
+            </div>
             <table class="table">
                 <tr>
                     <th>First Name: </th>
@@ -60,14 +75,6 @@
                     <td>{{ profile.postcode }} </td>
                 </tr>
             </table>
-            <div class="d-flex flex-row justify-content-between">
-                <a class="chilli-btn" href="{% url 'profiles:edit_profile' %}">Edit Details</a>
-                <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_account' %}">Delete Account</a>
-            </div>
-            <div>
-                <p><a class="chilli-link" href="{% url 'profiles:review_list' %}">Go here</a>
-                 to view your reviews.</p>
-            </div>
         </div>
     </div>
 

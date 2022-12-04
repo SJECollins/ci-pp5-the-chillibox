@@ -20,7 +20,7 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Book, self).save(*args, **kwargs)
+        super(Recipe, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
@@ -30,6 +30,7 @@ class Comment(models.Model):
                                related_name='comments')
     content = models.TextField(max_length=280)
     added_on = models.DateTimeField(auto_now_add=True)
+    edited_on = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -43,6 +44,7 @@ class SubmittedRecipe(models.Model):
     directions = models.TextField()
     notes = models.TextField(null=True, blank=True)
     submitted_on = models.DateTimeField(auto_now_add=True)
+    edited_on = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
 
     def __str__(self):

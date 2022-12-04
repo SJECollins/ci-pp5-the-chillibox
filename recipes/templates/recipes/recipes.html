@@ -15,7 +15,7 @@ Recipes
             <div class="col-md-6 mx-auto">
                 <h2 class="headings big"><a href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a></h2>
                 <div>
-                    <span class="small">Added on {{ recipe.added_on|date:'d/m/y' }}</span>
+                    <span class="small">Added on {{ recipe.created|date:'d/m/y' }}</span>
                     <p class="card p-2">{{ recipe.excerpt }}</p>
                 </div>
                 {% if user.is_authenticated %}

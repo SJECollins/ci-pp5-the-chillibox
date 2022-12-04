@@ -12,19 +12,19 @@ from .forms import CommentForm
 
 
 class RecipeList(generic.ListView):
-    model = Recipes
+    model = Recipe
     template_name = 'recipes/recipes.html'
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = Recipes.objects.filter(published=True).order_by('-added_on')
+        queryset = Recipe.objects.filter(published=True).order_by('-created')
         return queryset
 
 
 class ViewRecipe(StaffRequiredMixin, View):
     def get(self, request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
-        comments = recipe.comments.filter(approved=True).order_by('-added_on')
+        comments = recipe.comments.filter(approved=True).order_by('-created')
         template_name = 'recipes/recipe_detail.html'
         context - {
             'recipe': recipe,
@@ -36,7 +36,7 @@ class ViewRecipe(StaffRequiredMixin, View):
 
     def post(self, request, slug, *args, **kwargs):
         recipe = get_object_or_404(Recipe, slug=slug)
-        comments = recipe.comments.filter(approved=True).order_by('-added_on')
+        comments = recipe.comments.filter(approved=True).order_by('-created')
         template_name = 'recipes/recipe_detail.html'
         form = CommentForm(data=request.POST)
 
@@ -63,7 +63,7 @@ class ViewRecipe(StaffRequiredMixin, View):
 
 
 class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Recipes
+    model = Recipe
     fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
               'outro',)
     template_name = 'recipes/recipe_form.html'
@@ -72,7 +72,7 @@ class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Recipes
+    model = Recipe
     fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
               'outro')
     template_name = 'recipes/recipe_form.html'
@@ -81,7 +81,7 @@ class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class DeleteRecipe(StaffRequiredMixin, DeleteView):
-    model = Recipes
+    model = Recipe
     template_name = 'management/confirm_delete.html'
     success_url = '/management/'
 

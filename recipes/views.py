@@ -63,7 +63,8 @@ class ViewRecipe(StaffRequiredMixin, View):
 
 class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     model = Recipes
-    fields = ('title', 'excerpt', 'ingredients', 'directions',)
+    fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
+              'outro',)
     template_name = 'recipes/recipe_form.html'
     success_url = '/management/'
     success_message = 'Your recipe was created'

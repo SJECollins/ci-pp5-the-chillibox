@@ -11,7 +11,7 @@ Recipes
     <div class="col-12">
         <h1 class="headings text-center">Recipes</h1>
         <div class="col-10 mx-auto">
-            {% for recipe in recipes_list %}
+            {% for recipe in recipe_list %}
             <div class="col-md-6 mx-auto">
                 <h2 class="headings big"><a href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a></h2>
                 <div>
@@ -20,8 +20,8 @@ Recipes
                 </div>
                 {% if user.is_authenticated %}
                 <div class="d-flex flex-row justify-content-evenly">
-                    <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_recipe' recipe.pk %}">Edit recipe</a>
-                    <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_recipe' recipe.pk %}">Delete recipe</a>
+                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
                 </div>
                 {% endif %}
             </div>

@@ -1,21 +1,16 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.views import View
+from django.views import View, generic
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from profiles.models import Reviews
+from products.models import Category, Product, Variant
+from recipes.models import Recipe, Comment, SubmittedRecipe
 
 from .mixins import StaffRequiredMixin
 from .forms import StockForm
-
-
-from products.models import Category, Product, Variant
-
-"""
-Revisit for messages and restrict login to superusers
-"""
 
 
 class ProductDashboard(StaffRequiredMixin, View):
@@ -130,5 +125,65 @@ def update_stock(request, pk):
             'form': form,
         }
         return render(request, 'management/update_stock.html', context)
+    else:
+        return redirect('account_login')
+
+
+class RecipeList(StaffRequiredMixin, generic.ListView):
+    model = Recipe
+    template_name = 'management/recipes.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = Recipe.objects.order_by('-published')
+        return queryset
+
+
+def publish_recipe(request, pk):
+    if request.user.is_staff:
+        recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.approved = True
+        recipe.save()
+        return redirect('management:recipes')
+    else:
+        return redirect('account_login')
+
+
+class CommentList(StaffRequiredMixin, generic.ListView):
+    model = Comment
+    template_name = 'management/recipe_comments.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = Comment.objects.order_by('-approved')
+        return queryset
+
+
+def approve_comment(request, pk):
+    if request.user.is_staff:
+        comment = get_object_or_404(comment, pk=pk)
+        comment.approved = True
+        comment.save()
+        return redirect('management:recipe_comments')
+    else:
+        return redirect('account_login')
+
+
+class UserRecipeList(StaffRequiredMixin, generic.ListView):
+    model = SubmittedRecipe
+    template_name = 'management/user_recipes.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = SubmittedRecipe.objects.order_by('-submitted_on')
+        return queryset
+
+
+def publish_submitted_recipe(request, pk):
+    if request.user.is_staff:
+        recipe = get_object_or_404(SubmittedRecipe, pk=pk)
+        recipe.approved = True
+        recipe.save()
+        return redirect('management:user_recipes')
     else:
         return redirect('account_login')

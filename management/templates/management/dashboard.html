@@ -7,16 +7,20 @@ Dashboard
 
 {% block content %}
 <section class="row">
-    <div class="d-flex justify-content-evenly align-items-center">
-        <div>
-            <a class="chilli-link big" href="{% url 'management:user_reviews' %}">Go To User Reviews</a>
+    <div class="text-center">
+        <h1 class="headings mb-2">Products</h1>
+        <div class="d-flex flex-row justify-content-center">
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'management:user_reviews' %}">Reviews</a>
+            </div>
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'management:recipes' %}">Recipes</a>
+            </div>
         </div>
+    </div>
+    <div class="text-center my-3">
         <div>
-            <h1 class="headings">Products</h1>
             <a class="chilli-btn" href="{% url 'management:add_product' %}">Add New Product</a>
-        </div>
-        <div>
-
         </div>
     </div>
     {% regroup products by category as products_by_category %}

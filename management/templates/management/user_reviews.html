@@ -6,15 +6,15 @@ User Reviews
 
 {% block content %}
 <section class="col">
-    <div class="d-flex justify-content-evenly align-items-center">
-        <div>
-            <a class="chilli-link big" href="{% url 'management:dashboard' %}">Go To Products</a>
-        </div>
-        <div>
-            <h1 class="headings">User Reviews</h1>
-        </div>
-        <div>
-
+    <div class="text-center">
+        <h1 class="headings mb-2">User Reviews</h1>
+        <div class="d-flex flex-row justify-content-center">
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'management:dashboard' %}">Products</a>
+            </div>
+            <div class="border border-2 p-1">
+                <a class="chilli-link" href="{% url 'management:recipes' %}">Recipes</a>
+            </div>
         </div>
     </div>
     <div>

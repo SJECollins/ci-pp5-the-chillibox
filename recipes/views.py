@@ -7,6 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from management.mixins import StaffRequiredMixin
 from .models import Recipe, Comment, SubmittedRecipe
+from .forms import CommentForm
 
 
 class RecipeList(generic.ListView):

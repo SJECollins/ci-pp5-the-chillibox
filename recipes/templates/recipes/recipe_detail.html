@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{ recipe }}
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+    <div class="col">
+        <h1 class="headings text-center">{{ recipe }}</h1>
+        <span class="text-center">Added on {{ recipe.added_on }}</span>
+        <div class="col-8 mx-auto">
+            <div>
+                {{ recipe.description }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="headings headings-sm">Ingredients</h2>
+                {{ recipe.ingredients }}
+            </div>
+            <div class="col-sm-6">
+                <h2 class="headings headings-sm">Directions</h2>
+                {{ recipe.directions }}
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+<section class="container-fluid">
+    <div class="col">
+        <h1 class="headings">Comments</h1>
+        {% if commented %}
+        <p><strong>Thank you for your comment!</strong> It is awaiting moderation.</p>
+        {% else %}
+        <h3>Leave a comment for {{ recipe }}</h3>
+        <form class="col-lg-4 mb-5" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p>Commenting as: {% if user.is_authenticated %}{{ user }}{% else %}Anonymous{% endif %}</p>
+            <button type="submit" class="chilli-btn">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% for comment in comments %}
+        <div class="card col-sm-6 col-md-4 mb-3">
+            <h2 class="headings big">
+                {% if comment.user is not None %}{{ comment.user.display_name }}{% else %}Anonymous{% endif %} <span
+                    class="small">on {{ comment.added_on|date:'d/m/y' }}</span></h2>
+            <p>{{ comment }}</p>
+            <div class="d-flex flex-row justify-content-between my-2">
+                {% if user.userprofile == comment.user %}
+                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_comment' comment.pk %}">Edit comment</a>
+                {% endif %}
+                {% if user.is_staff or user.userprofile == comment.commenter %}
+                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:remove_comment' comment.pk %}">Delete Review</a>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p><strong>No comments yet. Be the first to leave one!</strong></p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

@@ -200,6 +200,14 @@ a {
     border-radius: 4px;
 }
 
+.recipe-card {
+    max-width: 90%;
+    height: 100%;
+    padding: 1em;
+    margin: 1em auto;
+    box-shadow: 0 2px 4px 0 var(--site-dark-red);
+}
+
 /* Styling for specific templates */
 /* Nav styling */
 #navbar {

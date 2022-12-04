@@ -102,19 +102,23 @@ class SubmitRecipe(SuccessMessageMixin, CreateView):
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
-    success_url = '/recipes/'
+    success_url = '/profiles/user_recipes/'
     success_message = 'Your recipe has been submitted.'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(SubmitRecipe, self).form_valid(form)
 
 
 class EditSubmittedRecipe(SuccessMessageMixin, UpdateView):
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
-    success_url = '/recipes/'
+    success_url = '/profiles/user_recipes/'
     success_message = 'Your recipe has been edited.'
 
 
 class DeleteSubmittedRecipe(SuccessMessageMixin, DeleteView):
     model = SubmittedRecipe
     template_name = 'management/confirm_delete.html'
-    success_url = '/recipes/'
+    success_url = '/profiles/user_recipes/'

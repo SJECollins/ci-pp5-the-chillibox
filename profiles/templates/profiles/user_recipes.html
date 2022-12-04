@@ -20,21 +20,26 @@ Your Recipes
         </div>
     </div>
     <div class="col-12">
+        <div class="text-center my-3">
+            <a class="chilli-btn" href="{% url 'recipes:submit_recipe' %}">Submit Recipe</a>
+        </div>
         <div class="col-10 mx-auto">
-            {% for recipe in recipes_list %}
+            {% for recipe in submittedrecipe_list %}
             <div class="col-md-6 mx-auto">
-                <h2 class="headings big"><a href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a></h2>
-                <div>
-                    <span class="small">Submitted on {{ recipe.submitted_on|date:'d/m/y' }}</span>
-                </div>
-                <div>
-                    {{ recipe.ingredients }}
-                </div>
-                <div>
-                    {{ recipe.directions }}
-                </div>
-                <div>
-                    {{ recipe.notes }}
+                <div class="recipe-card">
+                    <h2 class="headings big">{{ recipe }}</h2>
+                    <div>
+                        <span class="small">Submitted on {{ recipe.submitted_on|date:'d/m/y' }}</span>
+                    </div>
+                    <div>
+                        {{ recipe.ingredients|linebreaks }}
+                    </div>
+                    <div>
+                        {{ recipe.directions|linebreaks }}
+                    </div>
+                    <div>
+                        {{ recipe.notes|linebreaks }}
+                    </div>
                 </div>
                 {% if recipe.published %}
                 <p>
@@ -47,8 +52,8 @@ Your Recipes
                 {% endif %}
                 {% if user.is_authenticated %}
                 <div class="d-flex flex-row justify-content-evenly">
-                    <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_recipe' recipe.pk %}">Edit recipe</a>
-                    <a class="chilli-btn chilli-dngr" href="{% url 'profiles:delete_recipe' recipe.pk %}">Delete recipe</a>
+                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_submitted' recipe.pk %}">Edit recipe</a>
+                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_submitted' recipe.pk %}">Delete recipe</a>
                 </div>
                 {% endif %}
             </div>

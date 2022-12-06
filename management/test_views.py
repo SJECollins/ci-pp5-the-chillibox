@@ -156,6 +156,36 @@ class TestManagementViewsNotLoggedIn(TestCase):
             status_code=302, target_status_code=200,
             fetch_redirect_response=True)
 
+    def test_recipes_list(self):
+        """
+        Test viewing  if not logged in.
+        """
+        response = self.client.get('/management/recipes/')
+        self.assertRedirects(
+            response, '/accounts/login/?next=/management/recipes/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_comment_list(self):
+        """
+        Test viewing user reviews if not logged in.
+        """
+        response = self.client.get('/management/recipe_comments/')
+        self.assertRedirects(
+            response, '/accounts/login/?next=/management/recipe_comments/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_user_recipes_list(self):
+        """
+        Test viewing submitted recipes if not logged in.
+        """
+        response = self.client.get('/management/user_recipes/')
+        self.assertRedirects(
+            response, '/accounts/login/?next=/management/user_recipes/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
 
 class TestManagementViewsLoggedIn(TestCase):
     """
@@ -316,6 +346,36 @@ class TestManagementViewsLoggedIn(TestCase):
             status_code=302, target_status_code=200,
             fetch_redirect_response=True)
 
+    def test_recipes_list(self):
+        """
+        Test viewing  if logged in but is_staff is false.
+        """
+        response = self.client.get('/management/recipes/')
+        self.assertEqual(response.status_code, 403)
+        self.assertTemplateUsed(response, 'errors/403.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_comment_list(self):
+        """
+        Test viewing user reviews if logged in but is_staff is false.
+        """
+        response = self.client.get('/management/recipe_comments/')
+        self.assertEqual(response.status_code, 403)
+        self.assertTemplateUsed(response, 'errors/403.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_user_recipes_list(self):
+        """
+        Test viewing submitted recipes if logged in but is_staff is false.
+        """
+        response = self.client.get('/management/user_recipes/')
+        self.assertEqual(response.status_code, 403)
+        self.assertTemplateUsed(response, 'errors/403.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
 
 class TestManagementViewsIsStaff(TestCase):
     """
@@ -471,3 +531,33 @@ class TestManagementViewsIsStaff(TestCase):
                                    args=[id]), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'management/update_stock.html')
+
+    def test_recipes_list(self):
+        """
+        Test viewing  if logged in and is_staff.
+        """
+        response = self.client.get('/management/recipes/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'management/recipes.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_comment_list(self):
+        """
+        Test viewing user reviews if logged in and is_staff.
+        """
+        response = self.client.get('/management/recipe_comments/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'management/recipe_comments.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_user_recipes_list(self):
+        """
+        Test viewing submitted recipes if logged in and is_staff.
+        """
+        response = self.client.get('/management/user_recipes/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'management/user_recipes.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')

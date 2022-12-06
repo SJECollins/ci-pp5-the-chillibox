@@ -90,13 +90,13 @@ class TestVariant(TestCase):
         variant = Variant.objects.create(
             product=self.product_a,
             size='250ml',
-            price='5.99',
+            price=5.99,
             current_stock=0,
         )
         variant_string = '250ml'
         self.assertEqual(variant.product, self.product_a)
         self.assertEqual(str(variant.size), '250ml')
-        self.assertEqual(str(variant.price), '5.99')
+        self.assertEqual(variant.price, 5.99)
         self.assertEqual(str(variant.current_stock), '0')
         self.assertFalse(variant.in_stock)
         self.assertEqual(str(variant), variant_string)

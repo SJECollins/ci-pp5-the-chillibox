@@ -64,7 +64,8 @@ class TestProduct(TestCase):
         self.assertEqual(str(product.growth_time), 'Test growth')
         self.assertEqual(str(product.heat_level), 'Test heat')
         self.assertEqual(str(product.origin), 'Test origin')
-        self.assertEqual(str(product.box_contents.all()[0]), self.product_a.name)
+        self.assertEqual(str(product.box_contents.all()[0]),
+                         self.product_a.name)
         self.assertEqual(str(product.added_on), '2022-12-06')
         self.assertEqual(str(product), product_string)
 

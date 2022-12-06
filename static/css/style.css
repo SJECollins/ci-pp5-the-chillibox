@@ -283,6 +283,9 @@ footer {
     padding-left: 1em;
 }
 
+#mc_embed_signup {
+    clear: left;
+}
 
 /* Media Queries */
 @media (min-width: 992px) and (max-width: 1920px) {

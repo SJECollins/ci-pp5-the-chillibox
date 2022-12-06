@@ -88,7 +88,8 @@ class DeleteRecipe(StaffRequiredMixin, DeleteView):
 
 class EditComment(LoginRequiredMixin, UpdateView):
     model = Comment
-    template_name = 'management/comment_form.html'
+    fields = ('content',)
+    template_name = 'recipes/comment_form.html'
     success_url = '/recipes/'
 
 

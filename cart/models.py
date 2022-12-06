@@ -22,7 +22,7 @@ class HeldCart(models.Model):
         Method to check if time is up for holding the items
         """
         time_passed = (timezone.now() - self.hold_time_start)
-        return (time_passed.total_seconds() / 60.0) > settings.CART_HOLD_TIME_MINUTES
+        return (time_passed.total_seconds() / 60.0) > settings.CART_HOLD_TIME_MINUTES  # noqa
 
 
 class HeldItems(models.Model):

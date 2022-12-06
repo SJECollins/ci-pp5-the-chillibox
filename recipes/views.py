@@ -21,7 +21,7 @@ class RecipeList(generic.ListView):
         return queryset
 
 
-class ViewRecipe(StaffRequiredMixin, View):
+class ViewRecipe(View):
     def get(self, request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
         comments = recipe.comments.filter(approved=True).order_by('-added_on')
@@ -98,7 +98,7 @@ class DeleteComment(LoginRequiredMixin, DeleteView):
     success_url = '/recipes/'
 
 
-class SubmitRecipe(SuccessMessageMixin, CreateView):
+class SubmitRecipe(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
@@ -110,7 +110,7 @@ class SubmitRecipe(SuccessMessageMixin, CreateView):
         return super(SubmitRecipe, self).form_valid(form)
 
 
-class EditSubmittedRecipe(SuccessMessageMixin, UpdateView):
+class EditSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
@@ -118,7 +118,7 @@ class EditSubmittedRecipe(SuccessMessageMixin, UpdateView):
     success_message = 'Your recipe has been edited.'
 
 
-class DeleteSubmittedRecipe(SuccessMessageMixin, DeleteView):
+class DeleteSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = SubmittedRecipe
     template_name = 'management/confirm_delete.html'
     success_url = '/profiles/user_recipes/'

@@ -34,10 +34,10 @@ class CategoryView(View):
         products_list = Product.objects.filter(category__slug=slug).all()
         template_name = 'products/category.html'
         filterkey = self.request.GET.get('filter_subcat')
-        if filterkey != 'default':
-            products = products_list.filter(subcategory=filterkey.title())
-        else:
+        if filterkey is None or filterkey == 'default':
             products = products_list
+        else:
+            products = products_list.filter(subcategory=filterkey.title())
 
         context = {
             'category': category,

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from products.models import Category, Product, Variant
 from profiles.models import Reviews
+from recipes.models import Recipe, Comment, SubmittedRecipe
 
 
 class TestManagementViewsNotLoggedIn(TestCase):
@@ -228,6 +229,25 @@ class TestManagementViewsLoggedIn(TestCase):
             approved=True,
         )
         self.review_a.save()
+        self.recipe_a = Recipe.objects.create(
+            title='Test Recipe',
+            intro='Test intro',
+            ingredients='Test ingredients',
+            directions='Test directions',
+            excerpt='Test excerpt',
+        )
+        self.recipe_a.save()
+        self.comment_a = Comment.objects.create(
+            recipe=self.recipe_a,
+            content='Test comment',
+        )
+        self.comment_a.save()
+        self.submitted_recipe = SubmittedRecipe.objects.create(
+            recipe_title='Test Title',
+            ingredients='Test ingredients',
+            directions='Test directions'
+        )
+        self.submitted_recipe.save()
 
     def test_dashboard(self):
         """
@@ -376,6 +396,39 @@ class TestManagementViewsLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
 
+    def test_approve_review_not_staff(self):
+        pk = self.review_a.id
+        response = self.client.get(reverse('management:approve_review',
+                                   args=[pk]), follow=True)
+        self.assertRedirects(response, '/profiles/profile/', status_code=302,
+                             target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_publish_recipe_not_staff(self):
+        pk = self.recipe_a.id
+        response = self.client.get(reverse('management:publish_recipe',
+                                   args=[pk]), follow=True)
+        self.assertRedirects(response, '/profiles/profile/', status_code=302,
+                             target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_approve_comment_not_staff(self):
+        pk = self.comment_a.id
+        response = self.client.get(reverse('management:approve_comment',
+                                   args=[pk]), follow=True)
+        self.assertRedirects(response, '/profiles/profile/', status_code=302,
+                             target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_publish_submitted_recipe_not_staff(self):
+        pk = self.submitted_recipe.id
+        response = self.client.get(reverse('management:publish_submitted',
+                                   args=[pk]), follow=True)
+        self.assertRedirects(
+            response, '/profiles/profile/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
 
 class TestManagementViewsIsStaff(TestCase):
     """
@@ -418,6 +471,25 @@ class TestManagementViewsIsStaff(TestCase):
             approved=True,
         )
         self.review_a.save()
+        self.recipe_a = Recipe.objects.create(
+            title='Test Recipe',
+            intro='Test intro',
+            ingredients='Test ingredients',
+            directions='Test directions',
+            excerpt='Test excerpt',
+        )
+        self.recipe_a.save()
+        self.comment_a = Comment.objects.create(
+            recipe=self.recipe_a,
+            content='Test comment',
+        )
+        self.comment_a.save()
+        self.submitted_recipe = SubmittedRecipe.objects.create(
+            recipe_title='Test Title',
+            ingredients='Test ingredients',
+            directions='Test directions'
+        )
+        self.submitted_recipe.save()
 
     def test_dashboard(self):
         """
@@ -532,6 +604,18 @@ class TestManagementViewsIsStaff(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'management/update_stock.html')
 
+    def test_update_stock_updating(self):
+        """
+        Test updating stock if logged in and is staff, post.
+        """
+        id = self.variant_a.id
+        data = {
+            'current_stock': 20,
+        }
+        response = self.client.post(reverse('management:update_stock',
+                                    args=[id]), data)
+        self.assertEqual(response.status_code, 204)
+
     def test_recipes_list(self):
         """
         Test viewing  if logged in and is_staff.
@@ -561,3 +645,51 @@ class TestManagementViewsIsStaff(TestCase):
         self.assertTemplateUsed(response, 'management/user_recipes.html')
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_approve_review(self):
+        pk = self.review_a.id
+        data = {
+            'approved': True,
+        }
+        response = self.client.get(reverse('management:approve_review',
+                                   args=[pk]), data)
+        self.assertRedirects(
+            response, '/management/user_reviews/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_publish_recipe(self):
+        pk = self.recipe_a.id
+        data = {
+            'published': True,
+        }
+        response = self.client.get(reverse('management:publish_recipe',
+                                   args=[pk]), data)
+        self.assertRedirects(
+            response, '/management/recipes/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_approve_comment(self):
+        pk = self.comment_a.id
+        data = {
+            'approved': True,
+        }
+        response = self.client.get(reverse('management:approve_comment',
+                                   args=[pk]), data)
+        self.assertRedirects(
+            response, '/management/recipe_comments/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+
+    def test_publish_submitted_recipe(self):
+        pk = self.submitted_recipe.id
+        data = {
+            'published': True,
+        }
+        response = self.client.get(reverse('management:publish_submitted',
+                                   args=[pk]), data)
+        self.assertRedirects(
+            response, '/management/user_recipes/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)

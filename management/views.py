@@ -161,7 +161,7 @@ class CommentList(StaffRequiredMixin, generic.ListView):
 
 def approve_comment(request, pk):
     if request.user.is_staff:
-        comment = get_object_or_404(comment, pk=pk)
+        comment = get_object_or_404(Comment, pk=pk)
         comment.approved = True
         comment.save()
         return redirect('management:recipe_comments')

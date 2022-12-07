@@ -283,9 +283,9 @@ class TestRecipesLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/footer.html')
 
 
-class TestRecipesLoggedIn(TestCase):
+class TestRecipesIsStaff(TestCase):
     """
-    Test views for recipe app logged in but not is_staff.
+    Test views for recipe app logged in and is_staff is true.
     """
     def setUp(self):
         self.user = User.objects.create_user(

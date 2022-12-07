@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 from .models import Recipe, Comment, SubmittedRecipe
+from .forms import CommentForm
 
 
 class TestRecipes(TestCase):
@@ -88,6 +89,21 @@ class TestRecipes(TestCase):
             response, '/accounts/login/?next=/recipes/delete_recipe/1',
             status_code=302, target_status_code=200,
             fetch_redirect_response=True)
+
+    def test_post_comment(self):
+        """
+        Test posting valid comment will render view.
+        """
+        data = {
+            'content': 'Test content',
+        }
+        slug = self.recipe_a.slug
+        response = self.client.post(reverse('recipes:recipe', args=[slug]),
+                                    data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipe_detail.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
 
     def test_edit_comment_view(self):
         """
@@ -220,6 +236,21 @@ class TestRecipesLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
 
+    def test_post_comment(self):
+        """
+        Test posting valid comment will render view.
+        """
+        data = {
+            'content': 'Test content',
+        }
+        slug = self.recipe_a.slug
+        response = self.client.post(reverse('recipes:recipe', args=[slug]),
+                                    data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipe_detail.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
     def test_edit_comment_view(self):
         """
         Test edit comment view.
@@ -348,5 +379,35 @@ class TestRecipesIsStaff(TestCase):
         response = self.client.get(reverse('recipes:delete_recipe', args=[pk]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'management/confirm_delete.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+
+class TestViewRecipeCommentInvalid(TestCase):
+    """
+    Test ViewRecipe view when form is invalid
+    """
+    def setUp(self):
+        self.recipe_a = Recipe.objects.create(
+            title='Test Recipe',
+            intro='Test intro',
+            ingredients='Test ingredients',
+            directions='Test directions',
+            excerpt='Test excerpt',
+        )
+        self.recipe_a.save()
+
+    def test_invalid_comment(self):
+        """
+        Invalid comment form will render page.
+        """
+        data = {
+            'content': '',
+        }
+        slug = self.recipe_a.slug
+        response = self.client.post(reverse('recipes:recipe', args=[slug]),
+                                    data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipe_detail.html')
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')

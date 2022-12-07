@@ -42,12 +42,12 @@ class ViewRecipe(View):
 
         if form.is_valid():
             if request.user.is_authenticated:
-                form.instance.user = request.user.userprofile
+                form.instance.user = request.user
                 comment = form.save(commit=False)
                 comment.recipe = recipe
                 comment.save()
             else:
-                comment = comment_form.save(commit=False)
+                comment = form.save(commit=False)
                 comment.recipe = recipe
                 comment.save()
         else:

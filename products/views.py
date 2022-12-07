@@ -46,12 +46,6 @@ class CategoryView(View):
         }
         return render(request, template_name, context)
 
-    def get_queryset(self):
-        products = Product.objects.filter(category__slug=slug).all()
-        if filterkey != "default":
-            products = products.filter(subcategory='filterkey')
-        return products
-
 
 class ProductDetail(View):
     def get(self, request, slug):

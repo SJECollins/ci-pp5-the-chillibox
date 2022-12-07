@@ -48,7 +48,7 @@ class CategoryView(View):
 
     def get_queryset(self):
         products = Product.objects.filter(category__slug=slug).all()
-        if filterkey is not "default":
+        if filterkey != "default":
             products = products.filter(subcategory='filterkey')
         return products
 

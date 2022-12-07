@@ -18,7 +18,11 @@
     <p>The items in your cart will be held for two hours.</p>
         <div class="cart-card text-center mx-auto row">
             <div class="col-6">
+                {% if item.product.thumbnail %}
                 <img class="cart-pics" src="{{ item.product.thumbnail.url }}">
+                {% else %}
+                <p>No image available</p>
+                {% endif %}
             </div>
             <div class="col-6">
                 <p><strong>{{ item.product }}</strong></p>

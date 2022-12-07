@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from products.models import Category, Product
 from checkout.models import Order, OrderLineItem
-from .models import Reviews
+from .models import UserProfile, Reviews
 
 
 class TestProfilesNotLoggedIn(TestCase):
@@ -55,17 +55,28 @@ class TestProfilesNotLoggedIn(TestCase):
         Should redirect to login.
         """
         response = self.client.get('/profiles/profile/', follow=True)
-        self.assertRedirects(response, '/accounts/login/?next=/profiles/profile/',
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/profiles/profile/',
                              status_code=302, target_status_code=200,
                              fetch_redirect_response=True)
 
-    def test_update_profiles(self):
+    def test_update_profile(self):
         """
         Test update profile.
         """
         response = self.client.get('/profiles/edit_profile/')
         self.assertRedirects(response,
                              '/accounts/login/?next=/profiles/edit_profile/',
+                             status_code=302, target_status_code=200,
+                             fetch_redirect_response=True)
+
+    def test_delete_account(self):
+        """
+        Test delete account.
+        """
+        response = self.client.get('/profiles/delete_account/')
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/profiles/delete_account/',
                              status_code=302, target_status_code=200,
                              fetch_redirect_response=True)
 
@@ -185,6 +196,13 @@ class TestProfilesLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
 
+    def test_delete_account(self):
+        response = self.client.get('/profiles/delete_account/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'profiles/confirm_delete.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
     def test_review_list(self):
         """
         Test view reviews.
@@ -228,3 +246,31 @@ class TestProfilesLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'checkout/checkout_success.html')
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
+
+
+class TestDeleteAccount(TestCase):
+    """
+    Test DelectAcountView post
+    """
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@email.com',
+            password='testpass1'
+        )
+        self.user.is_staff = True
+        self.user.save()
+        self.client.login(email='test@email.com', password='testpass1')
+
+    def test_delete_account(self):
+        self.assertEqual(UserProfile.objects.count(), 1)
+        response = self.client.post('/profiles/delete_account/')
+        data = {
+            'delete': True,
+        }
+        response = self.client.post(reverse('profiles:delete_account'), data)
+        self.assertRedirects(
+            response, '/',
+            status_code=302, target_status_code=200,
+            fetch_redirect_response=True)
+        self.assertEqual(UserProfile.objects.count(), 0)

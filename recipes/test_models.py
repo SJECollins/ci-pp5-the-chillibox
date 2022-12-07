@@ -86,6 +86,7 @@ class TestComments(TestCase):
         self.assertEqual(str(comment.added_on), '2022-10-10 00:00:00+00:00')
         self.assertEqual(str(comment.edited_on), '2022-10-10 00:00:00+00:00')
         self.assertFalse(comment.approved)
+        self.assertEqual(str(comment), 'Test content')
 
 
 class TestSubmittedRecipe(TestCase):
@@ -121,4 +122,4 @@ class TestSubmittedRecipe(TestCase):
         self.assertEqual(str(recipe.submitted_on), '2022-10-10 00:00:00+00:00')
         self.assertEqual(str(recipe.edited_on), '2022-10-10 00:00:00+00:00')
         self.assertFalse(recipe.published)
-        self.assertEqual(str(recipe.recipe_title), recipe_string)
+        self.assertEqual(str(recipe), recipe_string)

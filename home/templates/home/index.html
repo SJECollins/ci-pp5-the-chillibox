@@ -48,8 +48,8 @@ Home
     <!-- This row has header and blurb-->
     <div class="row">
         <h1 class="headings">Welcome to The Chillibox!</h1>
-        <p>At The Chillibox love all things <strong>spicy</strong>!</p>
-        <p>We offer a selection of seeds of different heat levels to grow your own chilli pepper plants. And a variety of hot sauces made in-house from our own plants grown here in Ireland.</p>
+        <p>At The Chillibox we love all things <strong>spicy</strong>!</p>
+        <p>We offer a selection of seeds of different heat levels to grow your own <strong>chilli pepper plants</strong>. And a variety of <strong>hot sauces</strong> made in-house from our own plants grown here in Ireland.</p>
     </div>
     <hr>
     <!-- This row is more specific -->
@@ -83,20 +83,19 @@ Home
         <!-- Latest products?? OR should this go at top? -->
         <!-- Should style with cards similar to product layout OR just links?? Prob best to include thumbnails tho-->
         {% for product in latest_products %}
-        <div class="col-3">
+        <div class="col-md-6 col-lg-3 mx-auto">
                 <div class="chilli-card text-center">
-                <h4>{{ product.name }}</h4>
+                <h4>{{ product }}</h4>
                 {% if product.thumbnail %}
-                    <img class="pics" src="{{ product.thumbnail.url }}">
+                    <img class="pics" src="{{ product.thumbnail.url }}" alt="{{ product }}">
                 {% else %}
-                    <img width="160" height="160" class="pics" src="{% static 'images/placeholder.png' %}">
+                    <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
                 <p class="excerpt">{{ product.excerpt }}</p>
-                <a class="chilli-link" href="{% url 'products:product' product.slug %}">View {{ product.name }}</a>
+                <a class="chilli-link" href="{% url 'products:product' product.slug %}">View {{ product }}</a>
             </div>
         </div>
         {% endfor %}
-    
     </div>
 </section>
 

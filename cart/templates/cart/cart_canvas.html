@@ -13,15 +13,15 @@
     {% endif %}
 </div>
 <div class="col-12">
-    {% for item in cart_items %}
     <!-- Warning for users that cart does expire -->
-    <p>The items in your cart will be held for two hours.</p>
+    <p>The items in your cart are held for two hours.</p>
+    {% for item in cart_items %}
         <div class="cart-card text-center mx-auto row">
             <div class="col-6">
                 {% if item.product.thumbnail %}
-                <img class="cart-pics" src="{{ item.product.thumbnail.url }}">
+                <img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ item.product }}">
                 {% else %}
-                <p>No image available</p>
+                <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ item.product }}">
                 {% endif %}
             </div>
             <div class="col-6">

@@ -49,15 +49,16 @@ Your Cart
                 <div class="row border mx-1">
                     <div class="col-6 text-center my-auto">
                         {% if item.product.thumbnail %}
-                        <img class="pics" src="{{ item.product.thumbnail.url }}">
+                        <img class="pics" src="{{ item.product.thumbnail.url }}" alt="{{ item.product }}">
                         {% else %}
-                        <p>No image available</p>
+                        <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ item.product }}">
                         {% endif %}
                     </div>
                     <div class="col-6 text-center">
                         <h2 class="headings headings-sm">{{ item.product }}</h2>
                         <p><strong>Size: </strong> {{ item.size }}</p>
                         <p><strong>Qty: </strong> {{ item.quantity }}</p>
+                        <!-- Adjust quantity of item in cart-->
                         <form class="mb-2" action="{% url 'cart:adjust_cart' item.item_id %}" method="POST">
                             <input class="stock" data-item_id="{{ item.item_id }}" name="stock_{{ item.item_id }}" value="{{ item.variant.current_stock }}" hidden>
                             <button type="button" id="dec_{{ item.item_id }}" class="chilli-btn rounded-0 decrease">-</button>

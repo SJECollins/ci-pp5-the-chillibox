@@ -3,36 +3,24 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-{{ product.name }}
+{{ product }}
 {% endblock %}
 
 {% block content %}
 <section class="container-fluid">
-    <div class="mt-4">
-        <!-- Link to return to products (and product dashboard for admin)-->
-        <a class="chilli-link big" href="{% url 'products:latest' %}">&laquo; To Latest
-            Products</a><br>
-        <a class="chilli-link big" href="{% url 'products:category' product.category.slug %}">&laquo; To {{ product.category }}</a>
-        <!-- Link for staff to management dashboard-->
-        {% if user.is_staff %}
-        <a class="chilli-link float-end" href="{% url 'management:dashboard' %}">Go To Dashboard &raquo;</a>
-        {% endif %}
-    </div>
     <div class="row m-4">
         <!-- Product image and description -->
         <div class="col-lg-6 text-center">
             <div>
-                <h1 class="headings">{{ product.name }}</h1>
+                <h1 class="headings">{{ product }}</h1>
             </div>
-            
             <div>
                 {% if product.image %}
-                    <img class="pics pics-lg" src="{{ product.image.url }}">
+                    <img class="pics pics-lg" src="{{ product.image.url }}" alt="{{ product }}">
                 {% else %}
-                    <img class="pics pics-lg" src="{% static 'images/placeholder.png' %}">
+                    <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
             </div>
-            
             <p class="m-5 text-start">{{ product.description }}</p>
             {% if user.is_staff %}
                 <!-- Edit and Delete for admin -->
@@ -43,7 +31,7 @@
         <div class="col-lg-6 d-flex flex-column">
             <!-- Table for product details -->
             <div class="order-2 order-lg-1">
-                <h2 class="headings headings-sm">{{ product.name }} Details:</h2>
+                <h2 class="headings headings-sm">{{ product }} Details:</h2>
                 <table class="table table-borderless">
                     <tr>
                         <th>Category: </th>

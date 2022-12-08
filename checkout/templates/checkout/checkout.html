@@ -26,7 +26,13 @@ Checkout
                 <tbody>
                     {% for item in cart_items %}
                     <tr>
-                        <td>{% if item.product.image %}<img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product.name }}">{% else %}Image unavailable{% endif %}</td>
+                        <td>
+                            {% if item.product.image %}
+                            <img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ product }}">
+                            {% else %}
+                            <img width="300" height="300" class="cart-pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
+                            {% endif %}
+                        </td>
                         <td>{{ item.product.name }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>€{{ item.variant.price }}</td>

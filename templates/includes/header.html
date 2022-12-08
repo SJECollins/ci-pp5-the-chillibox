@@ -11,25 +11,17 @@
                 <input name="q" type="text" placeholder="Search...">
                 <button type="submit" class="chilli-link rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-            <!-- Logo with home link -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <!-- Collapsible navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <!-- Staff link to management dashboard, users link to home -->
-                    {% if user.is_staff %}
-                    <li class="nav-item">
-                        <a class="navbar-links" href="{% url 'management:dashboard' %}">Management</a>
-                    </li>
-                    {% endif %}
                     <li class="nav-item dropdown">
                         <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Products
+                            Shop
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
                             <li>
@@ -54,14 +46,31 @@
                     <li class="nav-item">
                         <a class="navbar-links" href="{% url 'recipes:recipes_list' %}">Recipes</a>
                     </li>
-                    <!-- Authenticated users link to profile & logout, guests link to signup/login -->
-                    {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Profile / Logout
+                            Help
                         </a>
                         <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'home:contact' %}">Contact Us</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Authenticated users link to profile & logout, guests link to signup/login -->
+                    <li class="nav-item dropdown">
+                        <a class="navbar-links dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            {% if user.is_authenticated %}
+                            <!-- Staff link to management dashboard, users link to home -->
+                            {% if user.is_staff %}
+                            <li>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'management:dashboard' %}">Management</a>
+                            </li>
+                            {% endif %}
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'profiles:profile' %}">My
                                     Profile</a>
@@ -69,30 +78,16 @@
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
-                            <li>
-                                <a class="navbar-links navbar-drop-link" href="{% url 'home:contact' %}">Contact Us</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item dropdown">
-                        <a class="navbar-links dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Login / Register
-                        </a>
-                        <ul class="dropdown-menu drop-menu nav-drop-bg">
+                            {% else %}
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'account_login' %}">Login</a>
                             </li>
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
-                            <li>
-                                <a class="navbar-links navbar-drop-link" href="{% url 'home:contact' %}">Contact Us</a>
-                            </li>
+                            {% endif %}
                         </ul>
                     </li>
-                    {% endif %}
                 </ul>
                 <a class="navbar-links" data-bs-toggle="offcanvas" href="#theCart" role="button"
                     aria-controls="offcanvasExample">

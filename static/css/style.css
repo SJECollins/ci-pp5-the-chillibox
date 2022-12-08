@@ -91,7 +91,7 @@ a {
     padding: 0.25rem 0.5rem;
     color: var(--site-white);
     font-weight: 700;
-    margin: 1em;
+    margin: 0.5em;
     transition: all 0.8s linear;
 }
 

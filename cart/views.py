@@ -36,7 +36,15 @@ def add_to_cart(request, item_id):
 
     # If item's id already in cart update if same size or add a new size
     if item_id in list(cart.keys()):
-        held_variant = held_cart.held_items.get(variant__id=get_variant)
+        try:
+            held_variant = held_cart.held_items.get(variant__id=get_variant)
+        except HeldItems.DoesNotExist:
+            held_variant = HeldItems(
+                cart=held_cart,
+                product=product,
+                variant=variant,
+                qty=quantity,
+            )
         if size in cart[item_id]['items_by_size'].keys():
             cart[item_id]['items_by_size'][size] += quantity
             held_variant.qty += quantity

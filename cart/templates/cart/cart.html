@@ -48,7 +48,11 @@ Your Cart
             <div class="col-12 col-md-4 col-lg-4">
                 <div class="row border mx-1">
                     <div class="col-6 text-center my-auto">
+                        {% if item.product.thumbnail %}
                         <img class="pics" src="{{ item.product.thumbnail.url }}">
+                        {% else %}
+                        <p>No image available</p>
+                        {% endif %}
                     </div>
                     <div class="col-6 text-center">
                         <h2 class="headings headings-sm">{{ item.product }}</h2>

@@ -62,6 +62,7 @@ class TestReviews(TestCase):
         self.assertEqual(str(review.content), 'Test review')
         self.assertEqual(review.rating, 5)
         self.assertEqual(str(review.added_on), '2022-10-10 00:00:00+00:00')
-        self.assertEqual(str(review.last_edited), '2022-12-07')
+        self.assertEqual(str(review.last_edited),
+                         str(datetime.datetime.today().strftime('%Y-%m-%d')))
         self.assertFalse(review.approved)
         self.assertEqual(str(review), review_string)

@@ -58,5 +58,3 @@ class TestCartFunctions(TestCase):
             fetch_redirect_response=True,)
         cart_after = self.client.session.get('cart', {})
         self.assertEqual(len(cart_after), 1)
-        print(cart_after)
-

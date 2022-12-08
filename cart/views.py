@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse  # noqa
 from django.contrib import messages
 from django.views import View
 
@@ -41,7 +41,8 @@ def add_to_cart(request, item_id):
             cart[item_id]['items_by_size'][size] += quantity
             held_variant.qty += quantity
             held_variant.save()
-            messages.success(request, f'Updated {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
+            messages.success(request, f'Updated {size} {product.name} quantity\
+                             to {cart[item_id]["items_by_size"][size]}')
         else:
             cart[item_id]['items_by_size'][size] = quantity
             held_variant.qty = quantity
@@ -81,11 +82,13 @@ def adjust_cart(request, item_id):
     if new_quantity > cart[item_id]['items_by_size'][size]:
         cart[item_id]['items_by_size'][size] = new_quantity
         held_variant.qty = new_quantity
-        messages.success(request, f'Increased {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
+        messages.success(request, f'Increased {size} {product.name} quantity \
+                         to {cart[item_id]["items_by_size"][size]}')
     elif new_quantity < cart[item_id]['items_by_size'][size]:
         cart[item_id]['items_by_size'][size] = new_quantity
         held_variant.qty = new_quantity
-        messages.success(request, f'Reduced {size} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
+        messages.success(request, f'Reduced {size} {product.name} quantity to \
+                         {cart[item_id]["items_by_size"][size]}')
 
     held_variant.save()
     request.session['cart'] = cart
@@ -126,7 +129,7 @@ def remove_item(request, item_id):
 def clear_cart(request):
     if 'cart' in request.session:
         try:
-            held_cart = get_object_or_404(HeldCart, cart_key=request.session.session_key)
+            held_cart = get_object_or_404(HeldCart, cart_key=request.session.session_key)  # noqa
             for held_item in held_cart.held_items.all():
                 variant = Variant.objects.get(id=held_item.variant.id)
                 variant.current_stock += held_item.qty

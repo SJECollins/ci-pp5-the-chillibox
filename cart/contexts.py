@@ -1,8 +1,10 @@
+from datetime import datetime, timedelta
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 from products.models import Product, Variant
+from .models import HeldCart
 
 
 def cart_contents(request):
@@ -14,7 +16,15 @@ def cart_contents(request):
     cart_items = []
     total = 0
     product_count = 0
+    checkout_time = 0
     cart = request.session.get('cart', {})
+    cart_key = request.session.session_key
+    try:
+        held_cart = HeldCart.objects.get(cart_key=cart_key)
+        hold_start_time = held_cart.hold_time_start
+        checkout_time = hold_start_time + timedelta(hours=2)
+    except HeldCart.DoesNotExist:
+        checkout_time is None
 
     for item_id, item_data in cart.items():
         if isinstance(item_data, int):
@@ -50,6 +60,7 @@ def cart_contents(request):
     grand_total = delivery + total
 
     context = {
+        'checkout_time': checkout_time.strftime('%H:%M'),
         'cart_items': cart_items,
         'total': total,
         'product_count': product_count,

@@ -14,7 +14,9 @@
 </div>
 <div class="col-12">
     <!-- Warning for users that cart does expire -->
-    <p>The items in your cart are held for two hours.</p>
+    {% if checkout_time is not None %}
+    <p class="text-center">The items in your cart are held for two hours. Please checkout by {{ checkout_time }}</p>
+    {% endif %}
     {% for item in cart_items %}
         <div class="cart-card text-center mx-auto row">
             <div class="col-6">
@@ -26,7 +28,8 @@
             </div>
             <div class="col-6">
                 <p><strong>{{ item.product }}</strong></p>
-                <p>{{ item.quantity }} in cart</p>
+                <p><small>{{ item.size }}</small></p>
+                <p>{{ item.quantity }} <small>in cart</small></p>
             </div>
         </div>
     {% endfor %}   

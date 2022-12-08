@@ -21,8 +21,11 @@ def cart_contents(request):
     cart_key = request.session.session_key
     try:
         held_cart = HeldCart.objects.get(cart_key=cart_key)
-        hold_start_time = held_cart.hold_time_start
-        checkout_time = hold_start_time + timedelta(hours=2)
+        if held_cart.check_time():
+            del request.session['cart']
+        else:
+            hold_start_time = held_cart.hold_time_start
+            checkout_time = hold_start_time + timedelta(hours=2)
     except HeldCart.DoesNotExist:
         checkout_time is None
 

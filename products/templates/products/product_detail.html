@@ -8,7 +8,7 @@
 
 {% block content %}
 <section class="container-fluid">
-    <div class="row m-4">
+    <div class="row m-sm-4">
         <!-- Product image and description -->
         <div class="col-lg-6 text-center">
             <div>
@@ -21,7 +21,7 @@
                     <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
             </div>
-            <p class="m-5 text-start">{{ product.description }}</p>
+            <p class="my-5 mx-sm-5 text-start">{{ product.description }}</p>
             {% if user.is_staff %}
                 <!-- Edit and Delete for admin -->
                 <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>

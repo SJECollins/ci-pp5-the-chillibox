@@ -2,7 +2,7 @@
 
 /* Site palette */
 :root {
-    --site-white: #fffbfa;
+    --site-white: #faf9f9;
     --site-black: #160f0e;
     --site-grey: #6b6363;
     --site-red: #fc382a;
@@ -174,7 +174,6 @@ a {
 .cart-pics {
     max-height: 80px;
     width: auto;
-    /* object-fit: contain; */
 }
 
 .rate-pics {
@@ -291,5 +290,17 @@ footer {
 @media (min-width: 992px) and (max-width: 1920px) {
     #bs-carousel {
         max-width: 60vw !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .pics-lg {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pics-lg {
+        max-width: 240px;
     }
 }

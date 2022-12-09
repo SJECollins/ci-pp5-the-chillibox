@@ -21,11 +21,8 @@ def cart_contents(request):
     cart_key = request.session.session_key
     try:
         held_cart = HeldCart.objects.get(cart_key=cart_key)
-        if held_cart.check_time():
-            del request.session['cart']
-        else:
-            hold_start_time = held_cart.hold_time_start
-            checkout_time = hold_start_time + timedelta(hours=2)
+        hold_start_time = held_cart.hold_time_start
+        checkout_time = (hold_start_time + timedelta(hours=2)).strftime('%H:%M')
     except HeldCart.DoesNotExist:
         checkout_time is None
 
@@ -63,7 +60,7 @@ def cart_contents(request):
     grand_total = delivery + total
 
     context = {
-        'checkout_time': checkout_time.strftime('%H:%M'),
+        'checkout_time': checkout_time,
         'cart_items': cart_items,
         'total': total,
         'product_count': product_count,

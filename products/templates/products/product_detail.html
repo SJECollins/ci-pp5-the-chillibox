@@ -21,7 +21,7 @@
                     <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
             </div>
-            <p class="my-5 mx-sm-5 text-start">{{ product.description }}</p>
+            <p class="text-contain">{{ product.description }}</p>
             {% if user.is_staff %}
                 <!-- Edit and Delete for admin -->
                 <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>
@@ -32,7 +32,7 @@
             <!-- Table for product details -->
             <div class="order-2 order-lg-1">
                 <h2 class="headings headings-sm">{{ product }} Details:</h2>
-                <table class="table table-borderless">
+                <table class="table table-borderless text-contain">
                     <tr>
                         <th>Category: </th>
                         <td>{{ product.category }}</td>
@@ -80,7 +80,7 @@
                     {% endif %}
                     {% if avg_rating.rounded is not None %}
                     <tr>
-                        <th>Avg. Rating: </th>
+                        <th>Avg. User Rating: </th>
                         <td>{% if avg_rating.rounded == 1 %}
                             <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
                             {% elif avg_rating.rounded == 2 %}
@@ -100,6 +100,7 @@
                 </table>
             </div>
             <div class="order-1 order-lg-2">
+                <hr>
                 <h3 class="headings big">Add To Cart:</h3>
                 <form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
                     {% csrf_token %}
@@ -124,6 +125,9 @@
                             <p id="qty_warning"><em>No more available</em></p>
                         </div>
                     </div>
+                    {% if not user.is_authenticated %}
+                    <p class="small">If you have an account please <a class="chilli-link" href="{% url 'account_login' %}">login</a> before you start shopping for the best experience.</p>
+                    {% endif %}
                     <button id="add" class="chilli-btn my-2 d-block" type="submit" disabled>Add To Cart</button>
                 </form>
                 {% for item in cart_items %}
@@ -135,6 +139,7 @@
                 {% endfor %}
             </div>
         </div>
+        <hr>
     </div>
     <div class="row">
         <div class="col-12">
@@ -155,32 +160,34 @@
             {% endif %}
             <div class="row">
                 {% for review in reviews %}
-                <div class="card col-sm-6 col-md-4 mb-3">
-                    <h2 class="headings big">
-                        {% if review.reviewer is not None %}{{ review.reviewer.display_name }}{% else %}Anonymous{% endif %} <span
-                            class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
-                    <p>{{ review }}</p>
-                    <p><strong>Rating: </strong>
-                        {% if review.rating == 1 %}
-                        <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
-                        {% elif review.rating == 2 %}
-                        <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
-                        {% elif review.rating == 3 %}
-                        <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
-                        {% elif review.rating == 4 %}
-                        <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
-                        {% else %}
-                        <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
-                        {% endif %}
-                    </p>
-                        <div class="d-flex flex-row justify-content-between my-2">
-                            {% if user.userprofile == review.reviewer %}
-                                <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_review' review.pk %}">Edit Review</a>
+                <div class="col-sm-6 col-lg-4 mb-5 px-3">
+                    <div class="card px-4">
+                        <h2 class="headings big">
+                            {% if review.reviewer is not None %}{{ review.reviewer.display_name }}{% else %}Anonymous{% endif %} <span
+                                class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
+                        <p>{{ review }}</p>
+                        <p><strong>Rating: </strong>
+                            {% if review.rating == 1 %}
+                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                            {% elif review.rating == 2 %}
+                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                            {% elif review.rating == 3 %}
+                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                            {% elif review.rating == 4 %}
+                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                            {% else %}
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
                             {% endif %}
-                            {% if user.is_staff or user.userprofile == review.reviewer %}
-                                <a class="chilli-btn chilli-dngr" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
-                            {% endif %}
-                        </div>
+                        </p>
+                            <div class="d-flex flex-row justify-content-between my-2">
+                                {% if user.is_authenticated and user.userprofile == review.reviewer %}
+                                    <a class="chilli-btn chilli-go" href="{% url 'profiles:edit_review' review.pk %}">Edit Review</a>
+                                {% endif %}
+                                {% if user.is_staff or user.is_authenticated and user.userprofile == review.reviewer %}
+                                    <a class="chilli-btn chilli-dngr" href="{% url 'management:remove_review' review.pk %}">Delete Review</a>
+                                {% endif %}
+                            </div>
+                    </div>
                 </div>
                 {% empty %}
                 <p><strong>No reviews yet. Be the first to write one!</strong></p>

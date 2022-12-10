@@ -67,6 +67,11 @@ h1, h2, h3, h4 {
     background-color: var(--site-text-bg);
 }
 
+.text-contain {
+    max-width: 500px;
+    margin: 2em auto;
+}
+
 /* Link, List and Button styling*/
 
 button {
@@ -182,7 +187,6 @@ a {
 }
 
 /* Cards */
-
 .chilli-card {
     max-width: 240px;
     height: 100%;
@@ -234,7 +238,6 @@ a {
     box-shadow: 0 2px 4px 0 var(--site-grey);
 }
 
-
 /* Index styling */
 #bs-carousel {
     width: min(80vw, 1600px);
@@ -251,7 +254,6 @@ a {
 }
 
 /* Recipe styling */
-
 .recipe-ingredients > li {
     margin-left: 2em;
     list-style-type: disc;

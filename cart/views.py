@@ -150,18 +150,3 @@ def clear_cart(request):
         except Exception as e:
             messages.error(request, f'Error emptying cart: {e}')
             return HttpResponse(status=500)
-
-
-class ViewHeld(View):
-    """
-    Temporary view for held cart and items - TO DELETE
-    """
-    def get(self, request):
-        session_key = request.session.session_key
-        held_items = HeldCart.objects.all()
-        template_name = 'cart/view_held.html'
-        context = {
-            'held_items': held_items,
-            'session_key': session_key,
-            }
-        return render(request, template_name, context)

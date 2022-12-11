@@ -10,5 +10,4 @@ urlpatterns = [
     path('update/<item_id>', views.adjust_cart, name='adjust_cart'),
     path('remove/<item_id>', views.remove_item, name='remove_item'),
     path('clear_cart/', views.clear_cart, name='clear_cart'),
-    path('view_held/', views.ViewHeld.as_view())
 ]

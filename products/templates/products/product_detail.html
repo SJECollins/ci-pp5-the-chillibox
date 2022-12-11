@@ -101,6 +101,7 @@
                     {% endif %}
                 </table>
             </div>
+            <!-- Add to cart -->
             <div class="order-1 order-lg-2">
                 <hr>
                 <h3 class="headings big">Add To Cart:</h3>
@@ -144,12 +145,14 @@
         <hr>
     </div>
     <div class="row">
+        <!-- Reviews -->
         <div class="col-12">
             <h1 class="headings">Reviews</h1>
             {% if reviewed %}
             <p><strong>Thank you for your review! If you'd like to get in touch with any concerns, please visit our <a
                         class="chilli-link" href="{% url 'home:contact' %}">contact page</a>.</strong></p>
             {% else %}
+            <!-- Review form -->
             <h3>Write a review for {{ product }}:</h3>
             <p><strong>Or if you would like to get in touch with any concerns, please visit our <a
                 class="chilli-link" href="{% url 'home:contact' %}">contact page</a>.</strong></p>
@@ -161,6 +164,7 @@
             </form>
             {% endif %}
             <div class="row">
+                <!-- User reviews -->
                 {% for review in reviews %}
                 <div class="col-sm-6 col-lg-4 mb-5 px-3">
                     <div class="card px-4">

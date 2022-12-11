@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /management/
+Sitemap: https://ci-pp5-the-chillibox.herokuapp.com/sitemap.xml

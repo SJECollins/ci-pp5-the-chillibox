@@ -64,8 +64,8 @@ class ViewRecipe(View):
 
 class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     model = Recipe
-    fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
-              'outro',)
+    fields = ('title', 'image', 'intro', 'excerpt', 'ingredients',
+              'directions', 'outro',)
     template_name = 'recipes/recipe_form.html'
     success_url = '/management/arecipe/'
     success_message = 'Your recipe was created.'
@@ -73,8 +73,8 @@ class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Recipe
-    fields = ('title', 'intro', 'excerpt', 'ingredients', 'directions',
-              'outro')
+    fields = ('title', 'image', 'intro', 'excerpt', 'ingredients',
+              'directions', 'outro',)
     template_name = 'recipes/recipe_form.html'
     success_url = '/management/recipe/'
     success_message = 'Your recipe was updated.'
@@ -119,7 +119,7 @@ class EditSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Your recipe has been edited.'
 
 
-class DeleteSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class DeleteSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa
     model = SubmittedRecipe
     template_name = 'management/confirm_delete.html'
     success_url = '/profiles/user_recipes/'

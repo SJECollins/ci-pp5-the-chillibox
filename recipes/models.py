@@ -8,11 +8,18 @@ class Recipe(models.Model):
                              blank=True)
     title = models.CharField(max_length=140)
     slug = models.SlugField(max_length=40, unique=True)
-    intro = models.TextField()
-    ingredients = models.TextField()
-    directions = models.TextField()
-    outro = models.TextField(null=True, blank=True)
-    excerpt = models.TextField()
+    image = models.ImageField(upload_to='recipes/', null=True, blank=True,
+                              help_text='Optionally upload an image')
+    intro = models.TextField(help_text='Short introduction of the recipe. If \
+                             using user submitted recipe, please remember to \
+                             credit the user.')
+    ingredients = models.TextField(help_text='Place ingredients in \
+                                   &lt;li&gt;&lt;/li&gt; tags')
+    directions = models.TextField(help_text='Place directions in \
+                                  &lt;li&gt;&lt;/li&gt; tags')
+    outro = models.TextField(null=True, blank=True, help_text='Optional. A \
+                             short outro for the recipe.')
+    excerpt = models.TextField(help_text='Summary to display on recipe list.')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
@@ -45,7 +52,8 @@ class SubmittedRecipe(models.Model):
     recipe_title = models.CharField(max_length=140)
     ingredients = models.TextField()
     directions = models.TextField()
-    notes = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True, help_text='Please include \
+                             any notes or insights you would like included.')
     submitted_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)

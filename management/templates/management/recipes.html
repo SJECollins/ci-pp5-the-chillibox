@@ -64,9 +64,11 @@ Recipes
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-evenly">
-                    {% if recipe.publish %}
-                        <span><strong>Published</strong></span>
-                        <a href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a>
+                    {% if recipe.published %}
+                    <div>
+                        <span><strong>Published</strong>: </span>
+                        <a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a>
+                    </div>
                     {% else %}
                     <form action="{% url 'management:publish_recipe' recipe.pk %}" method="POST">
                         {% csrf_token %}

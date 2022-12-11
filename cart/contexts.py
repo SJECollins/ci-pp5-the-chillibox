@@ -22,7 +22,7 @@ def cart_contents(request):
     try:
         held_cart = HeldCart.objects.get(cart_key=cart_key)
         hold_start_time = held_cart.hold_time_start
-        checkout_time = (hold_start_time + timedelta(hours=2)).strftime('%H:%M')
+        checkout_time = (hold_start_time + timedelta(hours=2)).strftime('%H:%M')  # noqa
         if held_cart.check_time():
             if 'cart' in request.session:
                 del request.session['cart']

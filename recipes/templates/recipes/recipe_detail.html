@@ -70,18 +70,20 @@
     </div>
     <div class="row">
         {% for comment in comments %}
-        <div class="card col-sm-6 col-md-4 mb-3">
-            <h2 class="headings big">
-                {% if comment.user is not None %}{{ comment.user.display_name }}{% else %}Anonymous{% endif %} <span
-                    class="small">on {{ comment.added_on|date:'d/m/y' }}</span></h2>
-            <p>{{ comment }}</p>
-            <div class="d-flex flex-row justify-content-between my-2">
-                {% if user.userprofile == comment.user %}
-                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_comment' comment.pk %}">Edit comment</a>
-                {% endif %}
-                {% if user.is_staff or user.userprofile == comment.commenter %}
-                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:remove_comment' comment.pk %}">Delete Review</a>
-                {% endif %}
+        <div class="col-sm-6 col-lg-4 mb-5 mb-3">
+            <div class="card px-4">
+                <h2 class="headings big">
+                    {% if comment.user is not None %}{{ comment.user.userprofile.display_name }}{% else %}Anonymous{% endif %} <span
+                        class="small">on {{ comment.added_on|date:'d/m/y' }}</span></h2>
+                <p>{{ comment }}</p>
+                <div class="d-flex flex-row justify-content-between my-2">
+                    {% if user.userprofile == comment.user %}
+                        <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_comment' comment.pk %}">Edit comment</a>
+                    {% endif %}
+                    {% if user.is_staff or user.userprofile == comment.commenter %}
+                        <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_comment' comment.pk %}">Delete Review</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% empty %}

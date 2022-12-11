@@ -9,7 +9,7 @@ Checkout
 {% block content %}
 <!-- Order summary section -->
 <section class="row">
-    <h1 class="headings" >Checkout</h1>
+    <h1 class="headings text-center">Checkout</h1>
     <div class="col-md-6">
         <h2 class="headings headings-sm">Order Summary: </h2>
         <div class="col-md-8 mx-auto">
@@ -38,7 +38,6 @@ Checkout
                         <td>€{{ item.variant.price }}</td>
                     </tr>
                     {% endfor %}
-                    <!-- Consider case of empty cart!! -->
                 </tbody>
             </table>
             <p><strong>Delivery: </strong>€{{ delivery|floatformat:2 }}</p>
@@ -50,19 +49,40 @@ Checkout
         <h2 class="headings headings-sm">Your Details:</h2>
         <form class="col-10 col-lg-8 mx-auto" action="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
-            {{ order_form|crispy }}
+            <fieldset>
+                <legend class="fieldset-label small px-2 w-auto">Delivery Details</legend>
+                {{ order_form|crispy }}
+            </fieldset>
             {% if user.is_authenticated %}
                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-            {% else %}
-                <label class="form-check-label" for="id-save-info">
-                    <a class="chilli-link" href="{% url 'account_signup' %}">Create an account</a> or 
-                    <a class="chilli-link" href="{% url 'account_login' %}">login</a> to save this information
-                </label>
             {% endif %}
+            <fieldset class="px-3">
+                <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                <!-- A Stripe card element will go here -->
+                <div class="mb-3" id="card-element"></div>
+                <!-- Used to display form errors -->
+                <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                <!-- Pass the client secret to the view so we can get the payment intent id -->
+                <input type="hidden" value="{{ client_secret }}" name="client_secret">
+            </fieldset>
             <p>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></p>
             <button type="submit" class="chilli-btn">Complete Order</button>
         </form>
     </div>
 </section>
+<div id="loading-overlay">
+    <h1 class="logo-font loading-spinner">
+        <span class="icon">
+            <i class="fa-solid fa-spinner"></i>
+        </span>
+    </h1>
+</div>
+{% endblock %}
+
+{% block additional_script %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script type="text/javascript" src="{% static 'js/stripe_element.js' %}"></script>
 {% endblock %}

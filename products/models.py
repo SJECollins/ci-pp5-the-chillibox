@@ -54,8 +54,6 @@ class Product(models.Model):
     heat_level = models.CharField(max_length=140, null=True, blank=True,
                                   help_text='In scovilles or more generally \
                                   (eg \'hot\') where appropriate.')
-    origin = models.CharField(max_length=80, null=True, blank=True,
-                              help_text='Origin of the seeds.')
     box_contents = models.ManyToManyField('self', blank=True, help_text='Add \
                                           products for seed and sauce boxes.')
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)

@@ -23,9 +23,11 @@
             </div>
             <p class="text-contain">{{ product.description }}</p>
             {% if user.is_staff %}
+            <div class="d-flex flex-row justify-content-evenly my-3">
                 <!-- Edit and Delete for admin -->
                 <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>
                 <a class="chilli-btn chilli-dngr" href="{% url 'management:delete_product' product.pk %}">Delete Product</a>
+            </div>
             {% endif %}
         </div>
         <div class="col-lg-6 d-flex flex-column">

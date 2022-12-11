@@ -4,7 +4,6 @@ from django.views import View
 from django.views.generic import ListView
 from django.db.models import Q, Avg
 from django.db.models.functions import Round
-# from django.contrib.auth import authenticate
 
 from profiles.forms import ReviewForm
 from profiles.models import Reviews

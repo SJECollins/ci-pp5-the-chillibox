@@ -1,6 +1,7 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
+<!-- Update stock template -->
 <form data-hx-post="{{ request.path }}" class="modal-content">
     {% csrf_token %}
     <div class="modal-header">

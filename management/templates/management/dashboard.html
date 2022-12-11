@@ -7,6 +7,7 @@ Dashboard
 
 {% block content %}
 <section class="row">
+    <!-- Management landing template - products -->
     <div class="text-center">
         <h1 class="headings mb-2">Products</h1>
         <div class="d-flex flex-row justify-content-center">
@@ -23,9 +24,11 @@ Dashboard
             <a class="chilli-btn" href="{% url 'management:add_product' %}">Add New Product</a>
         </div>
     </div>
+    <!-- Group added products by category -->
     {% regroup products by category as products_by_category %}
     {% for category in products_by_category %}
     <div class="col-12 col-lg-6">
+        <!-- Category heading -->
         <h2 class="headings">{{ category.grouper}}</h2>
         <table class="table">
             <thead>
@@ -44,6 +47,7 @@ Dashboard
                     </th>
                 </tr>
             </thead>
+            <!-- Product details -->
             {% for product in category.list %}
             <tbody class="collapse" id="collapse-{{ category.grouper }}">
                 <tr>
@@ -78,6 +82,7 @@ Dashboard
                     </tr>
                 </thead>
             <tbody class="collapse" id="collapse-{{ product.id }}">
+                <!-- Product variants -->
                 {% for variant in product.variants.all %}
                 <tr>
                     <td>{{ variant.size }}</td>
@@ -103,6 +108,7 @@ Dashboard
 </section>
 
 {% endblock %}
+<!-- Script for modal for stock update -->
 {% block additional_script %}
 <script src="{% static 'js/modal.js' %}"></script>
 {% endblock %}

@@ -6,6 +6,7 @@ Recipes
 {% endblock %}
 
 {% block content %}
+<!-- Manage recipes -->
 <section class="row">
     <div class="text-center">
         <h1 class="headings mb-2">Recipes</h1>
@@ -27,12 +28,14 @@ Recipes
         </div>
     </div>
     <div class="text-center my-3">
+        <!-- Add recipe -->
         <div>
             <a class="chilli-btn" href="{% url 'recipes:add_recipe' %}">Add Recipe</a>
         </div>
     </div>
     <div class="col-12">
         <div class="col-10 mx-auto">
+            <!-- List of created recipes -->
             {% for recipe in recipe_list %}
             <div class="col-md-6 mx-auto">
                 <div class="recipe-card">
@@ -70,12 +73,14 @@ Recipes
                         <a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a>
                     </div>
                     {% else %}
+                    <!-- Publish recipe -->
                     <form action="{% url 'management:publish_recipe' recipe.pk %}" method="POST">
                         {% csrf_token %}
                         <input type="checkbox">
                         <button type="submit" class="chilli-btn chilli-go">Publish</button>
                     </form>
                     {% endif %}
+                    <!-- Edit or delete recipe -->
                     <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
                     <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
                 </div>

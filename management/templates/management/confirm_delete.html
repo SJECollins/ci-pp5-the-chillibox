@@ -8,9 +8,8 @@ Confirm Delete
 
 {% block content %}
 
+<!-- Simple confirm delete template -->
 <div class="col-md-6 mx-auto">
-    <a class="chilli-link" href="{% url 'management:dashboard' %}">&laquo; Go To Management Dashboard </a>
-
     <form method="POST">
         {% csrf_token %}
         <h1 class="headings headings-sm">Are you sure?</h1>

@@ -6,6 +6,7 @@ Submitted Recipes
 {% endblock %}
 
 {% block content %}
+<!-- User submitted recipes -->
 <section class="row">
     <div class="text-center">
         <h1 class="headings mb-2">User Submitted Recipes</h1>
@@ -31,6 +32,7 @@ Submitted Recipes
     </div>
     <div class="col-12">
         <div class="col-10 mx-auto">
+            <!-- List of submitted recipes -->
             {% for recipe in submittedrecipe_list %}
             <div class="col-md-6 mx-auto">
                 <div class="recipe-card">
@@ -53,6 +55,7 @@ Submitted Recipes
                     {% if recipe.publish %}
                     <span><strong>Published</strong></span>
                     {% else %}
+                    <!-- Mark recipe as published if chosen to be used on site -->
                     <form action="{% url 'management:publish_submitted' recipe.pk %}" method="POST">
                         {% csrf_token %}
                         <input type="checkbox">

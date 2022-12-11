@@ -175,7 +175,6 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
@@ -204,8 +203,9 @@ def checkout_success(request, order_number):
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
-    held_cart.delete()
     if 'cart' in request.session:
+        held_cart = HeldCart.objects.get(cart_key=request.session.session_key)
+        held_cart.delete()
         del request.session['cart']
 
     template = 'checkout/checkout_success.html'

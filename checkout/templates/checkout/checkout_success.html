@@ -7,19 +7,13 @@ Success
 
 {% block content %}
 <!-- Template for checkout success -->
-<section class="d-flex flex-row justify-content-between">
-    <div>
-        <a class="chilli-link" href="{% url 'home:index' %}">Go Home</a>
-    </div>
+<section>
     <!-- Thank you message -->
     <div class="text-center">
         <h1 class="headings">Thank you!</h1>
         <h2 class="headings headings-sm">We have your order.</h2>
         <!-- Link to download PDF of order -->
         <a class="chilli-btn" href="{% url 'checkout:order_pdf' order.pk %}">Download PDF</a> 
-    </div>
-    <div>
-        <a class="chilli-link" href="{% url 'profiles:profile' %}">View Your Profile</a>
     </div>
 </section>
 <!-- Summary of order details -->

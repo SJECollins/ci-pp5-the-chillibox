@@ -11,6 +11,9 @@
         <!-- Category heading with add button for staff -->
         <div class="d-flex flex-row align-items-center justify-content-between">
             <h1 class="headings">{{ category }}</h1>
+            {% if user.is_staff %}
+            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
+            {% endif %}
             <form action="{% url 'products:category' category.slug %}" method="GET">
                 <select id="filter_subcat" name="filter_subcat" id="filter_subcat" class="border rounded-0">
                     <option value="default" {% if current_filterkey == "None" %}selected{% endif %}>All {{ category }}</option>
@@ -22,9 +25,6 @@
                 <button class="chilli-btn px-1 py-0 rounded-1">Go</button>
             </form>
         </div>
-        {% if user.is_staff %}
-        <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
-        {% endif %}
     </div>
     <div class="row d-flex justify-content-evenly">
         {% for product in products %}

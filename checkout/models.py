@@ -48,7 +48,7 @@ class Order(models.Model):
         accounting for delivery costs.
         !! Revisit this if considering allowing sales !!
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0  # noqa
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = Decimal(settings.STANDARD_DELIVERY_COST)
         else:

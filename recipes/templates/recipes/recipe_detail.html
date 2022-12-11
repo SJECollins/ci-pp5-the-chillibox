@@ -13,11 +13,24 @@
             <span><small>Added on {{ recipe.created }}</small></span>
         </div>
         <hr>
+        {% if recipe.image %}
+        <div class="row">
+            <div class="col-md-6">
+                <img class="pics pics-lg" src="{{ recipe.image.url }}" alt="{{ recipe }}">
+            </div>
+            <div class="col-md-6">
+                <div>
+                    {{ recipe.intro|linebreaks }}
+                </div>
+            </div>
+        </div>
+        {% else %}
         <div class="col-8 mx-auto">
             <div>
                 {{ recipe.intro|linebreaks }}
             </div>
         </div>
+        {% endif %}
         <hr>
         <div class="row">
             <div class="col-md-4">

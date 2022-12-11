@@ -12,11 +12,11 @@ Recipes
         <h1 class="headings text-center">Recipes</h1>
         <div class="col-10 mx-auto">
             {% for recipe in recipe_list %}
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-6 my-4 mx-auto">
                 <h2 class="headings big"><a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }} &raquo;</a></h2>
                 <div>
                     <span class="small">Added on {{ recipe.created|date:'d/m/y' }}</span>
-                    <p class="card p-2">{{ recipe.excerpt }}</p>
+                    <p class="p-2">{{ recipe.excerpt }}</p>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="d-flex flex-row justify-content-evenly">
@@ -24,6 +24,7 @@ Recipes
                     <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
                 </div>
                 {% endif %}
+                <hr>
             </div>
             {% empty %}
             <p>There aren't any recipes yet!</p>

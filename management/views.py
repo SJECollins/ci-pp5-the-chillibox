@@ -135,7 +135,7 @@ class RecipeList(StaffRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = Recipe.objects.order_by('-published')
+        queryset = Recipe.objects.order_by('-published', '-created')
         return queryset
 
 

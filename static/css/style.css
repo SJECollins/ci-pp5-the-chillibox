@@ -343,7 +343,7 @@ footer {
 
 .footer-socials {
     font-size: 2em;
-    padding-left: 1em;
+    padding: 0 1em;
 }
 
 #mc_embed_signup {

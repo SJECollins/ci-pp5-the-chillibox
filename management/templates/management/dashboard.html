@@ -30,77 +30,75 @@ Dashboard
     <div class="col-12 col-lg-6">
         <!-- Category heading -->
         <h2 class="headings">{{ category.grouper}}</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Thumbnail</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Add Variant</th>
-                    <th>
-                        <button role="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse-{{ category.grouper }}" aria-expanded="false"
-                            aria-controls="collapse-{{ category.grouper }}">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-            <!-- Product details -->
+        <table class="table table-hover">
             {% for product in category.list %}
-            <tbody class="collapse" id="collapse-{{ category.grouper }}">
-                <tr>
-                    <td><a class="chilli-link" href="{% url 'products:product' product.slug %}">
-                        {{ product.name }}</a></td>
-                    <td>{% if product.thumbnail %}Yes{% else %}No{% endif %}</td>
-                    <td>
-                        <a class="chilli-btn" href="{% url 'management:edit_product' product.id %}">Edit</a>
-                    </td>
-                    <td>
-                        <a class="chilli-btn chilli-dngr"
-                            href="{% url 'management:delete_product' product.id %}">Delete</a>
-                    </td>
-                    <td>
-                        <a class="chilli-btn" href="{% url 'management:add_variant' product.slug %}">Add</a>
-                    </td>
-                </tr>
-                <thead>
+                <thead class="table-light">
                     <tr>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Update Stock</th>
+                        <th>Name</th>
+                        <th>Thumbnail</th>
                         <th>Edit</th>
                         <th>Delete</th>
-                        <th>
-                            <button role="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ product.id }}"
-                                aria-expanded="false" aria-controls="collapse-{{ product.id }}">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </th>
+                        <th>Add Variant</th>
                     </tr>
                 </thead>
-            <tbody class="collapse" id="collapse-{{ product.id }}">
-                <!-- Product variants -->
-                {% for variant in product.variants.all %}
-                <tr>
-                    <td>{{ variant.size }}</td>
-                    <td>{{ variant.price }}</td>
-                    <td>{{ variant.current_stock }}</td>
-                    <td><a class="chilli-btn" data-hx-get="{% url 'management:update_stock' variant.pk %}"
-                            data-hx-target="#dialog">Update</a></td>
-                    <td>
-                        <a class="chilli-btn" href="{% url 'management:edit_variant' variant.id %}">Edit</a>
-                    </td>
-                    <td>
-                        <a class="chilli-btn chilli-dngr"
-                            href="{% url 'management:delete_variant' variant.id %}">Delete</a>
-                    </td>
-                </tr>
+                <!-- Product details -->
+                <tbody>
+                    <tr>
+                        <td class="align-middle"><a class="chilli-link" href="{% url 'products:product' product.slug %}">
+                            {{ product.name }}</a></td>
+                        <td class="align-middle">{% if product.thumbnail %}Yes{% else %}No{% endif %}</td>
+                        <td class="align-middle">
+                            <a class="chilli-btn" href="{% url 'management:edit_product' product.id %}">Edit</a>
+                        </td>
+                        <td class="align-middle">
+                            <a class="chilli-btn chilli-dngr"
+                                href="{% url 'management:delete_product' product.id %}">Delete</a>
+                        </td>
+                        <td class="align-middle">
+                            <a class="chilli-btn" href="{% url 'management:add_variant' product.slug %}">Add</a>
+                        </td>
+                        <td class="align-middle">
+                            <button class="chilli-btn" role="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ product.id }}"
+                                aria-expanded="false" aria-controls="collapse-{{ product.id }}">
+                                Variants
+                                <i class="fa-solid fa-caret-down"></i>
+                            </button>                            
+                        </td>
+                    </tr>
+                        <thead class="table-light">
+                            <tr>
+                                <th>Size</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Update Stock</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="collapse" id="collapse-{{ product.id }}">
+                            <!-- Product variants -->
+                            {% for variant in product.variants.all %}
+                            <tr>
+                                <td>{{ variant.size }}</td>
+                                <td>{{ variant.price }}</td>
+                                <td>{{ variant.current_stock }}</td>
+                                <td><a class="chilli-btn" data-hx-get="{% url 'management:update_stock' variant.pk %}"
+                                        data-hx-target="#dialog">Update</a></td>
+                                <td>
+                                    <a class="chilli-btn" href="{% url 'management:edit_variant' variant.id %}">Edit</a>
+                                </td>
+                                <td>
+                                    <a class="chilli-btn chilli-dngr"
+                                        href="{% url 'management:delete_variant' variant.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td>No variants added</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                 {% endfor %}
-            </tbody>
-            {% endfor %}
             </tbody>
         </table>
     </div>

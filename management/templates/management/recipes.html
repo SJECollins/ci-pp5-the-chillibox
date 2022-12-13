@@ -37,34 +37,11 @@ Recipes
         <div class="col-10 mx-auto">
             <!-- List of created recipes -->
             {% for recipe in recipe_list %}
-            <div class="col-md-6 mx-auto">
-                <div class="recipe-card">
-                    <h2 class="headings headings-sm">{{ recipe }}</h2>
-                    <div>
-                        <span class="small">Created on {{ recipe.created|date:'d/m/y' }}</span>
-                    </div>
-                    <hr>
-                    <div>
-                        {{ recipe.intro|linebreaks }}
-                    </div>
-                    <hr>
-                    <div>
-                        <h3 class="headings big">Ingredients</h3>
-                        <ul class="recipe-ingredients">
-                        {{ recipe.ingredients|safe }}
-                        </ul>
-                    </div>
-                    <hr>
-                    <div>
-                        <h3 class="headings big">Directions</h3>
-                        <ol class="recipe-directions">
-                        {{ recipe.directions|safe }}
-                        </ol>
-                    </div>
-                    <hr>
-                    <div>
-                        {{ recipe.outro|linebreaks }}
-                    </div>
+            <div class="col-md-6 my-4 mx-auto">
+                <h2 class="headings big"><a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }} &raquo;</a></h2>
+                <div>
+                    <span class="small">Added on {{ recipe.created|date:'d/m/y' }}</span>
+                    <p class="p-2">{{ recipe.excerpt }}</p>
                 </div>
                 <div class="d-flex flex-row justify-content-evenly">
                     {% if recipe.published %}
@@ -85,6 +62,7 @@ Recipes
                     <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
                 </div>
             </div>
+            <hr>
             {% empty %}
             <p>There aren't any recipes yet!</p>
             {% endfor %}

@@ -38,7 +38,7 @@ Submitted Recipes
                 <div class="recipe-card">
                     <h2 class="headings big">{{ recipe }}</h2>
                     <div>
-                        <p>Submitted by: {{ recipe.user.userprofile.display_name }}</p>
+                        <p class="mb-0">Submitted by: {{ recipe.user.userprofile.display_name }}</p>
                         <span class="small">Submitted on {{ recipe.submitted_on|date:'d/m/y' }}</span>
                     </div>
                     <div>

@@ -15,10 +15,10 @@
         <hr>
         {% if recipe.image %}
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <img class="pics pics-lg" src="{{ recipe.image.url }}" alt="{{ recipe }}">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <div>
                     {{ recipe.intro|linebreaks }}
                 </div>
@@ -32,19 +32,18 @@
         </div>
         {% endif %}
         <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <h2 class="headings headings-sm">Ingredients</h2>
-                <ul class="recipe-ingredients">
-                    {{ recipe.ingredients|safe }}
-                </ul>
-            </div>
-            <div class="col-md-8">
-                <h2 class="headings headings-sm">Directions</h2>
-                <ol class="recipe-directions">
-                    {{ recipe.directions|safe }}                    
-                </ol>
-            </div>
+        <div class="col-8 mx-auto">
+            <h2 class="headings headings-sm">Ingredients</h2>
+            <ul class="recipe-ingredients">
+                {{ recipe.ingredients|safe }}
+            </ul>
+        </div>
+        <hr>
+        <div class="col-8 mx-auto">
+            <h2 class="headings headings-sm">Directions</h2>
+            <ol class="recipe-directions">
+                {{ recipe.directions|safe }}                    
+            </ol>
         </div>
         <hr>
         <div class="col-8 mx-auto">

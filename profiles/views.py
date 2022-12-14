@@ -70,7 +70,7 @@ class ReviewList(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = Reviews.objects.filter(reviewer=self.request.user.userprofile).order_by('-added_on')
+        queryset = Reviews.objects.filter(reviewer=self.request.user.userprofile).order_by('-added_on')  # noqa
         return queryset
 
 
@@ -104,5 +104,5 @@ class UserRecipeList(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = SubmittedRecipe.objects.filter(user=self.request.user).order_by('-submitted_on')
+        queryset = SubmittedRecipe.objects.filter(user=self.request.user).order_by('-submitted_on')  # noqa
         return queryset

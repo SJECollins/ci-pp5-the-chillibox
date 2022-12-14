@@ -1,5 +1,13 @@
 # The Chillibox
 
+The Chillibox is an e-commerce website offering chilli pepper seeds and hot sauces for users to purchase.
+
+Users can register with the site to save their details, view their order history and interact with other features of the website. There is a newsletter available for all users to subscribe to. The website also features reviews and a recipe section to provide further interactivity for users.
+
+![The Chillibox](readme-docs/screens/amiresponsive.webp)
+
+The live site is available here: [The Chillibox](https://ci-pp5-the-chillibox.herokuapp.com/).
+
 # Table of Contents
 - [Features](https://github.com/SJECollins/ci-pp5-the-chillibox#features)
 - [Agile Methodology](https://github.com/SJECollins/ci-pp5-the-chillibox#agile-methodology)
@@ -13,15 +21,72 @@
 # Features
 ## General
 
+### Navigation Bar
+
+
+### Footer
+
+### Index Page
+
+### Contact Page
+
+### FAQ
+
+### Privacy Policy
+
 ## Products
+
+### Newest Products
+
+### Latest Products
+
+### Categories
+
+### Product Detail Page
+
+### Product Variants
+
+### Box Contents
 
 ## Cart
 
+### Add To Cart
+
+### Cart Canvas
+
+### Cart
+
+### Adjust Carts
+
 ## Purchasing
+
+### Order Summary
+
+### Delivery Details
+
+### Checkout
+
+### Complete Order
 
 ## User Profiles
 
+### User Profile
+
+### Your Reviews
+
+### Your Recipes
+
 ## Reviews
+
+### Product Reviews
+
+### Product Ratings
+
+## Recipes
+
+### Recipes
+
+### Recipe Comments
 
 ## Management
 ### Products
@@ -30,12 +95,15 @@
 
 ### Reviews
 
+### Recipes
+
 ## Admin
 
 # Agile Methodology
 ## Epics, User Stories
 
-The project board can be found [here](https://github.com/users/SJECollins/projects/6)
+The project board can be found [here](https://github.com/users/SJECollins/projects/6).
+
 Below are the Epics and their User Stories used to shape the creation of the project. Each are linked to their respective version on the project board, where the acceptance criteria, MoSCoW prioritisation labelling and comments can be found.
 
 ### [Navigation](https://github.com/SJECollins/ci-pp5-the-chillibox/milestone/1):
@@ -171,6 +239,76 @@ Below are the Epics and their User Stories used to shape the creation of the pro
 
 
 # Design
+
+## Mockups
+
+Initially, the project idea came about during planning for a previous project and mockups were created then. At that stage the project was put aside in favour of another idea that better fit the requirements. At the time, the project was proposed as a subscription box service. It has since changed but the design of the website still shares some similarities visually with the intial mockups.
+
+<details>
+<summary>Mock Up One</summary>
+
+![Mock Up One](readme-docs/mockups/mockup_one.webp)
+</details>
+
+<details>
+<summary>Mock Up Two</summary>
+
+![Mock Up Two](readme-docs/mockups/mockup_two.webp)
+</details>
+
+## Wireframes
+
+Wireframes were created in Balsamiq. They were used for initial planning for the layout of the website.
+
+<details>
+<summary>Index</summary>
+
+![Index](readme-docs/mockups/index.png)
+</details>
+
+<details>
+<summary>Contact</summary>
+
+![Contact](readme-docs/mockups/contact.png)
+</details>
+
+<details>
+<summary>Products</summary>
+
+![Products](readme-docs/mockups/products.png)
+</details>
+
+<details>
+<summary>Product Detail</summary>
+
+![Product Detail](readme-docs/mockups/product_detail.png)
+</details>
+
+<details>
+<summary>Cart</summary>
+
+![Cart](readme-docs/mockups/cart.png)
+</details>
+
+<details>
+<summary>Checkout</summary>
+
+![Checkout](readme-docs/mockups/checkout.png)
+</details>
+
+<details>
+<summary>Checkout Success</summary>
+
+![Checkout Success](readme-docs/mockups/checkout_success.png)
+</details>
+
+## Entity Relationship Diagrams
+
+<details>
+<summary>ERD</summary>
+
+![ERD](readme-docs/mockups/ERD.WEBP)
+</details>
 
 # SEO and Marketing
 

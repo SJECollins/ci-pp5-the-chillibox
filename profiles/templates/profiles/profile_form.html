@@ -8,7 +8,7 @@ Edit Profile
 {% block content %}
 <section class="container-md">
     <div class="col-md-8 mx-auto">
-        <a class="chilli-link" href="{% url 'profiles:profile' %}">&laquo; Go Back To Profile</a>
+        <h1 class="headings headings-sm text-center">Edit Your Details</h1>
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ form|crispy}}

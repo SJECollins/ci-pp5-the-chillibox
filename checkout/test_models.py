@@ -32,7 +32,6 @@ class TestOrder(TestCase):
                 order_total=2.99,
                 grand_total=7.49,
             )
-        print(order.order_number)
         self.assertEqual(str(order.first_name), 'Test')
         self.assertEqual(str(order.last_name), 'User')
         self.assertEqual(str(order.email), 'test@email.com')

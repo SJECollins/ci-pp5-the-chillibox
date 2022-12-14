@@ -115,29 +115,6 @@ class TestCheckoutCartFull(TestCase):
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
 
-    def test_checkout_post(self):
-        session = self.client.session
-        session['cart'] = {
-            '1': {'items_by_size': {'small': 1}}
-        }
-        session.save()
-        data = {
-            'first_name': 'Test',
-            'last_name': 'User',
-            'email': 'test@email.com',
-            'phone_number': '1234567',
-            'street_address1': '1 First St',
-            'street_address2': '',
-            'town_or_city': 'SomeTown',
-            'postcode': '',
-            'country': 'IE',
-            'county': '',
-        }
-        self.assertEqual(Order.objects.count(), 1)
-        response = self.client.post(reverse('checkout:checkout'), data)
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(Order.objects.count(), 2)
-
     def test_checkout_success_view(self):
         """
         Try to get checkout success view with order number

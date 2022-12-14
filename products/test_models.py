@@ -49,7 +49,6 @@ class TestProduct(TestCase):
             ingredients='Test ingredients',
             growth_time='Test growth',
             heat_level='Test heat',
-            origin='Test origin',
         )
         product.box_contents.add(self.product_a)
         product_string = 'Test product'
@@ -62,7 +61,6 @@ class TestProduct(TestCase):
         self.assertEqual(str(product.ingredients), 'Test ingredients')
         self.assertEqual(str(product.growth_time), 'Test growth')
         self.assertEqual(str(product.heat_level), 'Test heat')
-        self.assertEqual(str(product.origin), 'Test origin')
         self.assertEqual(str(product.box_contents.all()[0]),
                          self.product_a.name)
         self.assertEqual(str(product.added_on),

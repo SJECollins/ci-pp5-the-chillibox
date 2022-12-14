@@ -240,6 +240,16 @@ Below are the Epics and their User Stories used to shape the creation of the pro
 
 # Design
 
+## Colour
+
+The colour palette used for the website based on the central red which was colour picked from the main image used on the carousel on the index page. From there, colours were chosen to compliment or contrast, selecting for legibility, simplicity and to stay with the chilli pepper theme. 
+
+<details>
+<summary>Colour Palette</summary>
+
+![Colour Palette](readme-docs/mockups/palette.webp)
+</details>
+
 ## Mockups
 
 Initially, the project idea came about during planning for a previous project and mockups were created then. At that stage the project was put aside in favour of another idea that better fit the requirements. At the time, the project was proposed as a subscription box service. It has since changed but the design of the website still shares some similarities visually with the intial mockups.

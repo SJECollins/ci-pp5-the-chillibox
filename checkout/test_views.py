@@ -20,7 +20,7 @@ class TestCheckoutEmptyCart(TestCase):
         Should redirect if no products in cart.
         """
         response = self.client.get('/checkout/')
-        self.assertRedirects(response, '/products/', status_code=302,
+        self.assertRedirects(response, '/', status_code=302,
                              target_status_code=200,
                              fetch_redirect_response=True)
 

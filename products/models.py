@@ -92,13 +92,10 @@ class Product(models.Model):
         temp_thumb.seek(0)
 
         thumbnail = SimpleUploadedFile(image.name, temp_thumb.read())
-        print(thumbnail)
 
         return thumbnail
 
     def save(self, *args, **kwargs):
-        print(self.image)
-        print(self.thumbnail)  # Check thumbnail -- don't forget to delete!!
         super(Product, self).save(*args, **kwargs)
         if self.image:
             if not self.thumbnail:

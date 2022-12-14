@@ -30,6 +30,12 @@ class ContactView(View):
         return render(request, template_name, context)
 
 
+class PrivacyPolicyView(View):
+    def get(self, request):
+        template_name = 'home/privacy.html'
+        return render(request, template_name)
+
+
 def handle_403(request, exception, template_name="errors/403.html"):
     """
     Renders custom 403 page

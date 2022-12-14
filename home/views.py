@@ -30,6 +30,12 @@ class ContactView(View):
         return render(request, template_name, context)
 
 
+class FaqView(View):
+    def get(self, request):
+        template_name = 'home/faq.html'
+        return render(request, template_name)
+
+
 class PrivacyPolicyView(View):
     def get(self, request):
         template_name = 'home/privacy.html'

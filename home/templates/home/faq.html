@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block content %}
+
+<section class="container-md">
+    <div class="text-center">
+        <h1 class="headings">Frequently Asked Questions</h1>
+        <p>If you have a question that isn't covered below, you can contact us <a class="chilli-link" href="{% url 'home:contact' %}">here</a>.</p>
+    </div>
+    <div class="col-md-8 mx-auto">
+        <h2 class="headings headings-sm">Products</h2>
+        <div class="accordion" id="productFAQ">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingProductOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductOne" aria-expanded="true" aria-controls="collapseProductOne">
+                        Where are your seeds from?
+                    </button>
+                </h3>
+                <div id="collapseProductOne" class="accordion-collapse collapse" aria-labelledby="headingProductOne" data-bs-parent="#productFAQ">
+                    <div class="accordion-body">
+                        All the seeds we sell in our shop are from plants that we cultivate in our greenhouses here in Ireland!
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingProductTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductTwo" aria-expanded="true" aria-controls="collapseProductTwo">
+                        Where ore your hot sauces manufactured?
+                    </button>
+                </h3>
+                <div id="collapseProductTwo" class="accordion-collapse collapse" aria-labelledby="headingProductTwo" data-bs-parent="#productFAQ">
+                    <div class="accordion-body">
+                        In house! We manufacture our hot sauces in our commercial kitchen here in Ireland.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingProductThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductThree" aria-expanded="true" aria-controls="collapseProductThree">
+                        Do you sell equipment for growing plants?
+                    </button>
+                </h3>
+                <div id="collapseProductThree" class="accordion-collapse collapse" aria-labelledby="headingProductThree" data-bs-parent="#productFAQ">
+                    <div class="accordion-body">
+                        Currently, no. However, we do have plans in the future to offer a range of Chillibox Equipment for your plants so please keep an eye on the site or subscribe to our newsletter for news about that in the future. In the mean time, here is a list of places we recommend to source your equipment:
+                        <ul>
+                            <li><a class="chilli-link" rel="noopener" target="_blank" href="https://www.thegardenshop.ie/">The Garden Shop</a></li>
+                            <li><a class="chilli-link" rel="noopener" target="_blank" href="https://getupandgrow.ie/">Get Up and Grow</a></li>
+                            <li><a class="chilli-link" rel="noopener" target="_blank" href="https://www.growshop.ie/">The Grow Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingProductFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductFour" aria-expanded="true" aria-controls="collapseProductFour">
+                        Can I make my own hot sauce?
+                    </button>
+                </h3>
+                <div id="collapseProductFour" class="accordion-collapse collapse" aria-labelledby="headingProductProductFour" data-bs-parent="#productFAQ">
+                    <div class="accordion-body">
+                        Of course! Visit our <a class="chilli-link" href="{% url 'recipes:recipes_list' %}">recipes page</a>. We post all sorts of chilli-related recipes, and occasionally we post the actual recipes of our hot sauces so you can make them at home.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h2 class="headings headings-sm">Orders</h2>
+        <div class="accordion accordion-flush" id="orderFAQ">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOrderOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrderOne" aria-expanded="true" aria-controls="collapseOrderOne">
+                        How long does delivery take?
+                    </button>
+                </h3>
+                <div id="collapseOrderOne" class="accordion-collapse collapse" aria-labelledby="headingOrderOne" data-bs-parent="#orderFAQ">
+                    <div class="accordion-body">
+                        We aim to dispatch your order ASAP. Orders placed before 2pm are dispatched the same day. Within Ireland, delivery takes about 5-7 business days. Internationally, it make take a little longer. Please <a class="chilli-link" href="{% url 'home:contact' %}">contact us</a> if you have any concerns about your order.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOrderTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrderTwo" aria-expanded="true" aria-controls="collapseOrderTwo">
+                        What if I want to make a change to my order?
+                    </button>
+                </h3>
+                <div id="collapseOrderTwo" class="accordion-collapse collapse" aria-labelledby="headingOrderTwo" data-bs-parent="#orderFAQ">
+                    <div class="accordion-body">
+                        If you have placed your order but want to make a change, please <a class="chilli-link" href="{% url 'home:contact' %}">contact us</a> and we will do whatever we can to help.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOrderThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrderThree" aria-expanded="true" aria-controls="collapseOrderThree">
+                        What if I want to cancel my order?
+                    </button>
+                </h3>
+                <div id="collapseOrderThree" class="accordion-collapse collapse" aria-labelledby="headingOrderThree" data-bs-parent="#orderFAQ">
+                    <div class="accordion-body">
+                        To cancel your order, please <a class="chilli-link" href="{% url 'home:contact' %}">contact us</a> and we will do whatever we can to help.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h2 class="headings headings-sm">Recipes</h2>
+        <div class="accordion" id="recipeFAQ">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingRecipeOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecipeOne" aria-expanded="true" aria-controls="collapseRecipeOne">
+                        Do you use these recipes yourselves?
+                    </button>
+                </h3>
+                <div id="collapseRecipeOne" class="accordion-collapse collapse" aria-labelledby="headingRecipeOne" data-bs-parent="#recipeFAQ">
+                    <div class="accordion-body">
+                        Yes! At home and in our Chillibox kitchen, we have personally used all the recipes we publish on our site
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingRecipeTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecipeTwo" aria-expanded="true" aria-controls="collapseRecipeTwo">
+                        How often do you publish new recipes?
+                    </button>
+                </h3>
+                <div id="collapseRecipeTwo" class="accordion-collapse collapse" aria-labelledby="headingRecipeTwo" data-bs-parent="#recipeFAQ">
+                    <div class="accordion-body">
+                        We aim to publish a new recipe at least monthly. Sometimes when we have a new hot sauce or chilli variety available, we publish recipes featuring them more frequently to give you ideas on how best use our products.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingRecipeThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecipeThree" aria-expanded="true" aria-controls="collapseRecipeThree">
+                        Can I submit a recipe?
+                    </button>
+                </h3>
+                <div id="collapseRecipeThree" class="accordion-collapse collapse" aria-labelledby="headingRecipeThree" data-bs-parent="#recipeFAQ">
+                    <div class="accordion-body">
+                        Of course! We are always excited to learn new recipes. Registered users can access the recipes section of their profile to submit a recipe. When we receive your recipe, we will try it ourselves before publishing on the site. If we do publish the recipe we will credit you and let you know by marking it as "published" in your profile.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingRecipeFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecipeFour" aria-expanded="true" aria-controls="collapseRecipeFour">
+                        Is there a book of recipes available?
+                    </button>
+                </h3>
+                <div id="collapseRecipeFour" class="accordion-collapse collapse" aria-labelledby="headingRecipeFour" data-bs-parent="#recipeFAQ">
+                    <div class="accordion-body">
+                        Not yet! But, plans are underway to collect our favourite chilli recipes. Keep an eye on the site and subscribe to our newsletter so you can be the first to hear any news.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -110,7 +110,6 @@ def current_stock(request):
     if variant_id == 'default':
         return HttpResponse('')
     else:
-        print(variant_id)
         variant = Variant.objects.get(id=variant_id)
         current_stock = variant.fulfillable_qty
         return HttpResponse(current_stock)

@@ -25,6 +25,28 @@ class TestHome(TestCase):
         self.assertTemplateUsed(response, 'includes/footer.html')
         self.assertTemplateUsed(response, 'cart/cart_canvas.html')
 
+    def test_get_faq(self):
+        """
+        Get FAQ page. Test correct templates used.
+        """
+        response = self.client.get('/faq/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home/faq.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+        self.assertTemplateUsed(response, 'cart/cart_canvas.html')
+
+    def test_get_privacy_policy(self):
+        """
+        Get privacy policy page page. Test correct templates used.
+        """
+        response = self.client.get('/privacy/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home/privacy.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+        self.assertTemplateUsed(response, 'cart/cart_canvas.html')
+
 
 class TestContactForm(TestCase):
     """

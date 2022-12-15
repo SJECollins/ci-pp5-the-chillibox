@@ -10,9 +10,11 @@
     <div>
         <!-- Category heading with add button for staff -->
         <div class="row d-flex flex-row align-items-center justify-content-between mb-3">
-            <h1 class="headings col-12 col-sm-4">{{ category }}</h1>
+            <h1 class="headings col-6 col-sm-4">{{ category }}</h1>
             {% if user.is_staff %}
-            <a class="chilli-btn ms-sm-5 col-12 col-sm-4" href="{% url 'management:add_product' %}">Add Product</a>
+            <div class="col-6 col-sm-4">
+                <a class="chilli-btn" href="{% url 'management:add_product' %}">Add Product</a>
+            </div>
             {% endif %}
             <form class="col-12 col-sm-4" action="{% url 'products:category' category.slug %}" method="GET">
                 <select id="filter_subcat" name="filter_subcat" id="filter_subcat" class="border rounded-0">

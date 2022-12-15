@@ -37,29 +37,33 @@ Recipes
         <div class="col-10 mx-auto">
             <!-- List of created recipes -->
             {% for recipe in recipe_list %}
-            <div class="col-md-6 my-4 mx-auto">
+            <div class="col-lg-8 my-4 mx-auto">
                 <h2 class="headings big"><a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }} &raquo;</a></h2>
                 <div>
                     <span class="small">Added on {{ recipe.created|date:'d/m/y' }}</span>
                     <p class="p-2">{{ recipe.excerpt }}</p>
                 </div>
-                <div class="d-flex flex-row justify-content-evenly">
-                    {% if recipe.published %}
-                    <div>
-                        <span><strong>Published</strong>: </span>
-                        <a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a>
+                <div class="row d-flex flex-row justify-content-between">
+                    <div class="col-12 col-lg-6">
+                        {% if recipe.published %}
+                        <div>
+                            <span><strong>Published</strong>: </span>
+                            <a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }}</a>
+                        </div>
+                        {% else %}
+                        <!-- Publish recipe -->
+                        <form action="{% url 'management:publish_recipe' recipe.pk %}" method="POST">
+                            {% csrf_token %}
+                            <input type="checkbox">
+                            <button type="submit" class="chilli-btn chilli-go">Publish</button>
+                        </form>
+                        {% endif %}
                     </div>
-                    {% else %}
-                    <!-- Publish recipe -->
-                    <form action="{% url 'management:publish_recipe' recipe.pk %}" method="POST">
-                        {% csrf_token %}
-                        <input type="checkbox">
-                        <button type="submit" class="chilli-btn chilli-go">Publish</button>
-                    </form>
-                    {% endif %}
                     <!-- Edit or delete recipe -->
-                    <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
-                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
+                    <div class="col-12 col-lg-6">
+                        <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
+                        <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
+                    </div>
                 </div>
             </div>
             <hr>

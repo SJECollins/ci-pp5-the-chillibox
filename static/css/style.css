@@ -226,7 +226,6 @@ a {
 }
 
 /* Alert styling */
-
 .custom-alert {
     min-width: 300px;
     position: fixed;
@@ -357,14 +356,17 @@ footer {
     }
 }
 
-@media (max-width: 576px) {
-    .pics-lg {
-        max-width: 300px;
+@media (min-width: 767px) {
+    .warning-text {
+        display: none
     }
 }
 
 @media (max-width: 576px) {
     .pics-lg {
         max-width: 240px;
+    }
+    .sm-prod-table {
+        display: none;
     }
 }

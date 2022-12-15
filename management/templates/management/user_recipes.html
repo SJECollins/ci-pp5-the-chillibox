@@ -51,19 +51,23 @@ Submitted Recipes
                         {{ recipe.notes|linebreaks }}
                     </div>
                 </div>
-                <div class="d-flex flex-row justify-content-evenly">
-                    {% if recipe.publish %}
-                    <span><strong>Published</strong></span>
-                    {% else %}
-                    <!-- Mark recipe as published if chosen to be used on site -->
-                    <form action="{% url 'management:publish_submitted' recipe.pk %}" method="POST">
-                        {% csrf_token %}
-                        <input type="checkbox">
-                        <button type="submit" class="chilli-btn chilli-go">Published</button>
-                    </form>
-                    <span><small>Mark as published if used.</small></span>
-                    {% endif %}
-                    <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_submitted' recipe.pk %}">Delete recipe</a>
+                <div class="row d-flex flex-row justify-content-between">
+                    <div class="col-12 col-sm-6 text-center">
+                        {% if recipe.publish %}
+                        <span><strong>Published</strong></span>
+                        {% else %}
+                        <!-- Mark recipe as published if chosen to be used on site -->
+                        <form action="{% url 'management:publish_submitted' recipe.pk %}" method="POST">
+                            {% csrf_token %}
+                            <input type="checkbox">
+                            <button type="submit" class="chilli-btn chilli-go">Published</button>
+                        </form>
+                        <span><small>Mark as published if used.</small></span>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-sm-6 text-center">
+                        <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_submitted' recipe.pk %}">Delete recipe</a>
+                    </div>
                 </div>
             </div>
             {% empty %}

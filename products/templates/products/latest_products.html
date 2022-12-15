@@ -9,7 +9,7 @@ Shop
 <section class="container-md">
     <!-- Latest sauces -->
     <div class="row py-4">
-        <div class="row d-flex flex-row align-items-center">
+        <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Sauces</h2>
             <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='sauces' %}">View all sauces &raquo;</i></a>
         </div>
@@ -40,7 +40,7 @@ Shop
     <hr class="mt-5">
     <!-- Latest sauceboxes -->
     <div class="row py-4">
-        <div class="row d-flex flex-row align-items-center">
+        <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Sauceboxes</h2>
             <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='saucebox' %}">View all boxes &raquo;</i></a>
         </div>
@@ -71,12 +71,12 @@ Shop
     <hr class="mt-5">
     <!-- Latest seeds -->
     <div class="row py-4">
-        <div class="row d-flex flex-row align-items-center">
+        <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Seeds</h2>
             <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seeds' %}">View all seeds &raquo;</i></a>
         </div>
         {% for seed in seedcat %}
-        <div class="col-md-3 text-center">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 text-center">
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seed }}</h3>
                 {% if seed.thumbnail %}
@@ -102,12 +102,12 @@ Shop
     <hr class="mt-5">
     <!-- Latest seedboxes -->
     <div class="row py-4">
-        <div class="row d-flex flex-row align-items-center">
+        <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Seedboxes</h2>
             <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seedbox' %}">View all boxes &raquo;</i></a>
         </div>
         {% for seedbox in seedboxcat %}
-        <div class="col-md-3 text-center">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 text-center">
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seedbox }}</h3>
                 {% if seedbox.thumbnail %}

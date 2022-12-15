@@ -15,8 +15,8 @@ class LatestProducts(View):
     def get(self, request):
         seedcat = Product.objects.filter(category__name='Seeds').order_by('-added_on')[0:4]  # noqa
         saucecat = Product.objects.filter(category__name='Sauces').order_by('-added_on')[0:4]  # noqa
-        seedboxcat = Product.objects.filter(category__name='SeedBox').order_by('-added_on')[0:4]  # noqa
-        sauceboxcat = Product.objects.filter(category__name='SauceBox').order_by('-added_on')[0:4]  # noqa
+        seedboxcat = Product.objects.filter(category__name='Seedboxes').order_by('-added_on')[0:4]  # noqa
+        sauceboxcat = Product.objects.filter(category__name='Sauceboxes').order_by('-added_on')[0:4]  # noqa
         template_name = 'products/latest_products.html'
         context = {
             'seedcat': seedcat,

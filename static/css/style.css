@@ -170,6 +170,11 @@ a {
     border-radius: 10px;
 }
 
+.thumbs {
+    max-width: 160px;
+    height: auto;
+}
+
 .pics-lg {
     max-width: 400px;
     height: auto;

@@ -30,9 +30,9 @@ Search Results
                         
                         <div class="my-3">
                             {% if product.thumbnail %}
-                                <img class="pics" src="{{ product.thumbnail.url }}" alt="{{ product }}">
+                                <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
                             {% else %}
-                            <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
+                            <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                             {% endif %}
                         </div>
                         

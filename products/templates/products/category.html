@@ -9,12 +9,12 @@
 <section class="container-md">
     <div>
         <!-- Category heading with add button for staff -->
-        <div class="d-flex flex-row align-items-center justify-content-between">
-            <h1 class="headings">{{ category }}</h1>
+        <div class="row d-flex flex-row align-items-center justify-content-between mb-3">
+            <h1 class="headings col-12 col-sm-4">{{ category }}</h1>
             {% if user.is_staff %}
-            <a class="chilli-btn ms-5" href="{% url 'management:add_product' %}">Add New Product</a>
+            <a class="chilli-btn ms-sm-5 col-12 col-sm-4" href="{% url 'management:add_product' %}">Add Product</a>
             {% endif %}
-            <form action="{% url 'products:category' category.slug %}" method="GET">
+            <form class="col-12 col-sm-4" action="{% url 'products:category' category.slug %}" method="GET">
                 <select id="filter_subcat" name="filter_subcat" id="filter_subcat" class="border rounded-0">
                     <option value="default" {% if current_filterkey == "None" %}selected{% endif %}>All {{ category }}</option>
                     <option value="mild" {% if current_filterkey == "mild" %}selected{% endif %}>Mild</option>
@@ -36,9 +36,9 @@
                 
                 <div class="my-3">
                     {% if product.thumbnail %}
-                        <img class="pics" src="{{ product.thumbnail.url }}" alt="{{ product }}">
+                        <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
                     {% else %}
-                    <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
+                    <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                     {% endif %}
                 </div>
                 

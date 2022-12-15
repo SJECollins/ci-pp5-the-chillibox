@@ -18,7 +18,7 @@ class ProductDashboard(StaffRequiredMixin, View):
     View for admin accessible management dashboard.
     """
     def get(self, request):
-        products = Product.objects.all().order_by('category')
+        products = Product.objects.all()
         template_name = 'management/dashboard.html'
         context = {
             'products': products,

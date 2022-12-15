@@ -166,8 +166,8 @@
             <div class="row">
                 <!-- User reviews -->
                 {% for review in reviews %}
-                <div class="col-sm-6 col-lg-4 mb-5 px-3">
-                    <div class="card px-4">
+                <div class="col-sm-6 col-lg-4 mb-5 px-sm-3">
+                    <div class="card px-3">
                         <h2 class="headings big">
                             {% if review.reviewer is not None %}{{ review.reviewer.display_name }}{% else %}Anonymous{% endif %} <span
                                 class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>

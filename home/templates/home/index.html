@@ -72,18 +72,18 @@ Home
         <h3 class="headings headings-sm mb-1">Newest Products:</h3>
         <p>Take a look at these products we've just added:</p>
         {% for product in latest_products %}
-        <div class="col-md-6 col-lg-3 mx-auto">
-                <div class="chilli-card text-center">
-                <h4>{{ product }}</h4>
-                {% if product.thumbnail %}
-                    <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
-                {% else %}
-                    <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
-                {% endif %}
-                <p class="excerpt">{{ product.excerpt }}</p>
-                <a class="chilli-link" href="{% url 'products:product' product.slug %}">View {{ product }}</a>
+        <div class="col-md-6 col-lg-3 my-2">
+                <div class="chilli-card text-center mx-auto">
+                    <h4>{{ product }}</h4>
+                    {% if product.thumbnail %}
+                        <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
+                    {% else %}
+                        <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
+                    {% endif %}
+                    <p class="excerpt">{{ product.excerpt }}</p>
+                    <a class="chilli-link" href="{% url 'products:product' product.slug %}">View {{ product }}</a>
+                </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </section>

@@ -67,11 +67,20 @@
                         </td>
                     </tr>
                     {% endif %}
-                    {% if product.box_contents.all %}
+                    {% if product.category.name == "Seedboxes" or product.category.name == "Sauceboxes" %}
                     <tr>
                         <th class="align-top">Contents: </th>
                         <td>{% for content in product.box_contents.all %}<p class="m-0">{{ content.name }}</p>
                             {% endfor %}</td>
+                    </tr>
+                    {% endif %}
+                    {% if product.category.name == "Seeds" or product.category.name == "Sauces" %}
+                    <tr>
+                        <th class="align-top">Find in: </th>
+                        <td>
+                            {% for content in product.box_contents.all %}<p class="m-0">{{ content.name }}</p>
+                            {% endfor %}
+                        </td>
                     </tr>
                     {% endif %}
                     {% if avg_rating.rounded is not None %}

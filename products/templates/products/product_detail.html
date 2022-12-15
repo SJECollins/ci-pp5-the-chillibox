@@ -21,7 +21,7 @@
                     <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
             </div>
-            <p class="text-contain">{{ product.description }}</p>
+            <p class="text-contain">{{ product.description|linebreaks }}</p>
             {% if user.is_staff %}
             <div class="d-flex flex-row justify-content-evenly my-3">
                 <!-- Edit and Delete for admin -->

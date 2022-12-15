@@ -39,12 +39,6 @@
                         <th>Category: </th>
                         <td>{{ product.category }}</td>
                     </tr>
-                    {% if product.subcategory is not None %}
-                    <tr>
-                        <th>SubCategory: </th>
-                        <td>{{ product.subcategory }}</td>
-                    </tr>
-                    {% endif %}
                     <tr>
                         {% if product.growth_time %}
                         <th>Growth time to maturity: </th>

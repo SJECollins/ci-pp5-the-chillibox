@@ -24,7 +24,13 @@ User Reviews
         <div class="col-sm-8 mx-auto my-3">
             <div class="row">
                 <div class="col-sm-4">
-                    <p><strong>{{ review.reviewer }}</strong></p>
+                    <p><strong>
+                        {% if review.reviewer is not None %}
+                            {{ review.reviewer }}
+                        {% else %}
+                            Anonymous
+                        {% endif %}
+                    </strong></p>
                     <p>Added on {{ review.added_on|date:'d/m/y' }}</p>
                 </div>
                 <div class="card col-sm-8">

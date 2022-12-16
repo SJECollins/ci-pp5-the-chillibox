@@ -32,6 +32,7 @@ User Reviews
                         {% endif %}
                     </strong></p>
                     <p>Added on {{ review.added_on|date:'d/m/y' }}</p>
+                    <p>For: <a class="chilli-link" href="{% url 'products:product' review.product.slug %}">{{ review.product }}</a></p>
                 </div>
                 <div class="card col-sm-8">
                     {{ review.content }}

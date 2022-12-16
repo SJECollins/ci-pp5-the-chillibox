@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("updated")
     const quantity = document.getElementById("product_qty")
     const decrease = document.getElementById("dec_qty")
     const increase = document.getElementById("inc_qty")
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const callback = (mutationList, observer) => {
         for (const mutation of mutationList) {
             if (mutation.type === 'childList') {
-                console.log("childList")
                 updateStock()
                 } else {
                 console.log(mutation.type)

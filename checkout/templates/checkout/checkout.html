@@ -33,7 +33,10 @@ Checkout
                             <img width="300" height="300" class="cart-pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                             {% endif %}
                         </td>
-                        <td>{{ item.product.name }}</td>
+                        <td>
+                            <p class="mb-0">{{ item.product.name }}</p>
+                            <p class="mb-0"><small>{{ item.variant }}</small></p>
+                        </td>
                         <td>{{ item.quantity }}</td>
                         <td>€{{ item.variant.price }}</td>
                     </tr>

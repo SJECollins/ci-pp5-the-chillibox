@@ -67,7 +67,7 @@ class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
     fields = ('title', 'image', 'intro', 'excerpt', 'ingredients',
               'directions', 'outro',)
     template_name = 'recipes/recipe_form.html'
-    success_url = '/management/arecipe/'
+    success_url = '/management/recipe/'
     success_message = 'Your recipe was created.'
 
 

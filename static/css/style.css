@@ -177,7 +177,7 @@ a {
 
 .pics-lg {
     max-width: 400px;
-    height: auto;
+    max-height: 400px;
     box-shadow: 0 4px 8px 0 var(--site-dark-green);
 }
 
@@ -189,6 +189,12 @@ a {
 .rate-pics {
     max-height: 28px;
     width: auto;
+}
+
+.recipe-pics {
+    max-width: 400px;
+    max-height: 300px;
+    margin: 1em
 }
 
 /* Cards */

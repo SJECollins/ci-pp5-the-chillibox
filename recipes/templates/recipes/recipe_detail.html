@@ -15,10 +15,10 @@
         <hr>
         {% if recipe.image %}
         <div class="row">
-            <div class="col-lg-6">
-                <img class="pics pics-lg" src="{{ recipe.image.url }}" alt="{{ recipe }}">
+            <div class="col-md-6 text-center">
+                <img class="pics recipe-pics" src="{{ recipe.image.url }}" alt="{{ recipe }}">
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-6 d-flex align-items-center">
                 <div>
                     {{ recipe.intro|linebreaks }}
                 </div>

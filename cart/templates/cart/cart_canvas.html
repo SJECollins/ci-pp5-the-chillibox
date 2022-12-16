@@ -19,17 +19,17 @@
     {% endif %}
     {% for item in cart_items %}
         <div class="cart-card text-center mx-auto row">
-            <div class="col-6">
+            <div class="col-6 px-0">
                 {% if item.product.thumbnail %}
                 <img class="cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ item.product }}">
                 {% else %}
                 <img width="300" height="300" class="pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ item.product }}">
                 {% endif %}
             </div>
-            <div class="col-6">
-                <p><strong>{{ item.product }}</strong></p>
-                <p><small>{{ item.size }}</small></p>
-                <p>{{ item.quantity }} <small>in cart</small></p>
+            <div class="col-6 px-0">
+                <p class="mb-0"><strong>{{ item.product }}</strong></p>
+                <p class="mb-0"><small>{{ item.size }}</small></p>
+                <p class="mb-0"><strong>{{ item.quantity }}</strong><small>in cart</small></p>
             </div>
         </div>
     {% endfor %}   

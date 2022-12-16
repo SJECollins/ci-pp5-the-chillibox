@@ -28,12 +28,12 @@ Success
         <p><strong>Delivery: </strong>€{{ order.delivery_cost|floatformat:2 }}</p>
         <p><strong>Grand Total: </strong>€{{ order.grand_total|floatformat:2 }}</p>
         <table class="table">
-            <tr>
-                {% for item in order.lineitems.all %}
-                <th>{{ item.product }} - {{ item.variant.size }}</th>
-                <td>{{ item.quantity }} at €{{ item.variant.price }} each</td>
-                {% endfor %}
-            </tr>
+            {% for item in order.lineitems.all %}
+                <tr>
+                    <th><small>{{ item.product }} - {{ item.variant.size }}</small></th>
+                    <td>{{ item.quantity }} at €{{ item.variant.price }} each</td>
+                </tr>
+            {% endfor %}
         </table>
     </div>
     <div class="col-12 col-md-6">

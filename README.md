@@ -22,80 +22,272 @@ The live site is available here: [The Chillibox](https://ci-pp5-the-chillibox.he
 ## General
 
 ### Navigation Bar
+<details>
+<summary>Navigation Bar</summary>
 
+![Navbar](readme-docs/screens/navbar.webp)
+</details>
 
 ### Footer
+<details>
+<summary>Footer</summary>
+
+![Footer](readme-docs/screens/footer.webp)
+</details>
 
 ### Index Page
+<details>
+<summary>Index Page</summary>
+
+![Index](readme-docs/screens/index.webp)
+</details>
 
 ### Contact Page
+<details>
+<summary>Contact Us</summary>
+
+![Contact](readme-docs/screens/contact.webp)
+</details>
 
 ### FAQ
+<details>
+<summary>FAQ</summary>
+
+![FAQ](readme-docs/screens/faq.webp)
+</details>
 
 ### Privacy Policy
+<details>
+<summary>Privacy Policy</summary>
+
+![Privacy Policy](readme-docs/screens/privacy_policy.webp)
+</details>
 
 ## Products
 
 ### Newest Products
+<details>
+<summary>Newest Products</summary>
+
+![Newest Products](readme-docs/screens/newest_products.webp)
+</details>
 
 ### Latest Products
+<details>
+<summary>Latest Products</summary>
+
+![Latest Products](readme-docs/screens/latest_products.webp)
+</details>
 
 ### Categories
+<details>
+<summary>Categories</summary>
+
+![Categories](readme-docs/screens/category.webp)
+</details>
 
 ### Product Detail Page
+<details>
+<summary>Product Page</summary>
+
+![Product Page](readme-docs/screens/product_page.webp)
+</details>
 
 ### Product Variants
+<details>
+<summary>Variants</summary>
+
+![Variants](readme-docs/screens/variants.webp)
+</details>
 
 ### Box Contents
+<details>
+<summary>Box Contents</summary>
+
+![Box Contents](readme-docs/screens/box_contents.webp)
+</details>
 
 ## Cart
 
 ### Add To Cart
+<details>
+<summary>Product Added</summary>
+
+![Product Added](readme-docs/screens/product_added.webp)
+</details>
 
 ### Cart Canvas
+<details>
+<summary>Cart Canvas Empty</summary>
+
+![Cart Empty](readme-docs/screens/cart_canvas_empty.webp)
+</details>
+
+<details>
+<summary>Cart Canvas With Item</summary>
+
+![Cart Full](readme-docs/screens/cart_canvas.webp)
+</details>
 
 ### Cart
+<details>
+<summary>Cart</summary>
 
-### Adjust Carts
+![Cart](readme-docs/screens/cart.webp)
+</details>
+
+### Adjust Cart
+<details>
+<summary>Adjust Cart</summary>
+
+![Adjust Cart](readme-docs/screens/adjust_cart.webp)
+</details>
+
+### Remove From Cart
+<details>
+<summary>Remove From Cart</summary>
+
+![Remove Cart](readme-docs/screens/remove_cart.webp)
+</details>
+
+### Clear Cart
+<details>
+<summary>Clear Cart</summary>
+
+![Clear Cart](readme-docs/screens/clear_cart.webp)
+</details>
 
 ## Purchasing
 
-### Order Summary
-
-### Delivery Details
-
 ### Checkout
+<details>
+<summary>Checkout Empty Form</summary>
+
+![Checkout](readme-docs/screens/checkout_empty.webp)
+</details>
+
+<details>
+<summary>Checkout Filled Form</summary>
+
+![Checkout Filled](readme-docs/screens/checkout_filled.webp)
+</details>
 
 ### Complete Order
+<details>
+<summary>Checkout Success</summary>
+
+![Checkout Success](readme-docs/screens/checkout_success.webp)
+</details>
+
+### Order Confirmation
+![Order Confirmation Subject](readme-docs/screens/order_confirm_email_line.webp)
+<details>
+<summary>Order Confirmation Email</summary>
+
+![Order Email](readme-docs/screens/order_confirm_email_body.webp)
+</details>
+
+### Order PDF
 
 ## User Profiles
 
 ### User Profile
+<details>
+<summary>User Profile</summary>
+
+![Profile](readme-docs/screens/user_profile.webp)
+</details>
 
 ### Your Reviews
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ### Your Recipes
+<details>
+<summary>User Recipes</summary>
+
+![User Recipes](readme-docs/screens/user_recipes.webp)
+</details>
 
 ## Reviews
 
 ### Product Reviews
+<details>
+<summary>No Product Reviews</summary>
+
+![No Reviews](readme-docs/screens/review_none.webp)
+</details>
+
+<details>
+<summary>Product Review</summary>
+
+![Review](readme-docs/screens/approved_review.webp)
+</details>
 
 ### Product Ratings
+![Rating](readme-docs/screens/rating.webp)
 
 ## Recipes
 
 ### Recipes
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ### Recipe Comments
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ## Management
 ### Products
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ### Stock
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ### Reviews
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ### Recipes
+<details>
+<summary></summary>
+
+![]()
+</details>
+
+### Submitted Recipes
+<details>
+<summary></summary>
+
+![]()
+</details>
+
+### Comments
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ## Admin
 

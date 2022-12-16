@@ -199,7 +199,9 @@
                     </div>
                 </div>
                 {% empty %}
-                <p><strong>No reviews yet. Be the first to write one!</strong></p>
+                    {% if not reviewed %}
+                        <p><strong>No reviews yet. Be the first to write one!</strong></p>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

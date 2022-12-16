@@ -10,7 +10,7 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import cm
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Table
+from reportlab.platypus import Table, Image
 
 import stripe
 
@@ -227,11 +227,18 @@ def order_pdf(request, pk):
 
     order = Order.objects.get(pk=pk)
 
+    # Heading
+    logo = 'static/images/chilli-logo-colour.png'
+    textobject = c.beginText(7.5 * cm, -3 * cm)
+    c.drawImage(logo, 2 * cm, -3 * cm, mask='auto')
+    textobject.textLine('Your order from The Chillibox')
+    c.drawText(textobject)
+
     # User address
-    textobject = c.beginText(1.5 * cm, -2.5 * cm)
+    textobject = c.beginText(1.5 * cm, -4.5 * cm)
     textobject.textLine('Delivering to: ')
-    textobject.textLine("")
-    textobject.textLine(order.first_name + " " + order.last_name)
+    textobject.textLine('')
+    textobject.textLine(order.first_name + ' ' + order.last_name)
     textobject.textLine(order.phone_number)
     textobject.textLine(order.street_address1)
     if order.street_address2:
@@ -245,15 +252,17 @@ def order_pdf(request, pk):
     c.drawText(textobject)
 
     # Order details
-    textobject = c.beginText(4 * cm, -7.5 * cm)
-    textobject.textLine('Order #: ' + order.order_number)
-    textobject.textLine('Ordered on: ' + order.date.strftime('%d %b %Y'))
-    textobject.textLine('Delivery cost: €' + str(order.delivery_cost))
-    textobject.textLine('Grand Total: €' + str(order.grand_total))
+    textobject = c.beginText(1.5 * cm, -9.5 * cm)
+    textobject.textLine('Order Summary:')
+    textobject.textLine('')
+    textobject.textLine('   Order #: ' + order.order_number)
+    textobject.textLine('   Ordered on: ' + order.date.strftime('%d %b %Y'))
+    textobject.textLine('   Delivery cost: €' + str(order.delivery_cost))
+    textobject.textLine('   Grand Total: €' + str(order.grand_total))
     c.drawText(textobject)
 
     # Order Items
-    textobject = c.beginText(1.5 * cm, -10.5 * cm)
+    textobject = c.beginText(1.5 * cm, -13.5 * cm)
     textobject.textLine('Your Items: ')
     c.drawText(textobject)
 
@@ -268,7 +277,7 @@ def order_pdf(request, pk):
         ])
     table = Table(data, colWidths=[6 * cm, 6 * cm, 2 * cm, 2 * cm])
     tw, th, = table.wrapOn(c, 15 * cm, 19 * cm)
-    table.drawOn(c, 1.5 * cm, -11 * cm - th)
+    table.drawOn(c, 1.5 * cm, -14 * cm - th)
 
     c.showPage()
     c.save()

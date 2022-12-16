@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Order, OrderLineItem
-from products.models import Product
+from products.models import Product, Variant
 from profiles.models import UserProfile
 
 import json
@@ -51,9 +51,14 @@ class StripeWH_Handler:
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
 
-        billing_details = intent.charges.data[0].billing_details
+        # Get the Charge object
+        stripe_charge = stripe.Charge.retrieve(
+            intent.latest_charge
+        )
+
+        billing_details = stringe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        grand_total = round(stripe_charge.amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -80,7 +85,8 @@ class StripeWH_Handler:
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    full_name__iexact=shipping_details.name,
+                    first_name__iexact=shipping_details.name.split()[0],
+                    last_name__iexact=shipping_details.name.split()[1],
                     email__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
                     country__iexact=shipping_details.address.country,
@@ -107,7 +113,8 @@ class StripeWH_Handler:
             order = None
             try:
                 order = Order.objects.create(
-                    full_name=shipping_details.name,
+                    first_name__iexact=shipping_details.name.split()[0],
+                    last_name__iexact=shipping_details.name.split()[1],
                     user_profile=profile,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
@@ -131,11 +138,12 @@ class StripeWH_Handler:
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():  # noqa
+                            variant = product.variants.get(size=size)
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
                                 quantity=quantity,
-                                product_size=size,
+                                variant=variant,
                             )
                             order_line_item.save()
             except Exception as e:

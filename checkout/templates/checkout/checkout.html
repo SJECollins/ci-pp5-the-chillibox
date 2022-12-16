@@ -70,7 +70,7 @@ Checkout
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
             </fieldset>
             <p>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></p>
-            <button type="submit" class="chilli-btn">Complete Order</button>
+            <button id="submit-button" type="submit" class="chilli-btn">Complete Order</button>
         </form>
     </div>
 </section>

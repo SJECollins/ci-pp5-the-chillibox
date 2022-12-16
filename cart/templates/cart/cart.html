@@ -9,7 +9,7 @@ Your Cart
 <!-- Cart to check views and contexts actually working -->
 <div class="col-12">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-6 col-lg-4">
             <div class="text-center">
                 <h1 class="headings heading-sm">Your Cart: </h1>
             </div>
@@ -25,8 +25,8 @@ Your Cart
                     <tbody>
                         {% for item in cart_items %}
                         <tr>
-                            <th>{{ item.product }}</th>
-                            <td class="text-end">{{ item.quantity }} {{ item.variant }} x €{{ item.variant.price }}</td>
+                            <th><small>{{ item.product }}</small></th>
+                            <td class="text-end">{{ item.quantity }} <small>x {{ item.variant }}</small> @ €{{ item.variant.price }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -49,16 +49,16 @@ Your Cart
                 <p class="text-center">Spend €{{ free_delivery_delta }} more for free delivery!</p>
                 {% endif %}
             </div>
-            <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-row justify-content-between mb-4">
                 <a class="chilli-btn chilli-dngr" href="{% url 'cart:clear_cart' %}">Clear Cart</a>
                 <a class="chilli-btn chilli-go" href="{% url 'checkout:checkout' %}">Checkout</a>
             </div>
         </div>
         <!-- More detailed list of items in cart -->
-        <div class="col-sm-8">
+        <div class="col-md-6 col-lg-8">
             <div class="row">
                 {% for item in cart_items %}
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-xl-6">
                         <div class="row border mx-1">
                             <div class="col-4 text-center my-auto">
                                 {% if item.product.thumbnail %}

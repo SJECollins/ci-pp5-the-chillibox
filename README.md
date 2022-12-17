@@ -21,6 +21,8 @@ The live site is available here: [The Chillibox](https://ci-pp5-the-chillibox.he
 # Features
 ## General
 
+This section discusses the more generic features available throughout the site for all users of the website.
+
 ### Navigation Bar
 <details>
 <summary>Navigation Bar</summary>
@@ -44,7 +46,7 @@ The account drop down menu is available to all users but the links available is 
 
 The above links - "Shop", "Recipes", "Help", and "Account" - are visible on larger screens. On smaller screens the navbar collapses and these links are then accessible through the menu toggle.
 
-The cart icon on the far right of the navbar acts as a toggle for the cart canvas element. It is a simple icon, which will display the number of items in the cart but otherwise is kept simple and clean.
+The cart icon on the far right of the navbar acts as a toggle for the cart offcanvas element. It is a simple icon, which will display the number of items in the cart but otherwise is kept simple and clean.
 
 
 ### Footer
@@ -126,6 +128,8 @@ Also under the "Help" drop down menu in the navbar is a link to the website's pr
 
 ## Products
 
+This section discusses the features related to the products app. 
+
 ### Product Card
 <details>
 <summary>Product Card</summary>
@@ -201,6 +205,13 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Variants](readme-docs/screens/variants.webp)
 </details>
 
+The product's variants are displayed twice on the product detail page. First in the product details table with the heading "Options" and then in the "Select Option" drop down menu in the "Add To Cart" form element. 
+
+The variant model is related to the product model in a one-to-many relationship where each product can have multiple variants for the user to choose from. Where the product model holds the basic information for each product on the site, the related variant model allows for management of options, prices and stock for products. 
+
+When a user selects a variant in the "Add To Cart" form element, the current stock of that variant of the product is then displayed for the user.
+
+
 ### Box Contents
 <details>
 <summary>Box Contents</summary>
@@ -208,7 +219,16 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Box Contents](readme-docs/screens/box_contents.webp)
 </details>
 
+"Box contents" is a field in the product model which is used for seedboxes and sauceboxes. It is a many-to-many field related to "self", meaning the product model itself, so that a seedbox contains many seed products, for exmaple.
+
+On a box product page, the products included are shown in the product detail table with the heading "Contents". These are the products the user will receive if they order the box. And then the variants of this box products manages the sizes of the included products and the price of the box, like other products.
+
+If a product is included in a box, when you visit that product's page you will see a line in the table called "Find in" which indicates which box that product is included in. An example of this can be seen in the image above in "Product Variants".
+
+
 ## Cart
+
+This section discusses the features associated with the cart app and the functionality involved with managing the user's cart.
 
 ### Add To Cart
 <details>
@@ -217,18 +237,89 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Product Added](readme-docs/screens/product_added.webp)
 </details>
 
-### Cart Canvas
+The "Add To Cart" functionality of the product detail page is one of the most important features of the website, as expected of an e-commerce site. As previously mentioned in the section about "Product Variants", the form element for adding a product to the cart is dependent on the user selecting a variant of the product.
+
+Prior to selecting an option, the "Add To Cart" button is disabled to prevent the user from submitting the form erroneously. This is controlled through a simple event listener in the javascript calling a function that enables/disables the button depending on whether the user has selected the "Select an option" option in the drop down menu. When the user selects a product variant to add to the cart, the button is then activated and the user is able to add the variant they selected to their cart, depending on availability.
+```
+    const addBtn = document.getElementById("add")  # Where "add" is the button id
+    function updateStock() {
+        currentStock = stock.textContent
+        if (currentStock == "") {
+            addBtn.disabled = true
+            warning.style.display = "none"
+        } else if (currentStock <= 0) {
+            quantity.textContent = 0
+            warning.style.display = "block"
+            addBtn.disabled = true
+        } else {
+            quantity.textContent = 1
+            warning.style.display = "none"
+            addBtn.disabled = false
+        }        
+    }
+```
+Also, when the user selects a variant in that drop down menu, the "Stock" field in the form element is then filled with the current stock of that variant of the product. The quantity of that variant that the user is able to add to their cart is dependent on the stock available, which is plainly visible to the user. 
 <details>
-<summary>Cart Canvas Empty</summary>
+<summary>Add Max To cart</summary>
+
+![Add Max](readme-docs/screens/not_available.webp)
+</details>
+
+When a variant is initially in stock and the user then goes to add the maximum available to their cart, the quantity buttons disable when they reach the limit (there is also functionality in place to prevent the user selecting a quantity below 0). At the same time, a message is displayed below the quantity field to alert the user in case they do not realise they have reached the limit and that there are no more available.
+
+<details>
+<summary>Not Available</summary>
+
+![Not Available](readme-docs/screens/unavailable.webp)
+</details>
+
+If a user selects away from this option after adding to cart and then selects it again or comes across a variant on another product that is not in stock, when they select that variant the stock field displays "0", the select quantity field displays "0", they are unable to change the quantity, the "No more available" message is displayed and the "Add To Cart" functionality is disabled.
+
+The ability to alter functionality of the "Add To Cart" form element based on user selections in vanilla JavaScript is achieved through the use of a MutationObserver as based on code from [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+```
+    const config = { childList: true }
+    const callback = (mutationList, observer) => {
+        for (const mutation of mutationList) {
+            if (mutation.type === 'childList') {
+                updateStock()
+                } else {
+                console.log(mutation.type)
+            }
+        }
+    }
+    const observer = new MutationObserver(callback)
+    observer.observe(stock, config)
+```
+Stock has been mentioned quite a bit in this section, but for brevity will be discussed later in the "Stock" section of the "Management" features.
+
+
+### Cart Offcanvas
+<details>
+<summary>Cart Offcanvas Empty</summary>
 
 ![Cart Empty](readme-docs/screens/cart_canvas_empty.webp)
 </details>
 
+Based on the [Bootstrap Offcanvas](https://getbootstrap.com/docs/5.2/components/offcanvas/) element, the condensed cart that the user can toggle is designed to have a simple display and limited functionality. 
+
+When the user toggles the cart open, there is a simple heading of "Your Cart" with an "X" next to it to allow the user to close the cart again. Below the heading are two links, one which brings the user to the full cart page and another that goes directly to the checkout.
+
+When the cart is empty, the link to go to the full cart page will bring the user to that page, but the "Go To Checkout" link redirects the user to the index page with a message of "There's nothing in your cart at the moment." Also, when the user's cart is empty the body of this element simply states "Your cart is empty."
+
 <details>
-<summary>Cart Canvas With Item</summary>
+<summary>Cart Offcanvas With Item</summary>
 
 ![Cart Full](readme-docs/screens/cart_canvas.webp)
 </details>
+
+When the user has items in their cart, the cart offcanvas element displays a small box related to user's cart total and delivery immediately below the links. This box displays the total in the cart in a large font and below that information regarding the delivery costs (or if there is no delivery cost applicable as the user has reached the threshold).
+
+Following the total and delivery costs, is a short message to the user to alert them that there is a time limit for checkout. The user is given two hours from when they last added an item to their cart during which the items will be held for them, but after which their cart will be emptied and the items will be restocked. This will be discussed further in the "Stock" section of the "Management" features. 
+
+Below this, short summaries of the items in the cart are displayed. The information includes the thumbnail, name of the product, size select and quantity. Below the list of items is the button to clear the cart.
+
+Within this cart offcanvas element there are no options to adjust the quantity of the items within the cart or to remove individual items. It was decided to leave this functionality to the full cart page to reduce clutter in this element as it is intended as brief summary of the most important elements of the user's impending order. The only CRUD functionality available on this element is the "Clear Cart" button due to the simplicity of it.
+
 
 ### Cart
 <details>
@@ -237,12 +328,24 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Cart](readme-docs/screens/cart.webp)
 </details>
 
+The cart page features a summary on the left hand side or top of the page depending on the size of the user's device. On the right hand side or below the summary is a more details list of the items in the user's cart.
+
+The cart summary is a simple table with rows displaying the details of the user's order. It starts with the total number of items in the cart. Then there is a list of each item with their name, quantity, size and price. This is followed by the total if the item prices, the delivery cost and the grand total. Below the table a message is displayed alerting the user to how much more they have to spend to get free delivery, unless they have already reached this. Under this are the "Clear Cart" and "Checkout" buttons.
+
+The item list is on the right of the page on larger screens or below the summary on smaller screens. Here, the user is able to adjust the quantity of the items in the cart or remove the item entirely.
+
+
 ### Adjust Cart
 <details>
 <summary>Adjust Cart</summary>
 
 ![Adjust Cart](readme-docs/screens/adjust_cart.webp)
 </details>
+
+For each item on the cart page there is the ability to adjust the quantity of the item in the cart. This required slightly different code than was used for the "Add To Cart" form element as here the variant is already selected, but the idea is still the same where the user has to be prevented from adding a quantity greater than the actually number in stock. When the user adjusts the quantity and clicks "Update" they can see that the number has changed, but there is also a small confirmation message that appears to provide additional feedback.
+
+Again for brevity and to try to keep features and concepts contained, the stock feature will be discussed further in "Management" features.
+
 
 ### Remove From Cart
 <details>
@@ -251,6 +354,9 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Remove Cart](readme-docs/screens/remove_cart.webp)
 </details>
 
+Along with adjusting the quantity of items in the cart, the cart also has a "Remove" feature for each item present in the cart. This is a very simple function that deletes the item from the cart and gives the user a confirmation message. When the item is removed from the user's cart it is restocked and they can add it to their cart again if they change their mind.
+
+
 ### Clear Cart
 <details>
 <summary>Clear Cart</summary>
@@ -258,7 +364,11 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Clear Cart](readme-docs/screens/clear_cart.webp)
 </details>
 
+The clear cart feature is an expansion on the "Remove" function. More extreme, the user is able to empty their entire cart and begin again with their shopping if they choose. They receive a short message stating that their cart is cleared. The items that were in their cart are then restocked.
+
 ## Purchasing
+
+This section discusses the features related to the checkout app and the functionality involved with user purchases on the site.
 
 ### Checkout
 <details>
@@ -267,11 +377,24 @@ The final part of this section of the product detail page is the "Add To Cart" f
 ![Checkout](readme-docs/screens/checkout_empty.webp)
 </details>
 
+To reach the checkout page, the user can click on the link in the cart offcanvas element or on the "Checkout" button below the summary table on the cart page.
+
+The checkout page has two sections. To the left or on top, depending on the size of the user's device, is the summary of the order. Similarly to the cart page, this summary is a simple table listing the most relevant details of the items in the order. It includes small thumbnails of the items as well as the name just to be clear to the user what they are purchasing. Below this is the delivery cost and grand total.
+
+On the right of or below the order summary, is the form for delivery details. It appears slightly differently depending on whether the user is logged in or not, and whether their details are already saved. For a guest user the form will appear blank. If the user is logged in but has not saved their details previously, the email field will be prepopulated and at the bottom of the form is an option to save their details to their profile.
+
 <details>
 <summary>Checkout Filled Form</summary>
 
 ![Checkout Filled](readme-docs/screens/checkout_filled.webp)
 </details>
+
+If the user has previously had their details saved to their profile, these details will be prepopulated in the form fields when the user loads the checkout page. Any changes the user makes to their details in the form can be saved by selecting the save option when they submit the form
+
+Directly below the delivery details is the [Stripe](https://stripe.com) card element where the user inputs their card details to complete the order.
+
+For the delivery form and Stripe elements, the code is based on Code Institute's [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) project.
+
 
 ### Complete Order
 <details>

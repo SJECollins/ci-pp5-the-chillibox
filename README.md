@@ -54,12 +54,30 @@ The cart icon on the far right of the navbar acts as a toggle for the cart canva
 ![Footer](readme-docs/screens/footer.webp)
 </details>
 
+The footer is featured across all pages on the website. It includes three simple sections related to customer communication, offering ways for the customer to communicate with the business.
+
+The first section, "Contact Us", includes the address of the business, but then features an inline link to the contact page and encourages the user to visit that page to find all the other ways they can contact the business.
+
+The second section includes the newsletter subscription form. It's a very simple form that only requests the user's email address to sign up.
+
+The third section features social media links for the user to find the business on Facebook and Twitter.
+
+
 ### Index Page
 <details>
 <summary>Index Page</summary>
 
 ![Index](readme-docs/screens/index.webp)
 </details>
+
+The index or home page appears the same for all users. It features a carousel at the top of the page, visible to the user immediately upon landing on home page. The carousel currently includes three images. The first is a simple hero image with the business's name. The second is an image that advertises the hot sauce products with a link to the page. And the third is an image advertising the chilli plant seeds with a link to that page. Immediately below the carousel is the website's welcome message for the user.
+
+The next section of the site includes text that briefly introduces the products available to the user on the website. Each short paragraph includes an inline link to the category it is referencing. 
+
+And finally, at the bottom of the index page is a section for the "Newest Products" on the website. This section features four of the products most recently added to the website. They are displayed in "cards" with a thumbnail of the product, a short excerpt of the product's description, its stock status and the product's name as a link to its page.
+
+Overall, the index page is intended to be engaging, informative without overwhelming the customer, and to encourage the user to explore the website further.
+
 
 ### Contact Page
 <details>
@@ -68,12 +86,33 @@ The cart icon on the far right of the navbar acts as a toggle for the cart canva
 ![Contact](readme-docs/screens/contact.webp)
 </details>
 
+The contact page is available through a link in the "Help" drop down menu in the navbar and an inline link in the "Contact Us" section of the footer. It is also reachable through other inline links in other pages of the website, for example the review section on product pages includes a sentence with an inline link to this page that encourages users to visit the contact page if they have any concerns as it feels like an appropriate place on the site where user's may wish to reach out to the business.
+
+The contact page is simply laid out. At the top of the page, below the "Contact Us" heading are the contact details for the business. These details include the phone number which allows the user to call the business from their device simply by clicking on it, and the email address which has similar functionality. There is also the full address of the business and the social media links appear here as well.
+
+Below, there is a simple contact form using [EmailJS](https://www.emailjs.com/) for the user to send a message to the business. When submitted, a message is displayed to inform the user that their message has been sent and the business receives the message forwarded in an email by EmailJS.
+
+![Contact Email](readme-docs/screens/contact_email.webp)
+<details>
+<summary>Contact Email Body</summary>
+
+![Contact Email Body](readme-docs/screens/contact_email_body.webp)
+</details>
+
+Finally, there is a google map that indicates where the business is located with a chilli pepper icon.
+
+
 ### FAQ
 <details>
 <summary>FAQ</summary>
 
 ![FAQ](readme-docs/screens/faq.webp)
 </details>
+
+Under the "Help" drop down menu in the navbar, there is a link to the FAQ page. This page was created to provide additional context for the user for some areas of the business for which they may have questions or be curious about. While the use of text was intended to be minimal across the majority of the website, occasionally users may wish to learn more about certain aspects of the site or have questions for which the answer is not appropriate to place in other areas of the website. The benefit of having a dedicated section like an FAQ is the ability to expand upon it in the future in case the business discovers there are certain questions they receive frequently from users.
+
+The layout of the FAQ page is extremely simple with an emphasis on legibility. The questions and answers are featured in [Bootstrap Accordion](https://getbootstrap.com/docs/5.2/components/accordion/) elements organised under headings to make the questions on the page easy for the user to sift through to find the ones most relevant to them. When a user finds the question they are looking for, they can simply tap to reveal the answer.
+
 
 ### Privacy Policy
 <details>
@@ -82,7 +121,24 @@ The cart icon on the far right of the navbar acts as a toggle for the cart canva
 ![Privacy Policy](readme-docs/screens/privacy_policy.webp)
 </details>
 
+Also under the "Help" drop down menu in the navbar is a link to the website's privacy policy. It is a simple privacy policy generated with [Privacy Policy Generator](https://www.privacypolicygenerator.info/).
+
+
 ## Products
+
+### Product Card
+<details>
+<summary>Product Card</summary>
+
+![Product Card](readme-docs/screens/product_card.webp)
+</details>
+
+A feature used in "Newest Products", "Latest Products" and on the category pages, a product "card" has a box shadow to contain and highlight the individual product. The card features a simple summary of the products details: the name, a thumbnail image, a short excerpt of the product description, the product's stock status and a link to go to the product page. 
+
+The intention behind displaying products like this in the sections mentioned above was partly inspired by the [Bootstrap Card](https://getbootstrap.com/docs/5.0/components/card/) element and to limit the information provided for products outside of the product detail page. Only the most essential information needs to be available. The name is obviously important, especialy if it is what the user is searching for. The image is present to draw the user in visually and the excerpt to try to catch the user's attention. The stock information is obviously important as you don't want the user to go to the product page only to find it out of stock, which would be frustrating. And then, of course, the link so the user can access the product page.
+
+Some consideration was put into a "Quick Add" feature for users on the card, but as most products have different variants it was decided to forgo that feature currently.
+
 
 ### Newest Products
 <details>
@@ -91,12 +147,22 @@ The cart icon on the far right of the navbar acts as a toggle for the cart canva
 ![Newest Products](readme-docs/screens/newest_products.webp)
 </details>
 
+The most immediate area of the website related to products is the "Newest Products" section on the index page. As described in the "Index Page" feature description above, it displays four of the products most recently added to the website. Its intention is to highlight recently added products, to push them to the front of customers' minds. Users may come to the site with a particular products in mind, but hopefully by advertising newer products on the home page it will encourage users to look at these products as well. For regular users who may be visiting the site for reasons other than an immediate purchase (e.g. browsing, reading recipes) the hope is that they would take a quick look at the "Newest Products" when they visit and find something new they are interested in.
+
+The products are displayed in "Product Cards" which are discussed in the section of the same name above.
+
+
 ### Latest Products
 <details>
 <summary>Latest Products</summary>
 
 ![Latest Products](readme-docs/screens/latest_products.webp)
 </details>
+
+Similar to the "Newest Products" section of the index page, the first link under "Shop" is "Latest Products". And like the "Newest Products", this page displays four of the most recently added products, but in each category so a broader range of products may be featured. Again, the intention is to highlight recently added products to give them a boost. While it would be possible to filter individual category pages to display by recently added, and may be necessary in the future if the number of categories were to grow, the latest product page allows the user to simply click a link and view recently added products in all categories on one page. 
+
+The products are displayed in "Product Cards" which are discussed in the section of the same name above.
+
 
 ### Categories
 <details>
@@ -105,12 +171,28 @@ The cart icon on the far right of the navbar acts as a toggle for the cart canva
 ![Categories](readme-docs/screens/category.webp)
 </details>
 
+The category pages are featured on the "Shop" drop down menu on the navbar. There is a link for each category - "Seeds", "Sauces", "Seedboxes" and "Sauceboxes". 
+
+There is a single, simple category template that is used for every category page so that all of these pages have the same layout and are easy to understand for the user. The layout is very simple, the products are displayed in "Product Cards" as described in the section of the same name above, in rows of up to four on larger screens.
+
+There is a simple filter functionality on the category pages which filters the page by subcategory. Almost all products fall within one of "Mild", "Medium", "Hot", and "Mega Hot" subcategories which the user can filter by selecting the subcategory from the drop down menu and clicking "Go".
+
+
 ### Product Detail Page
 <details>
 <summary>Product Page</summary>
 
 ![Product Page](readme-docs/screens/product_page.webp)
 </details>
+
+The product detail page has two main sections, the second of which is the product reviews and is discussed in more detail later on in the "Reviews" features.
+
+The first section on this page features all of the products details. The template used for this page is used for all products so that all product detail pages have a similar layout. Similarly, one product model is used for all products with the choice of fields used depending on the type of product. For example, a basic seed product does not require the "ingredients" field to be filled out and, likewise, a hot sauce does not need "growth time". So, the template uses multiple if statements within tables to display a very similar layout for all products to keep a uniform look to the website.
+
+The first part of the product detail page is the section including the product name, the product image and the product description. Then we have the product's details in a table, which includes different information depending on which type of product the user is viewing. This table may include: the product category, heat level, growth time, ingredients, box contents, box in which the product appears, and rating. These details are dependent on factors such as the type of product, whether it has been reviewed, and whether the staff member who entered the product remembered to fill in the field.
+
+The final part of this section of the product detail page is the "Add To Cart" form, which will be discussed in more detail in "Product Variants" and "Cart" features below. Briefly, it allows the user to select which variant of the product they wish to purchase, the quantity, and to add it to their card.
+
 
 ### Product Variants
 <details>

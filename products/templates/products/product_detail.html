@@ -113,7 +113,7 @@
                 <form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
                     {% csrf_token %}
                     <div>
-                        <label class="me-4"><strong>Select Options:</strong></label>
+                        <label class="me-4"><strong>Select Option:</strong></label>
                         <select id="prices" name="product_variant" id="product_variant" class="border rounded-3" data-hx-get="/products/current_stock/" data-hx-target="#current_stock">
                             <option value="default">Please select an option...</option>
                             {% for variant in product.variants.all %}

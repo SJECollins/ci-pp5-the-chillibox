@@ -30,14 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateStock() {
         currentStock = stock.textContent
         if (currentStock == "") {
+            quantity.value = 0
             addBtn.disabled = true
             warning.style.display = "none"
         } else if (currentStock <= 0) {
-            quantity.textContent = 0
+            quantity.value = 0
             warning.style.display = "block"
             addBtn.disabled = true
         } else {
-            quantity.textContent = 1
+            quantity.value = 1
             warning.style.display = "none"
             addBtn.disabled = false
         }        

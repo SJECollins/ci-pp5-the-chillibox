@@ -82,10 +82,10 @@
                         class="small">on {{ comment.added_on|date:'d/m/y' }}</span></h2>
                 <p>{{ comment }}</p>
                 <div class="d-flex flex-row justify-content-between my-2">
-                    {% if user.userprofile == comment.user %}
+                    {% if user.is_authenticated and user.userprofile == comment.user %}
                         <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_comment' comment.pk %}">Edit comment</a>
                     {% endif %}
-                    {% if user.is_staff or user.userprofile == comment.commenter %}
+                    {% if user.is_staff or user.is_authenticated and user.userprofile == comment.user %}
                         <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_comment' comment.pk %}">Delete Review</a>
                     {% endif %}
                 </div>

@@ -24,7 +24,7 @@ Your Reviews
             {% for review in reviews_list %}
             <div class="col-md-6 mx-auto">
                 <h2 class="headings big">
-                    Review for {{ review.product}} <span class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
+                    Review for <a class="chilli-link" href="{% url 'products:product' review.product.slug %}">{{ review.product}}</a> <span class="small">on {{ review.added_on|date:'d/m/y' }}</span></h2>
                 <p class="card p-2">{{ review }}</p>
                 <p><strong>Rating: </strong>
                     {% if review.rating == 1 %}

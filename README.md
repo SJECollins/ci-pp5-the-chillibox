@@ -393,6 +393,8 @@ If the user has previously had their details saved to their profile, these detai
 
 Directly below the delivery details is the [Stripe](https://stripe.com) card element where the user inputs their card details to complete the order.
 
+Before the submit button, there is a warning to the user stating how much money their card is about to be charged.
+
 For the delivery form and Stripe elements, the code is based on Code Institute's [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) project.
 
 
@@ -403,6 +405,12 @@ For the delivery form and Stripe elements, the code is based on Code Institute's
 ![Checkout Success](readme-docs/screens/checkout_success.webp)
 </details>
 
+When the user completes their order successfully, they are brought to the checkout success page which summarises the details of their order and their delivery details.
+A success message is displayed on the top of the page which notifies the user of their order number and that a confirmation email will be sent to the email they provided on the delivery form.
+
+Just below the "We have your order" message at the top of the page, there is a link for the user to download a PDF copy of their order so that they can print a simple hardcopy.
+
+
 ### Order Confirmation
 ![Order Confirmation Subject](readme-docs/screens/order_confirm_email_line.webp)
 <details>
@@ -411,9 +419,79 @@ For the delivery form and Stripe elements, the code is based on Code Institute's
 ![Order Email](readme-docs/screens/order_confirm_email_body.webp)
 </details>
 
+Using Stripe webhooks based on the Code Institute [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) project, when a user submits their order a confirmation email is then sent to the user with their payment and delivery details.
+
+
 ### Order PDF
 
-## User Profiles
+The PDF of the user's order is created using [Reportlab](https://docs.djangoproject.com/en/4.1/howto/outputting-pdf/). It generates a very simple summary of the user's order, not unlike the confirmation email, except that the items the user ordered are also listed in the summary. The intention is to provide a convenient method for the user to download or print a copy of all the relevant details of their order.
+
+
+## User Authentication and Profiles
+
+This section discusses features related to the user authentication, and user profiles and reviews in the profiles app.
+
+### Registration
+<details>
+<summary>Register</summary>
+
+![Register](readme-docs/screens/register.webp)
+</details>
+
+[Django allauth](https://django-allauth.readthedocs.io/en/latest/index.html) was used for user authentication for this website and so functionality for registration and authentication is handled by allauth. The templates used for registration, login/logout, and email confirmation are allauth templates which have been styled to match the rest of the website.
+
+Registration is accessed through the "Register" link under the "Account" drop down menu and is unnecessary for most functionality on the website. A user can complete a purchase and generate a successful order without registering. Most functionality that requires registration is secondary to the purpose of the site and related to customer engagement and retention.
+
+Above is the registration form. Once successfully completed, the user is redirected to the page in the image below where they are informed that a verification has been sent to their email address.
+
+<details>
+<summary>Verification Sent</summary>
+
+![Verification Sent](readme-docs/screens/verify_sent.webp)
+</details>
+
+![Verification Inbox](readme-docs/screens/verify_email_inbox.webp)
+<details>
+<summary>Verification Email</summary>
+
+![Verification Email](readme-docs/screens/verify_email.webp)
+</details>
+
+Following the link in the email above, the user is brought to the confirmation page where they can confirm their email address and then are able to login to their profile. When a user successful registers with the site and logs in for the first time, a user profile is created for them in a one-to-one relationship.
+
+<details>
+<summary>Confirm Email</summary>
+
+![Confirm Email](readme-docs/screens/confirm_email.webp)
+</details>
+<details>
+<summary>Email Confirmed</summary>
+
+![Login Confirmed](readme-docs/screens/login_confirmed.webp)
+</details>
+
+
+### Login
+<details>
+<summary>Login</summary>
+
+![Login](readme-docs/screens/login.webp)
+</details>
+
+The login page is accessed through a "Login" link under the "Account" drop down menu and the template is standard from allauth and accepts either the user's username or email and their password as valid credentials to login. 
+
+Upon logging in, the user is redirected to their user profile.
+
+
+### Logout
+<details>
+<summary>Logout</summary>
+
+![Logout](readme-docs/screens/logout.webp)
+</details>
+
+When a user is logged in, the log out page is accessed through a "Logout" link under the "Account" drop down menu. Again, this is a standard allauth template styled to match the rest of the website.
+
 
 ### User Profile
 <details>
@@ -422,12 +500,26 @@ For the delivery form and Stripe elements, the code is based on Code Institute's
 ![Profile](readme-docs/screens/user_profile.webp)
 </details>
 
+User profiles are created automatically when a user registers with the website, as based off of the code from Code Institute's [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) project. When a user logs in, they are redirected to their profile.
+
+The main page of the user profile includes a section for the user's details and a table of their order history. Above the user's details, there are options available for the user to edit their profile details and to delete their account.
+
+The order history table summarises their orders with their order number, the date it was placed, the total and a link to the checkout success page for that order so that they can review it in more detail there.
+
+There are two links below the "Your Profile" heading at the top of the page. One link brings the user to the page containing their reviews and the other links to the page where they can manage their submitted recipes.
+
+
 ### Your Reviews
 <details>
-<summary></summary>
+<summary>User Reviews</summary>
 
-![]()
+![User Reviews](readme-docs/screens/user_reviews.webp)
 </details>
+
+"Your Reviews" on a user's profile is a page which contains a list of the reviews that the user has left on products. A user can leave a review anonymously, but there are certain features related to reviews which require a user to be logged in. One of these is the ability to access this history of their reviews.
+
+This page displays each review with all relevant details. It states which product the review is for and links to that product page. It states the date of the review, the body of the review and the rating which the user left. There are also options to edit or delete the review. The user can also edit or delete their reviews directly in the review section of the product's detail page. This functionality is only available to registered users.
+
 
 ### Your Recipes
 <details>
@@ -436,7 +528,14 @@ For the delivery form and Stripe elements, the code is based on Code Institute's
 ![User Recipes](readme-docs/screens/user_recipes.webp)
 </details>
 
-## Reviews
+On the "Your Recipes" page the user is able to submit a recipe for the website to consider for publication and view a list of the recipes that they have submitted already.
+
+User submitted recipes are not published directly by the website. User's are given a simple form with which to submit the recipe, but if the website chooses to publish the submitted recipe they will do so through their own recipe page in the "Management" section. This area in the user profile provides a way for user's to suggest recipes to the site to encourage engagement.
+
+If the website chooses to use a submitted recipe, they will mark it as published and a message will appear on this page next to the recipe. 
+
+In future this area of the user profile could be expanded to include a section where the user can save their favourite recipes from the website.
+
 
 ### Product Reviews
 <details>
@@ -451,66 +550,108 @@ For the delivery form and Stripe elements, the code is based on Code Institute's
 ![Review](readme-docs/screens/approved_review.webp)
 </details>
 
+The product detail page features a review form which user's can complete to submit a review and rating for a product. The user does not need to be registered to do so, but if they are not they cannot edit or delete their reviews after they have been published.
+
+When a user submits a review, a message is displayed thanking the user for submitting the review but it is not displayed immediately. Reviews require moderation and have to be approved from the "Management" section of the website. Once approved, the review will be displayed on the product page.
+
+
 ### Product Ratings
 ![Rating](readme-docs/screens/rating.webp)
 
+On each review that is submitted for a product, the individual rating that a user submitted is displayed. The average for all of these submitted ratings is then taken and displayed on the product's detail table.
+
+
 ## Recipes
+
+This section discusses features related to the recipes app.
 
 ### Recipes
 <details>
-<summary></summary>
+<summary>Recipe List</summary>
 
-![]()
+![Recipe List](readme-docs/screens/recipe_list.webp)
 </details>
+
+<details>
+<summary>Recipe Page</summary>
+
+![Recipe](readme-docs/screens/recipe.webp)
+</details>
+
+Recipes are added to the site by staff through the "Management" dashboard. 
+
+The website's recipe section is accessed through the "Recipes" link in the navbar and is available to all site users. This link brings the user to the list of recipes which displays a summary of each recipe. The recipe title on the summary links to the recipe page. And the date the recipe was created and the excerpt for the recipe are displayed beneath it.
+
+The recipes are laid out quite simply on the recipe page. Optionally, the staff member who added the recipe may choose to add an image which will be displayed next to the introductory paragraph. Otherwise the recipe page layout follows a simple flow of title, introduction, ingredients, directions and, optionally, an outro to wrap up if necessary.
+
+The recipes section is a very simple, blog-like addition to the website to drive user engagement and encourage users to revisit the site in between purchases.
+
 
 ### Recipe Comments
 <details>
-<summary></summary>
+<summary>Recipe Comments</summary>
 
-![]()
+![Recipe Comments](readme-docs/screens/recipe_comments.webp)
 </details>
+
+<details>
+<summary>Recipe Commented</summary>
+
+![Recipe Commented](readme-docs/screens/recipe_commented.webp)
+</details>
+
+The main way for users to interact with the recipes is by commenting. Commenting functionality is very similar to recipe reviews. Each recipe page features a comment form that users can complete and submit, the comment is then moderated, and when approved the comment is then displayed on the recipe's page.
+
+Again, like the product reviews, the user does not need to be registered to submit a comment but only registered users can edit or delete their own comments.
+
 
 ## Management
+
+This section discusses features related to the management app. A lot of the features discussed here relate to other apps in the project where their functionality is accessed through the management app by staff.
+
 ### Products
 <details>
-<summary></summary>
+<summary>Management Products</summary>
 
-![]()
+![Management Products](readme-docs/screens/management_products.webp)
 </details>
+
+
+
 
 ### Stock
 <details>
-<summary></summary>
+<summary>Management Stock</summary>
 
-![]()
+![Management Stock](readme-docs/screens/management_stock.webp)
 </details>
 
 ### Reviews
 <details>
-<summary></summary>
+<summary>Management Reviews</summary>
 
-![]()
+![Management Reviews](readme-docs/screens/management_reviews.webp)
 </details>
 
 ### Recipes
 <details>
-<summary></summary>
+<summary>Management Recipes</summary>
 
-![]()
+![Management Recipes](readme-docs/screens/management_recipe.webp)
 </details>
 
 ### Submitted Recipes
 <details>
-<summary></summary>
+<summary>Submitted Recipe</summary>
 
-![]()
+![Submitted Recipes](readme-docs/screens/user_recipe_approve.webp)
 </details>
 
 ### Comments
 <details>
-<summary></summary>
+<summary>Management Comment</summary>
 
-![]()
+![Management Comment](readme-docs/screens/management_comments.webp)
 </details>
 
 ## Admin

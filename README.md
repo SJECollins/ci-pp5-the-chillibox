@@ -1157,6 +1157,7 @@ The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.he
   - And [ReportLab's docs](https://www.reportlab.com/docs/reportlab-userguide.pdf)
 - The code for holding stock while the user is shopping is based on [this file](readme-docs/sarah_cart_holding.txt) which my mentor, Brian Macharia, wrote as we discussed the problem during a session.
 - The code for cart contexts and the checkout app is based on Code Institute's [Boutique ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
+- The code for the login adapter is based on custom redirects in the [allauth docs](https://django-allauth.readthedocs.io/en/latest/advanced.html#custom-redirects)
 
 ## Media
 - The logo was created in Inkscape

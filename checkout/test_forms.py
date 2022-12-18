@@ -4,7 +4,9 @@ from .forms import OrderForm
 
 
 class TestOrderForm(TestCase):
+    """ Testing order form """
     def test_empty_fields(self):
+        """ Testing empty fields """
         form = OrderForm(data={
             'first_name': '',
             'last_name': '',
@@ -32,6 +34,7 @@ class TestOrderForm(TestCase):
         self.assertEqual(form.errors['country'][0], 'This field is required.')
 
     def test_valid_form(self):
+        """ Testing valid form """
         form = OrderForm(data={
             'first_name': 'Test',
             'last_name': 'User',

@@ -198,6 +198,9 @@ class TestCheckoutLoggedIn(TestCase):
         self.order_line_item.save()
 
     def test_checkout_logged_in(self):
+        """
+        Testing checkout when logged in
+        """
         profile = UserProfile.objects.get(user=self.user)
         profile.first_name = 'Test'
         profile.last_name = 'User'

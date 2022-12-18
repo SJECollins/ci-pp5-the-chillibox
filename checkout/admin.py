@@ -4,12 +4,22 @@ from .models import Order, OrderLineItem
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
+    """
+    Inline Order line item
+    From CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
+    """
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
+    """
+    Register Order with admin with inline OrderLineItem
+    From CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
+    """
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',

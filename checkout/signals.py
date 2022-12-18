@@ -8,6 +8,8 @@ from .models import OrderLineItem
 def update_on_save(sender, instance, created, **kwargs):
     """
     Update order total on lineitem update/create
+    From CI's boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     instance.order.update_total()
 
@@ -16,5 +18,7 @@ def update_on_save(sender, instance, created, **kwargs):
 def update_on_delete(sender, instance, **kwargs):
     """
     Update order total on lineitem delete
+    From CI's boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     instance.order.update_total()

@@ -74,6 +74,7 @@ Checkout
         </form>
     </div>
 </section>
+<!-- Loading overlay -->
 <div id="loading-overlay">
     <h1 class="logo-font loading-spinner">
         <span class="icon">
@@ -83,6 +84,7 @@ Checkout
 </div>
 {% endblock %}
 
+<!-- Script for card element -->
 {% block additional_script %}
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}

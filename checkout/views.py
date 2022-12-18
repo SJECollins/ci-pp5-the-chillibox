@@ -45,7 +45,9 @@ def cache_checkout_data(request):
 
 def checkout(request):
     """
-    Checkout function based on CI's boutiquq_ado
+    Checkout function
+    Based on CI's boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     Takes form data, attempts to prefill delivery information
     Creates order
     Reduces stock for ordered variants
@@ -169,6 +171,8 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
+    Based on CI's boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     Handle successful checkouts
     Saves registered user's data
     Deletes session cart and session key

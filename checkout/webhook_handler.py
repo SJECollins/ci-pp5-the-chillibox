@@ -12,7 +12,11 @@ import time
 
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks"""
+    """
+    Handle Stripe webhooks
+    Based on CI's boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
+    """
 
     def __init__(self, request):
         self.request = request

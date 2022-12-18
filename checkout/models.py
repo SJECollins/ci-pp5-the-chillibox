@@ -12,7 +12,9 @@ from profiles.models import UserProfile
 
 class Order(models.Model):
     """
-    Order model from CI boutique_ado
+    Order model
+    Based CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     order_number = models.CharField(max_length=32, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
@@ -74,7 +76,9 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     """
-    OrderLineItem model from CI boutique_ado
+    OrderLineItem model
+    Based on CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     order = models.ForeignKey(Order, on_delete=models.CASCADE,
                               related_name='lineitems')

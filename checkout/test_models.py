@@ -14,6 +14,7 @@ class TestOrder(TestCase):
     Test order model.
     """
     def test_order(self):
+        """ Testing order model """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             order = Order.objects.create(
@@ -53,6 +54,7 @@ class TesOrderLineItem(TestCase):
     Test OrderLineItem model.
     """
     def setUp(self):
+        """ Setup for testing """
         self.category = Category.objects.create(
             name='Test category',
             slug='test-category'
@@ -83,6 +85,7 @@ class TesOrderLineItem(TestCase):
         self.order.save()
 
     def test_order_line_item(self):
+        """ Testing OrderLineItem model """
         lineitem = OrderLineItem.objects.create(
             order=self.order,
             product=self.product_a,

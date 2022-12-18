@@ -3,10 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const increase = document.querySelectorAll(".increase")
     const updateBtn = document.querySelectorAll(".update-btn")
 
+    // Add event listeners to our items in the cart
     decrease.forEach(item => item.addEventListener("click", decQty))
     increase.forEach(item => item.addEventListener("click", incQty))
     updateBtn.forEach(item => item.addEventListener("click", update))
 
+    // Decrease quantity
     function decQty(e) {
         let input = e.target.nextElementSibling
         let qty = Number(input.value)
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Increase quantity
     function incQty(e) {
         let input = e.target.previousElementSibling
         let qty = Number(input.value)
@@ -29,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Update item
     function update(e) {
         let form = e.target.previousElementSibling
         form.submit()

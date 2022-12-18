@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentStock
     warning.style.display = "none"
 
+    // Disable/enable add button, change qty and warning display
     function updateStock() {
         currentStock = stock.textContent
         if (currentStock == "") {
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }        
     }
 
+    // Decrease quantity
     function decQty() {
         if (qty > 1) {
             qty--
@@ -54,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Increase quantity
     function incQty() {
         if (qty < currentStock && qty < 99) {
             qty++

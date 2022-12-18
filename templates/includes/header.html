@@ -17,7 +17,9 @@
                     <li class="nav-item m-2 px-2">
                         <form action="{% url 'products:search_results' %}" method="GET">
                             <input name="q" type="text" placeholder="Search...">
-                            <button type="submit" class="chilli-link rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" class="chilli-link rounded" aria-label="Search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </form>
                     </li>
                     <!-- Shop drop down-->
@@ -61,7 +63,8 @@
                                 <a class="navbar-links navbar-drop-link" href="{% url 'home:faq' %}">FAQ</a>
                             </li>
                             <li>
-                                <a class="navbar-links navbar-drop-link" href="{% url 'home:privacy' %}">Privacy Policy</a>
+                                <a class="navbar-links navbar-drop-link" href="{% url 'home:privacy' %}">Privacy
+                                    Policy</a>
                             </li>
                             <li>
                                 <a class="navbar-links navbar-drop-link" href="{% url 'home:contact' %}">Contact Us</a>
@@ -79,7 +82,8 @@
                             <!-- Staff link to management dashboard, users link to home -->
                             {% if user.is_staff %}
                             <li>
-                                <a class="navbar-links navbar-drop-link" href="{% url 'management:dashboard' %}">Management</a>
+                                <a class="navbar-links navbar-drop-link"
+                                    href="{% url 'management:dashboard' %}">Management</a>
                             </li>
                             {% endif %}
                             <li>
@@ -102,9 +106,9 @@
                 </ul>
             </div>
             <!-- Cart -->
-            <a class="navbar-links pb-0 mb-0" data-bs-toggle="offcanvas" href="#theCart" role="button">
+            <a class="navbar-links pb-0 mb-0" data-bs-toggle="offcanvas" href="#theCart" role="button" aria-label="Cart">
                 <i class="fa-solid fa-cart-shopping big">
-                    {% if product_count > 0 %}<span class="small">{{ product_count }}</span>{% endif %}
+                {% if product_count > 0 %}<span class="small">{{ product_count }}</span>{% endif %}
                 </i>
             </a>
         </div>

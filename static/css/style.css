@@ -170,6 +170,11 @@ a {
     border-radius: 10px;
 }
 
+.carousel-pics {
+    max-width: 1600;
+    height: auto;
+}
+
 .thumbs {
     max-width: 160px;
     height: auto;

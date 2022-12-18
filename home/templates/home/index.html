@@ -16,17 +16,17 @@ Home
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{% static 'images/chilli_title.jpg' %}" class="d-block w-100 pics" alt="The Chillibox hero image">
+            <img width="1600" height="900" src="{% static 'images/chilli_title.webp' %}" class="d-block w-100 pics carousel-pics" alt="The Chillibox hero image">
         </div>
         <div class="carousel-item">
-            <img src="{% static 'images/chillisauce.jpg' %}" class="d-block w-100 pics" alt="The Chillibox hot sauce">
+            <img width="1600" height="900" src="{% static 'images/chillisauce.webp' %}" class="d-block w-100 pics carousel-pics" alt="The Chillibox hot sauce">
             <div class="carousel-caption d-none d-sm-block car-text">
                 <p class="mb-0">Spice up your life with our hot sauces!</p>
                 <a class="chilli-link" href="{% url 'products:category' slug='sauces' %}">Go To Sauces &raquo;</a>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{% static 'images/chilli_vars.jpg' %}" class="d-block w-100 pics"
+            <img width="1600" height="900" src="{% static 'images/chilli_vars.webp' %}" class="d-block w-100 pics carousel-pics"
                 alt="The Chillibox chilli varieties">
             <div class="carousel-caption d-none d-sm-block car-text">
                 <p class="mb-0">Grow your own with our variety of seeds!</p>
@@ -76,7 +76,7 @@ Home
                 <div class="chilli-card text-center mx-auto">
                     <h4>{{ product }}</h4>
                     {% if product.thumbnail %}
-                        <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
+                        <img width="300" height="300" class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
                     {% else %}
                         <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                     {% endif %}

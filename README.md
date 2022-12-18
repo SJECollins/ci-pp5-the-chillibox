@@ -554,6 +554,8 @@ The product detail page features a review form which user's can complete to subm
 
 When a user submits a review, a message is displayed thanking the user for submitting the review but it is not displayed immediately. Reviews require moderation and have to be approved from the "Management" section of the website. Once approved, the review will be displayed on the product page.
 
+If a user is logged in when looking at their own review on the product page, the options for edit and delete are present on the review they submitted. For an admin user, the option to delete a review is always present on all reviews.
+
 
 ### Product Ratings
 ![Rating](readme-docs/screens/rating.webp)
@@ -609,6 +611,18 @@ Again, like the product reviews, the user does not need to be registered to subm
 
 This section discusses features related to the management app. A lot of the features discussed here relate to other apps in the project where their functionality is accessed through the management app by staff.
 
+The management section or dashboard of the website is only accessible to site user who are staff. This section of the website contains functionality related to product and recipe management and user moderation. Similar functionality is available to admin users through the admin panel, however this management dashboard allows staff to perform basic management tasks without having to leave the main website.
+
+To prevent non-staff users from accessing the management dashboard the link only appears in the "Account" drop down menu for user's who are staff, and there is a simple mixin - the StaffRequiredMixin - that leverages Django's LoginRequiredMixin and UserPassesTestMixin for the management views in case users try to manually enter the url.
+```
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+
+class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+```
+
 ### Products
 <details>
 <summary>Management Products</summary>
@@ -616,7 +630,17 @@ This section discusses features related to the management app. A lot of the feat
 ![Management Products](readme-docs/screens/management_products.webp)
 </details>
 
+The product dashboard is the first page that the staff user will arrive on when they access the management. Immediately at the top of the page, below the "Products" heading is a button to "Add New Product" which allows the user to add new products to the website.
 
+The bulk of this dashboard are tables of the products on the website. These tables are best displayed on large screens, but do function on small devices. However there is a disclaimer on smaller screens that warns that the page is better suited to large screens.
+
+These product tables are grouped by category and then subcategory. For example, within the Seeds category, you will find a table for Mild Seeds which will include all the seeds whose subcategory is mild. The number of products within each category and subcategory is visible for the user.
+
+Within each table, there is minimal information for the product as the focus is on functionality. A typical product entry will include a name which links to the product's page, whether the thumbnail is present or not (as this also tells us if the product has an image unless something has gone wrong), then options to "Edit" the product, "Delete" the product, "Add" a variant, and view the variants.
+
+If no variants are present, this is indicated on the table when the product's variants are toggled to visible. Variants can be added by clicking "Add" under the variant heading for a product. When variants are present their details include the "Size", "Price", and "Stock", and options to "Update Stock", "Edit" and "Delete" the variant.
+
+From this table, the user is able to perform basic CRUD functions for the products and variants on the website, which is the aim of this section of the website. However, for each product on the website the options to "Edit" and "Delete" are also available on other pages for staff members. For example, if a user is a logged in as staff when they view the product detail page, below the description there are options to "Edit" and "Delete" the product. These options, particularly to edit, are available here in case the staff member is viewing the product page and notices a simple error like a typo and so does not need to return to the management dashboard to correct this.
 
 
 ### Stock
@@ -626,12 +650,57 @@ This section discusses features related to the management app. A lot of the feat
 ![Management Stock](readme-docs/screens/management_stock.webp)
 </details>
 
+On the products page of the management dashboard, staff users can adjust the stock for variants by clicking "Update Stock" in the table. This opens a modal with a single field for the user to enter the stock. They can then see the new stock under the "Stock" heading in the table.
+
+This variant stock can be managed here in the management dashboard by manually altering the stock field, but throughout the rest of the website stock is mainly managed by models and functions in the cart app. When a user adds a product to their cart, the item is also added to the HeldCart and HeldItems model in a similar way to the cart in their session. The quantity of the item is also added and the quantity of stock available for purchase is then reduced by this amount.
+
+There is a time limit for how long users can hold items in their cart. This is to prevent stock from being added to a cart, reducing the amount of available stock for other users, then abandoning their cart and having the stock disappear from the database. How this is prevented is that user's have a two hour window to checkout from the time they last added an item to their cart. When the user reaches the end of this two hour window without checking out, the items are removed from their cart and restocked.
+
+The held cart objects are tied to the user's session cart via the session key. This tethers the held cart object to the session cart without having the user needing to have an account and prevents duplicate carts. If a user is to log in or out, the session key is changed and the held cart is then left to count down to restock the items. A warning is displayed on product pages by the "Add To Cart" button advising users to login before they start shopping.
+
+Restocking abandoned carts is handled by functionality implemented through [APScheduler](https://apscheduler.readthedocs.io/en/3.x/). Within the cart app, there is a simple restock job that checks the cart's time and if it has reached the limit will restock items and delete the held cart.
+```
+def restock():
+    carts = HeldCart.objects.all()
+
+    if carts is not None:
+        for cart in carts:
+            if cart.check_time():
+                for held_item in cart.held_items.all():
+                    variant = Variant.objects.get(id=held_item.variant.id)
+                    variant.current_stock += held_item.qty
+                    held_item.delete()
+                if not cart.held_items.exists():
+                    cart.delete()
+```
+Scheduling of this task is handled within updater.py and runs this function every 15 minutes.
+```
+from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+from .job import restock
+
+
+def start():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(restock, 'interval', minutes=15)
+    scheduler.start()
+```
+The implementation of APScheduler for handling this job is based on a tutorial from [Did Coding](https://www.youtube.com/watch?v=Lzy4G1wZ7NQ&ab_channel=DidCoding).
+
+
 ### Reviews
 <details>
 <summary>Management Reviews</summary>
 
 ![Management Reviews](readme-docs/screens/management_reviews.webp)
 </details>
+
+In the management dashboard, there are links available at the top of the page to navigate to different pages within the dashboard. One of these navigates to "Reviews" which lists the user reviews.
+
+User reviews are displayed as a list. Each review displays the name of the reviewer (or anonymous), the date of the submitted review, the products reviewed, the rating and the content. Options are available for each review to "Delete" the review or approve it. Once a review has been approved, this status is then displayed.
+
+In the future, it may be beneficial to introduce further classifications for user reviews beyond a boolean of approved or not. Possibly classifications could include "Pending Approval", "Not Approved", and "Approve". However, currently with the option to delete reviews, reviews that are not acceptable can be removed in that way.
+
 
 ### Recipes
 <details>
@@ -640,12 +709,24 @@ This section discusses features related to the management app. A lot of the feat
 ![Management Recipes](readme-docs/screens/management_recipe.webp)
 </details>
 
+The recipes section of the management dashboard also includes the submitted recipes and the recipe comments. At the top of the page, beneath the links, is the button to "Add Recipe" which brings the user to the recipe form for submitting recipes to the site. 
+
+The recipes page itself is a list of recipes displayed as a summary. It displays the title linking to the recipe page, the date created, the excerpt from the recipe, and options to "Publish", "Edit" and "Delete" the recipes. When the recipe is published on the website, this option to publish is replaced with a message stating that it has been publish and displays the link to the recipe page.
+
+Staff users can also edit and delete recipes directly from the recipe pages. These options are displayed for users who are logged in and who are staff.
+
+
 ### Submitted Recipes
 <details>
 <summary>Submitted Recipe</summary>
 
 ![Submitted Recipes](readme-docs/screens/user_recipe_approve.webp)
 </details>
+
+Within the recipes section of the management dashboard, there is a link to the "Submitted Recipes" page which displays the recipes submitted by users. From this page, the staff users are able to review the submitted recipes and if they are chosen to publish on the website, they can mark them as "Published" to provide feedback to the owner.
+
+The intention is not to directly publish the recipe. From this point, the staff user is expected to add the recipe to the site via the normal route while crediting the original user.
+
 
 ### Comments
 <details>
@@ -654,7 +735,19 @@ This section discusses features related to the management app. A lot of the feat
 ![Management Comment](readme-docs/screens/management_comments.webp)
 </details>
 
+Also within the recipes section of the management dashboard, is a link to the "Recipe Comments" to allow staff users to manage comments on recipe pages.
+
+In the same way that user reviews are displayed, the user comments display the user who commented, the date it was added, the comment body and options to "Delete" or "Approve" the comment. This section allows for moderation of comments on the recipes as comments are not displayed until approved by a staff member.
+
+
 ## Admin
+
+Most of the functionality available on the main website to staff users is also available through the admin panel. Most models are registered to allow admin users to perform CRUD functionality through the admin panel.
+
+In some cases CRUD functionality is only available through the admin panel. For example, categories are registered with admin but there's no functionality available through the management dashboard on the main site. It was decided that because any addition to categories also may require changes to templates (e.g. navigation links, the latest products template), that it would beyond the scope of an average staff member to make any additions to categories and so this functionality should remain within admin where it can be accessed by an IT person.
+
+Similarly, users and user profiles can be managed through the admin panel, including changing passwords and deleting users, but this functionality is not present on the management dashboard to discourage staff from attempting to manipulate the user database. Users are able to edit their own profile details or delete their account themselves, but these options are available to them through their profile as they have the right to manage their own personal information.
+
 
 # Agile Methodology
 ## Epics, User Stories

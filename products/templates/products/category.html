@@ -28,6 +28,7 @@
             </form>
         </div>
     </div>
+    <!-- Products-->
     <div class="row d-flex justify-content-evenly">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
@@ -35,7 +36,6 @@
                 <div>
                     <h2 class="headings headings-sm">{{ product }}</h2>
                 </div>
-                
                 <div class="my-3">
                     {% if product.thumbnail %}
                         <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
@@ -43,7 +43,6 @@
                     <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                     {% endif %}
                 </div>
-                
                 <div>
                     <div class="row">
                         <div class="col">
@@ -99,6 +98,7 @@
     </a>	
 </div>
 
+<!-- Return to top script -->
 <script>
     const scrollBtn = document.getElementById("scroll-btn")
     scrollBtn.addEventListener("click", () => {

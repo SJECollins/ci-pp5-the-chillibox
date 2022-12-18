@@ -14,7 +14,7 @@ from .forms import CommentForm
 class RecipeList(generic.ListView):
     """
     Recipe list view
-    Genergic list view, paginated
+    Generic list view, paginated
     Queryset filter returns published recipes by date created
     """
     model = Recipe

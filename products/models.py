@@ -96,6 +96,9 @@ class Product(models.Model):
         return thumbnail
 
     def save(self, *args, **kwargs):
+        """
+        Override save to create thumbnail if image present but no thumbnail
+        """
         super(Product, self).save(*args, **kwargs)
         if self.image:
             if not self.thumbnail:
@@ -126,6 +129,9 @@ class Variant(models.Model):
 
     @property
     def fulfillable_qty(self):
+        """
+        Fulfillabel quantity of product depending on current stock - held stock
+        """
         qty_held = self.held_stock.aggregate(Sum('qty'))
         if qty_held['qty__sum'] is not None:
             return self.current_stock - int(qty_held['qty__sum'])
@@ -133,6 +139,9 @@ class Variant(models.Model):
             return self.current_stock
 
     def save(self, *args, **kwargs):
+        """
+        Override save to set stock boolean depending on current stock
+        """
         if self.current_stock < 1:
             self.in_stock = False
         elif self.current_stock >= 1:

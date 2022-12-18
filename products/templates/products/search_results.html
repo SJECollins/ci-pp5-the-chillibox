@@ -27,7 +27,6 @@ Search Results
                         <div>
                             <h2 class="headings headings-sm">{{ product }}</h2>
                         </div>
-                        
                         <div class="my-3">
                             {% if product.thumbnail %}
                                 <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
@@ -35,7 +34,6 @@ Search Results
                             <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                             {% endif %}
                         </div>
-                        
                         <div>
                             <div class="row">
                                 <div class="col">
@@ -54,7 +52,8 @@ Search Results
                             </div>
                         </div>
                     </div>
-                    {% if user.is_superuser %}
+                    <!-- Staff options -->
+                    {% if user.is_staff %}
                     <div class="my-3">
                         <a class="chilli-btn" href="{% url 'management:edit_product' product.pk %}">Edit Product</a>
                         <a class="chilli-btn chilli-dngr" href="{% url 'management:delete_product' product.pk %}">Delete Product</a>

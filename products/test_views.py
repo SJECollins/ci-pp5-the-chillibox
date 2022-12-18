@@ -195,7 +195,13 @@ class TestProductsWithProducts(TestCase):
 
 
 class TestPostReviewLoggedIn(TestCase):
+    """
+    Testing posting review when logged in
+    """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -218,6 +224,9 @@ class TestPostReviewLoggedIn(TestCase):
         self.product_a.save()
 
     def test_logged_in_review(self):
+        """
+        Testing posting review when logged in
+        """
         self.assertEqual(Reviews.objects.count(), 0)
         slug = self.product_a.slug
         data = {

@@ -1156,6 +1156,7 @@ The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.he
   - [This article on blog.pythonlibrary.org](https://www.blog.pythonlibrary.org/2018/02/06/reportlab-101-the-textobject/)
   - And [ReportLab's docs](https://www.reportlab.com/docs/reportlab-userguide.pdf)
 - The code for holding stock while the user is shopping is based on [this file](readme-docs/sarah_cart_holding.txt) which my mentor, Brian Macharia, wrote as we discussed the problem during a session.
+- The code to create a thumbnail from image for the product model is from this Github Gist by [Valberg](https://gist.github.com/valberg/2429288)
 - The code for cart contexts and the checkout app is based on Code Institute's [Boutique ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
 - The code for the login adapter is based on custom redirects in the [allauth docs](https://django-allauth.readthedocs.io/en/latest/advanced.html#custom-redirects)
 

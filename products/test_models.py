@@ -11,6 +11,9 @@ class TestCategory(TestCase):
     Test category model
     """
     def test_category(self):
+        """
+        Testing category model
+        """
         category = Category.objects.create(
             name='Test category',
             slug='test-category',
@@ -26,6 +29,9 @@ class TestProduct(TestCase):
     Test product model.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.category = Category.objects.create(
             name='Test category',
             slug='test-category'
@@ -39,6 +45,9 @@ class TestProduct(TestCase):
         self.product_a.save()
 
     def test_product(self):
+        """
+        Testing product model
+        """
         product = Product.objects.create(
             category=self.category,
             subcategory='Mild',
@@ -73,6 +82,9 @@ class TestVariant(TestCase):
     Test variant model
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.category = Category.objects.create(
             name='Test category',
             slug='test-category'
@@ -86,6 +98,9 @@ class TestVariant(TestCase):
         self.product_a.save()
 
     def test_variant(self):
+        """
+        Testing variant model
+        """
         variant = Variant.objects.create(
             product=self.product_a,
             size='250ml',

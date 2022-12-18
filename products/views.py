@@ -12,6 +12,10 @@ from .models import Category, Variant, Product
 
 
 class LatestProducts(View):
+    """
+    Latest product view
+    Generic view
+    """
     def get(self, request):
         seedcat = Product.objects.filter(category__name='Seeds').order_by('-added_on')[0:4]  # noqa
         saucecat = Product.objects.filter(category__name='Sauces').order_by('-added_on')[0:4]  # noqa
@@ -28,7 +32,14 @@ class LatestProducts(View):
 
 
 class CategoryView(View):
+    """
+    Category view
+    Generic view
+    """
     def get(self, request, slug, *args, **kwargs):
+        """
+        Filterkey in get to filter queryset
+        """
         category = get_object_or_404(Category, slug=slug)
         products_list = Product.objects.filter(category__slug=slug).all()
         template_name = 'products/category.html'
@@ -47,6 +58,13 @@ class CategoryView(View):
 
 
 class ProductDetail(View):
+    """
+    Product detail view
+    Generic view
+    Using ReviewForm from profiles app for review on product page
+    Reviews filter returns approved reviews for current product
+    Avg_rating is rounded average of those reviews
+    """
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
         reviews = product.reviews.filter(approved=True).order_by('-added_on')
@@ -94,6 +112,11 @@ class ProductDetail(View):
 
 
 class SearchResults(ListView):
+    """
+    Search results view
+    Generic list view using Product model
+    Using Q to query by name or description
+    """
     model = Product
     template_name = 'products/search_results.html'
 
@@ -106,6 +129,10 @@ class SearchResults(ListView):
 
 
 def current_stock(request):
+    """
+    Current stock function
+    Returns current stock when variant selected on product detail page
+    """
     variant_id = request.GET.get('product_variant')
     if variant_id == 'default':
         return HttpResponse('')

@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 
 
 class Recipe(models.Model):
+    """
+    Recipe model for use by staff
+    User field included but currently not necessary as only staff publish
+    recipes and field not used for crediting at the moment. Future proofing
+    """
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
                              blank=True)
     title = models.CharField(max_length=140)
@@ -28,11 +33,17 @@ class Recipe(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        """
+        Override save to slugify title for slug field
+        """
         self.slug = slugify(self.title)
         super(Recipe, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
+    """
+    Comment model
+    """
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
                              blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,
@@ -47,6 +58,9 @@ class Comment(models.Model):
 
 
 class SubmittedRecipe(models.Model):
+    """
+    Submitted recipe model for use by non-staff users
+    """
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
                              blank=True)
     recipe_title = models.CharField(max_length=140)

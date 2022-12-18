@@ -12,6 +12,9 @@ class TestRecipes(TestCase):
     Test views for recipe app if not logged in.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.recipe_a = Recipe.objects.create(
             title='Test Recipe',
             intro='Test intro',
@@ -173,6 +176,9 @@ class TestRecipesLoggedIn(TestCase):
     Test views for recipe app logged in but not is_staff.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -319,6 +325,9 @@ class TestRecipesIsStaff(TestCase):
     Test views for recipe app logged in and is_staff is true.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',

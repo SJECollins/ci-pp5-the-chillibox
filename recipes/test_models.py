@@ -13,6 +13,9 @@ class TestRecipe(TestCase):
     Test recipe model.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -21,6 +24,9 @@ class TestRecipe(TestCase):
         self.user.save()
 
     def test_recipe(self):
+        """
+        Testing recipe model
+        """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             recipe = Recipe.objects.create(
@@ -54,6 +60,9 @@ class TestComments(TestCase):
     Test comment model.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -70,6 +79,9 @@ class TestComments(TestCase):
         self.recipe_a.save()
 
     def test_comment(self):
+        """
+        Testing comment model
+        """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             comment = Comment.objects.create(
@@ -94,6 +106,9 @@ class TestSubmittedRecipe(TestCase):
     Test user submitted recipe model.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -102,6 +117,9 @@ class TestSubmittedRecipe(TestCase):
         self.user.save()
 
     def test_submitted_recipe(self):
+        """
+        Testing submitted recipe model
+        """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             recipe = SubmittedRecipe.objects.create(

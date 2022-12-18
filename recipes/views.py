@@ -12,6 +12,11 @@ from .forms import CommentForm
 
 
 class RecipeList(generic.ListView):
+    """
+    Recipe list view
+    Genergic list view, paginated
+    Queryset filter returns published recipes by date created
+    """
     model = Recipe
     template_name = 'recipes/recipes.html'
     paginate_by = 10
@@ -22,6 +27,10 @@ class RecipeList(generic.ListView):
 
 
 class ViewRecipe(View):
+    """
+    Recipe view
+    Generic view, using CommentForm from forms.py
+    """
     def get(self, request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
         comments = recipe.comments.filter(approved=True).order_by('-added_on')
@@ -63,6 +72,13 @@ class ViewRecipe(View):
 
 
 class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    Create Recipe view
+    CreateView using Recipe model, specify fields
+    StaffRequiredMixin as user must be registered and staff, otherwise
+    redirects user
+    SuccessMessageMixin to display success message when form submitted
+    """
     model = Recipe
     fields = ('title', 'image', 'intro', 'excerpt', 'ingredients',
               'directions', 'outro',)
@@ -72,6 +88,13 @@ class CreateRecipe(StaffRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Update recipe view
+    UpdateView using Recipe model
+    StaffRequiredMixin as user must be registered and staff, otherwise
+    redirects user
+    SuccessMessageMixin to display success message when form submitted
+    """
     model = Recipe
     fields = ('title', 'image', 'intro', 'excerpt', 'ingredients',
               'directions', 'outro',)
@@ -81,12 +104,23 @@ class UpdateRecipe(StaffRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class DeleteRecipe(StaffRequiredMixin, DeleteView):
+    """
+    Delete recipe view
+    DeleteView using Recipe model
+    StaffRequiredMixin as user must be registered and staff, otherwise
+    redirects user
+    """
     model = Recipe
     template_name = 'management/confirm_delete.html'
     success_url = '/management/recipe/'
 
 
 class EditComment(LoginRequiredMixin, UpdateView):
+    """
+    Edit comment view
+    UpdateView - doesn't use CommentForm in forms.py, uses Comment model
+    LoginRequiredMixin as only registered users can edit their comments
+    """
     model = Comment
     fields = ('content',)
     template_name = 'recipes/comment_form.html'
@@ -94,12 +128,23 @@ class EditComment(LoginRequiredMixin, UpdateView):
 
 
 class DeleteComment(LoginRequiredMixin, DeleteView):
+    """
+    Delete comment view
+    DeleteView using Comment model
+    LoginRequiredMixin as only registered users and staff can delete comments
+    """
     model = Comment
     template_name = 'management/confirm_delete.html'
     success_url = '/recipes/'
 
 
 class SubmitRecipe(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    Submit recipe view
+    CreateView using SubmittedRecipe view
+    LoginRequiredMixin as only registered users can submit recipes
+    SuccessMessageMixin to display success message when user submits recipe
+    """
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
@@ -112,6 +157,12 @@ class SubmitRecipe(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class EditSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Edit submitted recipe view
+    UpdateView using SubmittedRecipe model
+    LoginRequiredMixin as only registered users can submit and edit recipes
+    SuccessMessageMixin to display success message when user edits recipe
+    """
     model = SubmittedRecipe
     fields = ('recipe_title', 'ingredients', 'directions', 'notes',)
     template_name = 'recipes/recipe_form.html'
@@ -119,7 +170,13 @@ class EditSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Your recipe has been edited.'
 
 
-class DeleteSubmittedRecipe(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa
+class DeleteSubmittedRecipe(LoginRequiredMixin, DeleteView):
+    """
+    Delete submitted recipe view
+    DeleteView using SubmittedRecipe
+    LoginRequiredMixin as only registered users and staff can delete submitted
+    recipes
+    """
     model = SubmittedRecipe
     template_name = 'management/confirm_delete.html'
     success_url = '/profiles/user_recipes/'

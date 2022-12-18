@@ -7,10 +7,12 @@ Recipes
 {% endblock title %}
 
 {% block content %}
+<!-- Recipe list -->
 <section class="container-fluid">
     <div class="col-12">
         <h1 class="headings text-center">Recipes</h1>
         <div class="col-10 mx-auto">
+            <!-- Recipe list -->
             {% for recipe in recipe_list %}
             <div class="col-md-6 my-4 mx-auto">
                 <h2 class="headings big"><a class="chilli-link" href="{% url 'recipes:recipe' recipe.slug %}">{{ recipe }} &raquo;</a></h2>
@@ -31,6 +33,7 @@ Recipes
             {% endfor %}
         </div>
     </div>
+    <!-- Pagination -->
         {% if is_paginated %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

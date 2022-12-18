@@ -6,13 +6,16 @@
 {% endblock %}
 
 {% block content %}
+<!-- Template for recipe detail page -->
 <section class="container-fluid">
     <div class="col-sm-10 col-lg-8 mx-auto recipe-card">
+        <!-- Recipe name and date created-->
         <div class="text-center">
             <h1 class="headings mb-2">{{ recipe }}</h1>
             <span><small>Added on {{ recipe.created }}</small></span>
         </div>
         <hr>
+        <!-- Whether image exists or not -->
         {% if recipe.image %}
         <div class="row">
             <div class="col-md-6 text-center">
@@ -50,7 +53,8 @@
             {{ recipe.outro|linebreaks }}
         </div>
     </div>
-    {% if user.is_authenticated %}
+    <!-- Options for staff -->
+    {% if user.is_staff %}
     <div class="d-flex flex-row justify-content-evenly">
         <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
         <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
@@ -60,6 +64,7 @@
 <hr>
 <section class="container-fluid">
     <div class="col">
+        <!-- Comment form -->
         <h1 class="headings">Comments</h1>
         {% if commented %}
         <p><strong>Thank you for your comment!</strong> It is awaiting moderation.</p>
@@ -73,6 +78,7 @@
         </form>
         {% endif %}
     </div>
+    <!-- Comments -->
     <div class="row">
         {% for comment in comments %}
         <div class="col-sm-6 col-lg-4 mb-5 mb-3">

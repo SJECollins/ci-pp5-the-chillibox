@@ -1166,29 +1166,29 @@ The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.he
 - The fonts are imported from [Google Fonts](https://fonts.google.com)
 
 - Images from [Pixabay](https://pixabay.com/):
-  - [Bell Pepper](https://pixabay.com/photos/bell-peppers-red-green-food-2708680/)
-  - [Bird's Eye](https://pixabay.com/photos/bird-s-eye-chili-bird-eye-chili-2723877/)
-  - [Cascabel](https://pixabay.com/photos/cascabel-chili-rattle-chili-7539533/)
-  - [Cayenne](https://pixabay.com/photos/hot-peppers-growing-red-peppers-2708678/)
-  - [Ghost Pepper](https://pixabay.com/photos/ghost-pepper-hot-scoville-units-3743479/)
-  - [Habanero](https://pixabay.com/photos/yellow-habanero-pepper-plant-4394115/)
-  - [Hungarian Wax](https://pixabay.com/photos/hungarian-wax-peppers-1374791/)
-  - [Jalapeno](https://pixabay.com/photos/chili-jalapeno-chilli-pepper-sharp-282054/)
-  - [Paprika](https://pixabay.com/photos/chilli-paprika-organic-vegetable-7527531/)
-  - [Poblano](https://pixabay.com/photos/chile-poblano-food-puebla-4466725/)
+  - [Bell Pepper](https://pixabay.com/photos/bell-peppers-red-green-food-2708680/) by JillWellington
+  - [Bird's Eye](https://pixabay.com/photos/bird-s-eye-chili-bird-eye-chili-2723877/) by bluebeens
+  - [Cascabel](https://pixabay.com/photos/cascabel-chili-rattle-chili-7539533/) by balouriarajesh
+  - [Cayenne](https://pixabay.com/photos/hot-peppers-growing-red-peppers-2708678/) by JillWellington
+  - [Ghost Pepper](https://pixabay.com/photos/ghost-pepper-hot-scoville-units-3743479/) by jim CARNAHAN
+  - [Habanero](https://pixabay.com/photos/yellow-habanero-pepper-plant-4394115/) by hat3m
+  - [Hungarian Wax](https://pixabay.com/photos/hungarian-wax-peppers-1374791/) by Brett Hondow
+  - [Jalapeno](https://pixabay.com/photos/chili-jalapeno-chilli-pepper-sharp-282054/) by mld
+  - [Paprika](https://pixabay.com/photos/chilli-paprika-organic-vegetable-7527531/) by hartono subagio
+  - [Poblano](https://pixabay.com/photos/chile-poblano-food-puebla-4466725/) by Víctor González
   - [Purple Bell](https://pixabay.com/photos/farm-fresh-bell-peppers-pepper-bell-3896465/)
-  - [Serrano](https://pixabay.com/photos/chilli-pepper-plant-hot-small-red-248556/)
-  - [Bottle](https://pixabay.com/photos/bottle-image-mockup-product-red-7458648/)
+  - [Serrano](https://pixabay.com/photos/chilli-pepper-plant-hot-small-red-248556/) by francis goh
+  - [Bottle](https://pixabay.com/photos/bottle-image-mockup-product-red-7458648/) by Personal_Graphic
 
 - Images from [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page):
-  - [Banana](https://commons.wikimedia.org/wiki/File:Peppers_Summer_2017_(252381621).jpeg)
-  - [Carolina Reaper](https://commons.wikimedia.org/wiki/File:Mature_Carolina_Reaper.jpg)
-  - [Fatalii](https://commons.wikimedia.org/w/index.php?curid=41796968)
-  - [Fresno](https://commons.wikimedia.org/wiki/File:Fresno_pepper_6.jpg)
-  - [Hidalgo](https://commons.wikimedia.org/wiki/File:Capsicum_frutescens_%27Hidalgo%27_003.JPG)
-  - [Moruga Scorpion](https://commons.wikimedia.org/wiki/File:Trinidad_moruga_scorpion_ripe_ready_to_pick.jpg)
-  - [Naga](https://commons.wikimedia.org/wiki/File:Naga_jolokia_chili.jpg)
-  - [Scotch Bonnet](https://commons.wikimedia.org/wiki/File:20190811_Scotch_Bonnet_02.jpg)
+  - [Banana](https://commons.wikimedia.org/wiki/File:Peppers_Summer_2017_(252381621).jpeg) by Paul Zucker
+  - [Carolina Reaper](https://commons.wikimedia.org/wiki/File:Mature_Carolina_Reaper.jpg) by Magnolia677
+  - [Fatalii](https://commons.wikimedia.org/w/index.php?curid=41796968) by Tigerente
+  - [Fresno](https://commons.wikimedia.org/wiki/File:Fresno_pepper_6.jpg) by Nadiatalent
+  - [Hidalgo](https://commons.wikimedia.org/wiki/File:Capsicum_frutescens_%27Hidalgo%27_003.JPG) by H. Zell
+  - [Moruga Scorpion](https://commons.wikimedia.org/wiki/File:Trinidad_moruga_scorpion_ripe_ready_to_pick.jpg) by Tparsons
+  - [Naga](https://commons.wikimedia.org/wiki/File:Naga_jolokia_chili.jpg) by Balaram Mahalder
+  - [Scotch Bonnet](https://commons.wikimedia.org/wiki/File:20190811_Scotch_Bonnet_02.jpg) by Zinnman
 
 
 ## Acknowledgement

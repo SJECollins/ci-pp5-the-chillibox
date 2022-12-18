@@ -10,7 +10,7 @@ Your Reviews
 <section class="container-fluid">
     <div class="text-center">
         <!-- Navigation within profile -->
-        <h1 class="headings mb-2">Your Reviews</h1>
+        <h2 class="headings mb-2">Your Reviews</h2>
         <div class="d-flex flex-row justify-content-center">
             <div class="border border-2 p-1">
                 <a class="chilli-link" href="{% url 'profiles:profile' %}">Your Profile</a>
@@ -30,15 +30,15 @@ Your Reviews
                 <p class="card p-2">{{ review }}</p>
                 <p><strong>Rating: </strong>
                     {% if review.rating == 1 %}
-                    <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                    <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}" alt="Rating">
                     {% elif review.rating == 2 %}
-                    <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                    <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}" alt="Rating">
                     {% elif review.rating == 3 %}
-                    <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                    <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}" alt="Rating">
                     {% elif review.rating == 4 %}
-                    <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                    <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}" alt="Rating">
                     {% else %}
-                    <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                    <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}" alt="Rating">
                     {% endif %}
                 </p>
                 <div class="d-flex flex-row justify-content-evenly">

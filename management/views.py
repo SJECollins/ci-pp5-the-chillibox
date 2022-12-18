@@ -95,12 +95,14 @@ class ReviewDashboard(StaffRequiredMixin, View):
 
 
 class RemoveReview(StaffRequiredMixin, DeleteView):
+    """ Remove Review view for management dashboard """
     model = Reviews
     template_name = 'management/confirm_delete.html'
     success_url = '/management/user_reviews'
 
 
 def approve_review(request, pk):
+    """ Approve review function for management dashboard """
     if request.user.is_staff:
         review = get_object_or_404(Reviews, pk=pk)
         review.approved = True
@@ -111,6 +113,7 @@ def approve_review(request, pk):
 
 
 def update_stock(request, pk):
+    """ Update stock function for management dashboard """
     if request.user.is_staff:
         variant = Variant.objects.get(pk=pk)
         form = StockForm(request.POST or None, instance=variant)
@@ -130,6 +133,7 @@ def update_stock(request, pk):
 
 
 class RecipeList(StaffRequiredMixin, generic.ListView):
+    """ Recipe list view for management dashboard """
     model = Recipe
     template_name = 'management/recipes.html'
     paginate_by = 10
@@ -140,6 +144,7 @@ class RecipeList(StaffRequiredMixin, generic.ListView):
 
 
 def publish_recipe(request, pk):
+    """ Publish recipe function for management dashboard """
     if request.user.is_staff:
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.published = True
@@ -150,6 +155,7 @@ def publish_recipe(request, pk):
 
 
 class CommentList(StaffRequiredMixin, generic.ListView):
+    """ Comment list view for management dashboard """
     model = Comment
     template_name = 'management/recipe_comments.html'
     paginate_by = 10
@@ -160,6 +166,7 @@ class CommentList(StaffRequiredMixin, generic.ListView):
 
 
 def approve_comment(request, pk):
+    """ Approve comment function for management dashboard """
     if request.user.is_staff:
         comment = get_object_or_404(Comment, pk=pk)
         comment.approved = True
@@ -170,6 +177,7 @@ def approve_comment(request, pk):
 
 
 class UserRecipeList(StaffRequiredMixin, generic.ListView):
+    """ Submitted recipe list for management dashboard """
     model = SubmittedRecipe
     template_name = 'management/user_recipes.html'
     paginate_by = 10
@@ -180,6 +188,7 @@ class UserRecipeList(StaffRequiredMixin, generic.ListView):
 
 
 def publish_submitted_recipe(request, pk):
+    """ Publist submitted recipe function for management dashboard """
     if request.user.is_staff:
         recipe = get_object_or_404(SubmittedRecipe, pk=pk)
         recipe.published = True

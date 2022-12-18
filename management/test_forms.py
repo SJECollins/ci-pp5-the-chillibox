@@ -4,7 +4,13 @@ from .forms import StockForm
 
 
 class TestStockForm(TestCase):
+    """
+    Tests for StockForm
+    """
     def test_empty_fields(self):
+        """
+        Testing empty form
+        """
         form = StockForm(data={
             'current_stock': '',
         })
@@ -13,6 +19,9 @@ class TestStockForm(TestCase):
                          'This field is required.')
 
     def test_valid_form(self):
+        """
+        Testing valid form
+        """
         form = StockForm(data={
             'current_stock': '10',
         })

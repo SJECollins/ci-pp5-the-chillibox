@@ -14,6 +14,9 @@ class TestManagementViewsNotLoggedIn(TestCase):
     Test views when user is not logged in.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.category_a = Category.objects.create(
             name='Test Category',
             slug='test-cat'
@@ -193,6 +196,9 @@ class TestManagementViewsLoggedIn(TestCase):
     Test views when user is logged in but not staff.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -397,6 +403,9 @@ class TestManagementViewsLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/footer.html')
 
     def test_approve_review_not_staff(self):
+        """
+        Test trying to approve review if not staff
+        """
         pk = self.review_a.id
         response = self.client.get(reverse('management:approve_review',
                                    args=[pk]), follow=True)
@@ -405,6 +414,9 @@ class TestManagementViewsLoggedIn(TestCase):
                              fetch_redirect_response=True)
 
     def test_publish_recipe_not_staff(self):
+        """
+        Test trying to publish recipe if not staff
+        """
         pk = self.recipe_a.id
         response = self.client.get(reverse('management:publish_recipe',
                                    args=[pk]), follow=True)
@@ -413,6 +425,9 @@ class TestManagementViewsLoggedIn(TestCase):
                              fetch_redirect_response=True)
 
     def test_approve_comment_not_staff(self):
+        """
+        Test trying to approve comment if not staff
+        """
         pk = self.comment_a.id
         response = self.client.get(reverse('management:approve_comment',
                                    args=[pk]), follow=True)
@@ -421,6 +436,9 @@ class TestManagementViewsLoggedIn(TestCase):
                              fetch_redirect_response=True)
 
     def test_publish_submitted_recipe_not_staff(self):
+        """
+        Test trying to publish submitted recipe if not staff
+        """
         pk = self.submitted_recipe.id
         response = self.client.get(reverse('management:publish_submitted',
                                    args=[pk]), follow=True)
@@ -435,6 +453,9 @@ class TestManagementViewsIsStaff(TestCase):
     Test views when user is logged in and is staff.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -647,6 +668,9 @@ class TestManagementViewsIsStaff(TestCase):
         self.assertTemplateUsed(response, 'includes/footer.html')
 
     def test_approve_review(self):
+        """
+        Testing approving review if is staff
+        """
         pk = self.review_a.id
         data = {
             'approved': True,
@@ -659,6 +683,9 @@ class TestManagementViewsIsStaff(TestCase):
             fetch_redirect_response=True)
 
     def test_publish_recipe(self):
+        """
+        Testing publishing recipe if is staff
+        """
         pk = self.recipe_a.id
         data = {
             'published': True,
@@ -671,6 +698,9 @@ class TestManagementViewsIsStaff(TestCase):
             fetch_redirect_response=True)
 
     def test_approve_comment(self):
+        """
+        Testing approving comment if is staff
+        """
         pk = self.comment_a.id
         data = {
             'approved': True,
@@ -683,6 +713,9 @@ class TestManagementViewsIsStaff(TestCase):
             fetch_redirect_response=True)
 
     def test_publish_submitted_recipe(self):
+        """
+        Testing publishing submitted recipe if is staff
+        """
         pk = self.submitted_recipe.id
         data = {
             'published': True,

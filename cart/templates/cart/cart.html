@@ -11,7 +11,7 @@ Your Cart
     <div class="row">
         <div class="col-md-6 col-lg-4">
             <div class="text-center">
-                <h1 class="headings heading-sm">Your Cart: </h1>
+                <h2 class="headings heading-sm">Your Cart: </h2>
             </div>
             <div>
                 <!-- Summary of cart contents, including costs -->
@@ -99,5 +99,5 @@ Your Cart
 
 <!-- Script to adjust cart items -->
 {% block additional_script %}
-<script type="text/javascript" src="{% static 'js/quantity.js' %}"></script>
+<script src="{% static 'js/quantity.js' %}"></script>
 {% endblock %}

@@ -10,7 +10,8 @@ from .models import HeldCart
 def cart_contents(request):
     """
     Function for cart contents, to make available across site.
-    Based on CI boutique_ado
+    Based on CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
 
     cart_items = []

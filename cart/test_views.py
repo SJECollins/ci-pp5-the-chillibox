@@ -20,7 +20,11 @@ class TestCart(TestCase):
 
 
 class TestCartFunctions(TestCase):
+    """
+    Testing cart functions
+    """
     def setUp(self):
+        """ Setup for testing """
         self.category_a = Category.objects.create(
             name='Test Category',
             slug='test-cat'
@@ -58,6 +62,9 @@ class TestCartFunctions(TestCase):
         self.variant_b.save()
 
     def test_add_to_cart(self):
+        """
+        Testing add to cart
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -76,6 +83,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(len(cart_after), 1)
 
     def test_adjust_cart(self):
+        """
+        Testing adjust cart up
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -107,6 +117,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(cart_after_again['1']['items_by_size']['small'], 4)
 
     def test_adjust_cart_down(self):
+        """
+        Testing adjust cart down
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -138,6 +151,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(cart_after_again['1']['items_by_size']['small'], 2)
 
     def test_remove_item(self):
+        """
+        Testing remove item form cart
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -165,6 +181,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(len(cart_after_again), 0)
 
     def test_add_same_product(self):
+        """
+        Testing adding same product to cart
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -192,6 +211,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(cart_after_again['1']['items_by_size']['small'], 2)
 
     def test_add_different_size(self):
+        """
+        Testing adding different variant of same product
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {
@@ -224,6 +246,9 @@ class TestCartFunctions(TestCase):
         self.assertEqual(cart_after_again['1']['items_by_size']['large'], 1)
 
     def test_clear_cart(self):
+        """
+        Testing clear cart
+        """
         item_id = self.product_a.id
         slug = self.product_a.slug
         data = {

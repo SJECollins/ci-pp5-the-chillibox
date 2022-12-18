@@ -17,7 +17,9 @@ class ViewCart(View):
 
 def add_to_cart(request, item_id):
     """
-    Add to cart based on CI boutique_ado
+    Add to cart
+    Based on CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     product = get_object_or_404(Product, id=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -74,7 +76,9 @@ def add_to_cart(request, item_id):
 
 def adjust_cart(request, item_id):
     """
-    Adjust cart based on CI boutique_ado
+    Adjust cart
+    Based on CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     product = get_object_or_404(Product, id=item_id)
     new_quantity = int(request.POST.get('quantity'))
@@ -105,7 +109,9 @@ def adjust_cart(request, item_id):
 
 def remove_item(request, item_id):
     """
-    Remove item from cart based on CI boutique_ado
+    Remove item from cart
+    Based on CI's Boutique ado
+    https://github.com/Code-Institute-Solutions/boutique_ado_v1
     """
     try:
         product = get_object_or_404(Product, id=item_id)

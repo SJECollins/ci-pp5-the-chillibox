@@ -13,6 +13,7 @@ class TestHeldCart(TestCase):
     Test HeldCart model.
     """
     def setUp(self):
+        """ Setup for testing """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -21,6 +22,9 @@ class TestHeldCart(TestCase):
         self.user.save()
 
     def test_held_cart(self):
+        """
+        Testing HeldCart model
+        """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             held_cart = HeldCart.objects.create(
@@ -39,6 +43,7 @@ class TestHeldItems(TestCase):
     Test HeldItems model.
     """
     def setUp(self):
+        """ Setup for testing """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -78,6 +83,9 @@ class TestHeldItems(TestCase):
         self.variant_a.save()
 
     def test_held_items(self):
+        """
+        Testing HeldItems model
+        """
         mocked = datetime.datetime(2022, 10, 10, 0, 0, 0, tzinfo=pytz.utc)
         with mock.patch('django.utils.timezone.now', mock.Mock(return_value=mocked)):  # noqa
             held_item = HeldItems.objects.create(

@@ -9,7 +9,7 @@ from products.models import Product, Variant
 class HeldCart(models.Model):
     """
     Model for our holding cart, using session_key
-    Owner optional
+    Owner unused currently, may implement in future for save carts
     Sets time that items are held for a user
     """
     cart_key = models.CharField(max_length=80)

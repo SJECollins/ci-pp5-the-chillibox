@@ -6,5 +6,10 @@ class CartConfig(AppConfig):
     name = 'cart'
 
     def ready(self):
+        """
+        Start updater
+        From Did Coding
+        https://www.youtube.com/watch?v=Lzy4G1wZ7NQ&ab_channel=DidCoding
+        """
         from . import updater
         updater.start()

@@ -4,9 +4,9 @@ from allauth.account.adapter import DefaultAccountAdapter
 
 class MyAccountAdapter(DefaultAccountAdapter):
     """
-    Remove cart from session on login as causing a collision
-    Not great for UX though, considering another workaround
-    Also provides path to user profile on login
+    Remove cart from session on login as causing issues with HeldCarts
+    Not ideal for UX as user may want to login during shopping, but Django
+    cycles keys at login/logout for security.
     """
     def get_login_redirect_url(self, request):
         if 'cart' in request.session:

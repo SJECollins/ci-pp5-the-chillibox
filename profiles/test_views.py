@@ -14,6 +14,9 @@ class TestProfilesNotLoggedIn(TestCase):
     Test profile views in case of user not logged in.
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.category_a = Category.objects.create(
             name='Test Category',
             slug='test-cat'
@@ -197,6 +200,9 @@ class TestProfilesLoggedIn(TestCase):
         self.assertTemplateUsed(response, 'includes/footer.html')
 
     def test_delete_account(self):
+        """
+        Testing delete account
+        """
         response = self.client.get('/profiles/delete_account/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/confirm_delete.html')
@@ -253,6 +259,9 @@ class TestDeleteAccount(TestCase):
     Test DelectAcountView post
     """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',
@@ -263,6 +272,9 @@ class TestDeleteAccount(TestCase):
         self.client.login(email='test@email.com', password='testpass1')
 
     def test_delete_account(self):
+        """
+        Testing delete account post
+        """
         self.assertEqual(UserProfile.objects.count(), 1)
         response = self.client.post('/profiles/delete_account/')
         data = {

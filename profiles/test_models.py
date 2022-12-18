@@ -9,6 +9,9 @@ from .models import UserProfile, Reviews
 
 
 class TestUserProfile(TestCase):
+    """
+    Testing UserProfile model
+    """
     def test_user_profile(self):
         self.assertEqual(UserProfile.objects.count(), 0)
         user = User.objects.create_user(
@@ -24,7 +27,13 @@ class TestUserProfile(TestCase):
 
 
 class TestReviews(TestCase):
+    """
+    Testing Review model
+    """
     def setUp(self):
+        """
+        Setup for testing
+        """
         self.user = User.objects.create_user(
             username='testuser',
             email='test@email.com',

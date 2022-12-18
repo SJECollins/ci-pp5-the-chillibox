@@ -8,7 +8,8 @@ Edit Review
 {% block content %}
 <section class="container-md">
     <div class="col-md-8 mx-auto">
-        <a class="chilli-link" href="{% url 'profiles:review_list' %}">&laquo; Back To Your Reviews</a>
+        <!-- Review form for editing -->
+        <h1 class="headings headings-sm">Edit Review</h1>
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ form|crispy}}

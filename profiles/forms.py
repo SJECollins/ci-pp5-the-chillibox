@@ -4,6 +4,9 @@ from .models import UserProfile, Reviews
 
 
 class ProfileForm(forms.ModelForm):
+    """
+    Profile form for user to add/edit details
+    """
     class Meta:
         model = UserProfile
         exclude = ['user']
@@ -17,6 +20,9 @@ class DeleteAccountForm(forms.Form):
 
 
 class ReviewForm(forms.ModelForm):
+    """
+    Review form for user to edit review
+    """
     class Meta:
         model = Reviews
         fields = ('content', 'rating',)

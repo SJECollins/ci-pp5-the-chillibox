@@ -31,6 +31,10 @@ class UserProfile(models.Model):
         return self.display_name
 
     def save(self, *args, **kwargs):
+        """
+        Override save to save display_name as username in case user hasn't
+        added
+        """
         if not self.display_name:
             self.display_name = self.user.username
         super(UserProfile, self).save(*args, **kwargs)

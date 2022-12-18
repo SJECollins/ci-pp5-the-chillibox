@@ -9,6 +9,7 @@ Your Recipes
 {% block content %}
 <section class="container-fluid">
     <div class="text-center">
+        <!-- Navigation within profile -->
         <h1 class="headings mb-2">Your Recipes</h1>
         <div class="d-flex flex-row justify-content-center">
             <div class="border border-2 p-1">
@@ -20,9 +21,11 @@ Your Recipes
         </div>
     </div>
     <div class="col-12">
+        <!-- Submit recipe button -->
         <div class="text-center my-3">
             <a class="chilli-btn" href="{% url 'recipes:submit_recipe' %}">Submit Recipe</a>
         </div>
+        <!-- List of user's submitted recipes -->
         <div class="col-sm-10 mx-auto">
             {% for recipe in submittedrecipe_list %}
             <div class="col-md-6 mx-auto">
@@ -62,6 +65,7 @@ Your Recipes
             {% endfor %}
         </div>
     </div>
+    <!-- Pagination -->
         {% if is_paginated %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

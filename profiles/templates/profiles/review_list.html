@@ -9,6 +9,7 @@ Your Reviews
 {% block content %}
 <section class="container-fluid">
     <div class="text-center">
+        <!-- Navigation within profile -->
         <h1 class="headings mb-2">Your Reviews</h1>
         <div class="d-flex flex-row justify-content-center">
             <div class="border border-2 p-1">
@@ -21,6 +22,7 @@ Your Reviews
     </div>
     <div class="col-12">
         <div class="col-sm-10 mx-auto">
+            <!-- List of user's reviews-->
             {% for review in reviews_list %}
             <div class="col-md-6 mx-auto">
                 <h2 class="headings big">
@@ -49,8 +51,7 @@ Your Reviews
             {% endfor %}
         </div>
     </div>
-        
-
+        <!-- Pagination -->
         {% if is_paginated %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

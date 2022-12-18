@@ -4,6 +4,9 @@ from .forms import ProfileForm, DeleteAccountForm, ReviewForm
 
 
 class TestProfileForm(TestCase):
+    """
+    Testing the user profile form
+    """
     def test_profile_form(self):
         form = ProfileForm(data={
             'first_name': 'Test',
@@ -21,7 +24,13 @@ class TestProfileForm(TestCase):
 
 
 class TestDeleteAccount(TestCase):
+    """
+    Testing delete account form
+    """
     def test_delete_false(self):
+        """
+        Testing is not valid if delete is false
+        """
         form = DeleteAccountForm(data={
             'delete': False,
         })
@@ -29,6 +38,9 @@ class TestDeleteAccount(TestCase):
         self.assertEqual(form.errors['delete'][0], 'This field is required.')
 
     def test_delete_true(self):
+        """
+        Testing valid form
+        """
         form = DeleteAccountForm(data={
             'delete': True,
         })
@@ -36,7 +48,13 @@ class TestDeleteAccount(TestCase):
 
 
 class TestReviewForm(TestCase):
+    """
+    Testing review form
+    """
     def test_empty_fields(self):
+        """
+        Testing empty required fields
+        """
         form = ReviewForm(data={
             'content': '',
             'rating': '',
@@ -46,6 +64,9 @@ class TestReviewForm(TestCase):
         self.assertEqual(form.errors['rating'][0], 'This field is required.')
 
     def test_valid_form(self):
+        """
+        Testing valid form
+        """
         form = ReviewForm(data={
             'content': 'Test content',
             'rating': 5,

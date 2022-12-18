@@ -9,8 +9,7 @@ Confirm Delete
 {% block content %}
 
 <div class="col-md-6 mx-auto">
-    <a class="chilli-link" href="{% url 'profiles:profile' %}">&laquo; Go To Profile</a>
-
+    <!-- Confirm delete account -->
     <form method="POST">
         {% csrf_token %}
         <h1 class="headings headings-sm">Are you sure?</h1>

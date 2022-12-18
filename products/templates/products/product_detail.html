@@ -12,7 +12,7 @@
         <!-- Product image and description -->
         <div class="col-lg-6 text-center">
             <div>
-                <h1 class="headings">{{ product }}</h1>
+                <h2 class="headings">{{ product }}</h2>
             </div>
             <div>
                 {% if product.image %}
@@ -21,7 +21,7 @@
                     <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
             </div>
-            <p class="text-contain">{{ product.description|linebreaks }}</p>
+            <div class="text-contain">{{ product.description|linebreaks }}</div>
             {% if user.is_staff %}
             <div class="d-flex flex-row justify-content-evenly my-3">
                 <!-- Edit and Delete for admin -->
@@ -39,24 +39,24 @@
                         <th>Category: </th>
                         <td>{{ product.category }}</td>
                     </tr>
-                    <tr>
-                        {% if product.growth_time %}
+                    {% if product.growth_time %}
+                    <tr>    
                         <th>Growth time to maturity: </th>
                         <td>{{ product.growth_time }}</td>
-                        {% endif %}
                     </tr>
-                    <tr>
-                        {% if product.heat_level %}
+                    {% endif %}
+                    {% if product.heat_level %}
+                    <tr>    
                         <th>Heat: </th>
                         <td>{{ product.heat_level }}</td>
-                        {% endif %}
                     </tr>
+                    {% endif %}
+                    {% if product.ingredients %}
                     <tr>
-                        {% if product.ingredients %}
                         <th>Ingredients: </th>
-                        <td>{{ product.ingredients }}</td>
-                        {% endif %}
+                        <td>{{ product.ingredients }}</td>    
                     </tr>
+                    {% endif %}
                     {% if product.variants %}
                     <tr>
                         <th>Options: </th>
@@ -89,18 +89,18 @@
                     <tr>
                         <th>Avg. User Rating: </th>
                         <td>{% if avg_rating.rounded == 1 %}
-                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}" alt="Rating">
                             {% elif avg_rating.rounded == 2 %}
-                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}" alt="Rating">
                             {% elif avg_rating.rounded == 3 %}
-                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}" alt="Rating">
                             {% elif avg_rating.rounded == 4 %}
-                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}" alt="Rating">
                             {% else %}
-                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}" alt="Rating">
                             {% endif %}
                             <strong>/</strong>
-                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}" alt="Rating">
                         </td>
                     </tr>
                     {% endif %}
@@ -114,7 +114,7 @@
                     {% csrf_token %}
                     <div>
                         <label class="me-4"><strong>Select Option:</strong></label>
-                        <select id="prices" name="product_variant" id="product_variant" class="border rounded-3" data-hx-get="/products/current_stock/" data-hx-target="#current_stock">
+                        <select name="product_variant" id="product_variant" class="border rounded-3" data-hx-get="/products/current_stock/" data-hx-target="#current_stock">
                             <option value="default">Please select an option...</option>
                             {% for variant in product.variants.all %}
                             <option data-variant_id="{{ variant.id }}" value="{{ variant.id }}">{{ variant.size }}
@@ -152,7 +152,7 @@
     <div class="row">
         <!-- Reviews -->
         <div class="col-12">
-            <h1 class="headings">Reviews</h1>
+            <h2 class="headings">Reviews</h2>
             {% if reviewed %}
             <p><strong>Thank you for your review! If you'd like to get in touch with any concerns, please visit our <a
                         class="chilli-link" href="{% url 'home:contact' %}">contact page</a>.</strong></p>
@@ -179,15 +179,15 @@
                         <p>{{ review }}</p>
                         <p><strong>Rating: </strong>
                             {% if review.rating == 1 %}
-                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}">
+                            <img width="33" height="80" class="rate-pics" src="{% static 'images/rate1.png' %}" alt="Rating">
                             {% elif review.rating == 2 %}
-                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}">
+                            <img width="63" height="80" class="rate-pics" src="{% static 'images/rate2.png' %}" alt="Rating">
                             {% elif review.rating == 3 %}
-                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}">
+                            <img width="93" height="80" class="rate-pics" src="{% static 'images/rate3.png' %}" alt="Rating">
                             {% elif review.rating == 4 %}
-                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}">
+                            <img width="124" height="80" class="rate-pics" src="{% static 'images/rate4.png' %}" alt="Rating">
                             {% else %}
-                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}">
+                            <img width="154" height="80" class="rate-pics" src="{% static 'images/rate5.png' %}" alt="Rating">
                             {% endif %}
                         </p>
                             <div class="d-flex flex-row justify-content-between my-2">

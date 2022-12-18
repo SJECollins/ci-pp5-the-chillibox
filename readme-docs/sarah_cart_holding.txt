@@ -1,0 +1,73 @@
+Cart: uuidxyz
+
+Cart entries would have at least the following. Initially requested and fulfillable_quantity
+would be the same.
+cart = {
+    'uuid': '29khdksyhdfs',
+    'items': [
+        {
+          'id': 1,
+          'requested_quantity': 2,
+          'remaining_quantity': 0,
+        },
+        {
+          'id': 1,
+          'requested_quantity': 2,
+          'remaining_quantity': 0,
+        }
+    ]
+}
+
+  How it would look on page initially
+  - 1 - Bell x 2
+  - 2 - Jala x 4
+
+- When user goes to cart page:
+  if cart uuid in HeldCart.all():
+    just render cart
+  if not:
+    - Add with number of items that are available, with messaging
+    Your cart entries would look like:
+      {
+        'item': 1,
+        'requested_quantity': 2,
+        'fulfillable_quantity': 0,
+      }
+      In template code (this would just be the default logic not just in this case):
+      if requested_quantity > fulfillable_quantity, show message, e.g.:
+
+      - 1 - Bell x 1 (requested 2)   X
+      - 2 - Jala x 4                 X
+
+model Product:
+
+  current_stock = IntegerField()
+
+  @property
+  def fulfillable_quantity():
+    # quantity_in_holding = HeldItems.objects.filter(id=self.id).count()
+    quantity_in_holding = self.held_stock.count()
+
+    return self.current_stock - quantity_in_holding
+
+
+Holding Area (part of cart/checkout app)
+
+  - HeldCart
+    - uuid
+    - owner
+    - hold_start_time = DateTime(auto_now_add)
+
+    def is_stale(self):
+
+      return (timezone.now() - self.hold_start_time) > settings.CART_HOLDING_TIME_MINUTES
+
+
+  - HeldItems
+    - item = FK(related_name='held_stock')
+    - quantity = Number
+
+Manage Holding using a combination of CRON and JS:
+
+CRON job that runs a function more often than the HOLDING period and
+removes HeldCart objects that are stale

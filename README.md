@@ -974,7 +974,42 @@ Wireframes were created in Balsamiq. They were used for initial planning for the
 
 # Technologies Used
 
+- [HTML5](https://en.wikipedia.org/wiki/HTML5): mark-up language.
+- [CSS3](https://en.wikipedia.org/wiki/CSS): styling.
+- [JavaScript](https://www.javascript.com/): programming language.
+- [Python 3](https://www.python.org/): programming language.
+- [Django 3.2](https://www.djangoproject.com/)
+  - [Django allath](https://django-allauth.readthedocs.io/en/latest/index.html): user authentication.
+  - [Django Crispy Forms](https://pypi.org/project/django-crispy-forms/): for forms.
+  - [Django countries](https://pypi.org/project/django-countries/): for countries in forms.
+  - [Crispy Bootstrap5](https://pypi.org/project/crispy-bootstrap5/): bootstrap5 template pack for crispy forms.
+  - [Pillow](https://pypi.org/project/Pillow/): python imagining library.
+  - [Django APScheduler](https://pypi.org/project/django-apscheduler/): scheduling tasks.
+  - [ReportLab](https://pypi.org/project/reportlab/)
+  - [Coverage](https://github.com/nedbat/coveragepy/tree/6.5.0): for measuring code coverage of Python tests.
+- [Stripe](https://stripe.com): payments.
+- [JQuery](https://jquery.com/): UI.
+- [HTMX](https://htmx.org/): UI.
+- [Bootstrap](https://getbootstrap.com/): styling.
+- [Cloudinary](https://cloudinary.com/): store static and media files.
+- [GIT](https://git-scm.com/): for version control.
+- [GitHub](https://github.com/): for host repository.
+- [Gitpod](https://www.gitpod.io/): online IDE.
+- [Heroku](https://)
+- [Google Fonts](https://fonts.google.com/): to import fonts.
+- [Font Awesome](https://fontawesome.com/): to import icons.
+- [Balsamiq](https://balsamiq.com/): to create wireframes.
+- [Diagrams.net](https://www.diagrams.net/): for Entity Relationship Diagram.
+- [GIMP](https://www.gimp.org/): to edit images and create colour palette.
+- [Inkscape](https://inkscape.org/): to create the logo.
+
+
 # Testing
+
+Testing for the site can be found at the below link:
+
+[Link to TESTING.md](TESTING.md)
+
 
 # Deployment
 
@@ -1100,6 +1135,61 @@ Wireframes were created in Balsamiq. They were used for initial planning for the
   - Heroku will start building the app
 - The link to the app can be found at the top of the page by clicking "Open app"
 
-The live site can be found here: [PetRx](https://ci-pp4-petrx.herokuapp.com/)
+The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.herokuapp.com/)
+
+## Steps to clone site:
+- In the GitHub repository, click the "Code" button.
+- Select "HTTPS" and copy the URL.
+- Open Git Bash and navigate to the repository where you would like to locate the cloned repository.
+- Type "git clone" followed by the copied URL.
+- Press enter to create the clone.
+- Install required packages with the command "pip3 install -r requirements.txt"
+
 
 # Credits
+## Code
+- The code for the MutationObserver is based on this page from [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+- The code for scheduling the restock task with APScheduler is based on this tutorial from [Did Coding](https://www.youtube.com/watch?v=Lzy4G1wZ7NQ&ab_channel=DidCoding)
+- The code for creating the order PDF with ReportLab is based on a combination of:
+  - [The Django docs](https://docs.djangoproject.com/en/4.1/howto/outputting-pdf/)
+  - [This Codemy.com tutorial](https://www.youtube.com/watch?v=1x_ACMFzGYM&ab_channel=Codemy.com)
+  - [This article on blog.pythonlibrary.org](https://www.blog.pythonlibrary.org/2018/02/06/reportlab-101-the-textobject/)
+  - And [ReportLab's docs](https://www.reportlab.com/docs/reportlab-userguide.pdf)
+- The code for holding stock while the user is shopping is based on [this file](readme-docs/sarah_cart_holding.txt) which my mentor, Brian Macharia, wrote as we discussed the problem during a session.
+- The code for cart contexts and the checkout app is based on Code Institute's [Boutique ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
+
+## Media
+- The logo was created in Inkscape
+- The bottle labels were made in Inkscape
+- The box images were made in Gimp
+- Icons are from [Font Awesome](https://fontawesome.com)
+- The fonts are imported from [Google Fonts](https://fonts.google.com)
+
+- Images from [Pixabay](https://pixabay.com/):
+  - [Bell Pepper](https://pixabay.com/photos/bell-peppers-red-green-food-2708680/)
+  - [Bird's Eye](https://pixabay.com/photos/bird-s-eye-chili-bird-eye-chili-2723877/)
+  - [Cascabel](https://pixabay.com/photos/cascabel-chili-rattle-chili-7539533/)
+  - [Cayenne](https://pixabay.com/photos/hot-peppers-growing-red-peppers-2708678/)
+  - [Ghost Pepper](https://pixabay.com/photos/ghost-pepper-hot-scoville-units-3743479/)
+  - [Habanero](https://pixabay.com/photos/yellow-habanero-pepper-plant-4394115/)
+  - [Hungarian Wax](https://pixabay.com/photos/hungarian-wax-peppers-1374791/)
+  - [Jalapeno](https://pixabay.com/photos/chili-jalapeno-chilli-pepper-sharp-282054/)
+  - [Paprika](https://pixabay.com/photos/chilli-paprika-organic-vegetable-7527531/)
+  - [Poblano](https://pixabay.com/photos/chile-poblano-food-puebla-4466725/)
+  - [Purple Bell](https://pixabay.com/photos/farm-fresh-bell-peppers-pepper-bell-3896465/)
+  - [Serrano](https://pixabay.com/photos/chilli-pepper-plant-hot-small-red-248556/)
+  - [Bottle](https://pixabay.com/photos/bottle-image-mockup-product-red-7458648/)
+
+- Images from [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page):
+  - [Banana](https://commons.wikimedia.org/wiki/File:Peppers_Summer_2017_(252381621).jpeg)
+  - [Carolina Reaper](https://commons.wikimedia.org/wiki/File:Mature_Carolina_Reaper.jpg)
+  - [Fatalii](https://commons.wikimedia.org/w/index.php?curid=41796968)
+  - [Fresno](https://commons.wikimedia.org/wiki/File:Fresno_pepper_6.jpg)
+  - [Hidalgo](https://commons.wikimedia.org/wiki/File:Capsicum_frutescens_%27Hidalgo%27_003.JPG)
+  - [Moruga Scorpion](https://commons.wikimedia.org/wiki/File:Trinidad_moruga_scorpion_ripe_ready_to_pick.jpg)
+  - [Naga](https://commons.wikimedia.org/wiki/File:Naga_jolokia_chili.jpg)
+  - [Scotch Bonnet](https://commons.wikimedia.org/wiki/File:20190811_Scotch_Bonnet_02.jpg)
+
+
+## Acknowledgement
+I'd like to thank my mentor, Brian Macharia, for providing very good advice, tips and feedback, as well as excellent resources that aided greatly in organising and implementing this project.

@@ -5,6 +5,7 @@ from products.models import Product
 
 
 class IndexView(View):
+    """ Index view for home page """
     def get(self, request):
         latest_products = Product.objects.all().order_by('-added_on')[0:4]
         template_name = 'home/index.html'
@@ -15,6 +16,7 @@ class IndexView(View):
 
 
 class ContactView(View):
+    """ Contact page view """
     def get(self, request):
         template_name = 'home/contact.html'
         context = {
@@ -31,12 +33,14 @@ class ContactView(View):
 
 
 class FaqView(View):
+    """ FAQ page view """
     def get(self, request):
         template_name = 'home/faq.html'
         return render(request, template_name)
 
 
 class PrivacyPolicyView(View):
+    """ Privacy Policy page view """
     def get(self, request):
         template_name = 'home/privacy.html'
         return render(request, template_name)

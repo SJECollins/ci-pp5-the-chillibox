@@ -1159,6 +1159,8 @@ The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.he
 - The code to create a thumbnail from image for the product model is from this Github Gist by [Valberg](https://gist.github.com/valberg/2429288)
 - The code for cart contexts and the checkout app is based on Code Institute's [Boutique ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
 - The code for the login adapter is based on custom redirects in the [allauth docs](https://django-allauth.readthedocs.io/en/latest/advanced.html#custom-redirects)
+- The code to integrate map on the contact page is based on the code from the [Google Maps Platform](https://mapsplatform.google.com/)
+- The privacy policy and HTML for it is from [Privacy Policy Generator](https://www.privacypolicygenerator.info/)
 
 ## Media
 - The logo was created in Inkscape

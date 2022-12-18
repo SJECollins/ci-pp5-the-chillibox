@@ -11,7 +11,7 @@ Shop
     <div class="row py-4">
         <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Sauces</h2>
-            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='sauces' %}">View all sauces &raquo;</i></a>
+            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='sauces' %}">View all sauces &raquo;</a>
         </div>
         {% for sauce in saucecat %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 text-center">
@@ -42,14 +42,14 @@ Shop
     <div class="row py-4">
         <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Sauceboxes</h2>
-            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='saucebox' %}">View all boxes &raquo;</i></a>
+            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='saucebox' %}">View all boxes &raquo;</a>
         </div>
         {% for saucebox in sauceboxcat %}
         <div class="col-md-3 text-center">
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ saucebox }}</h3>
                 {% if saucebox.thumbnail %}
-                <img class="pics thumbs" src="{{ saucebox.thumbnail.url }}">
+                <img class="pics thumbs" src="{{ saucebox.thumbnail.url }}" alt="{{ saucebox }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ saucebox }}">
                 {% endif %}
@@ -73,14 +73,14 @@ Shop
     <div class="row py-4">
         <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Seeds</h2>
-            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seeds' %}">View all seeds &raquo;</i></a>
+            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seeds' %}">View all seeds &raquo;</a>
         </div>
         {% for seed in seedcat %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 text-center">
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seed }}</h3>
                 {% if seed.thumbnail %}
-                <img class="pics thumbs" src="{{ seed.thumbnail.url }}">
+                <img class="pics thumbs" src="{{ seed.thumbnail.url }}" alt="{{ seed }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ seed }}">
                 {% endif %}
@@ -104,14 +104,14 @@ Shop
     <div class="row py-4">
         <div class="row d-flex flex-row align-items-center mb-2">
             <h2 class="headings col-12 col-sm-6">Latest Seedboxes</h2>
-            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seedbox' %}">View all boxes &raquo;</i></a>
+            <a class="chilli-link big col-12 col-sm-6" href="{% url 'products:category' slug='seedbox' %}">View all boxes &raquo;</a>
         </div>
         {% for seedbox in seedboxcat %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 text-center">
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seedbox }}</h3>
                 {% if seedbox.thumbnail %}
-                <img class="pics thumbs" src="{{ seedbox.thumbnail.url }}">
+                <img class="pics thumbs" src="{{ seedbox.thumbnail.url }}" alt="{{ seedbox }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ seedbox }}">
                 {% endif %}

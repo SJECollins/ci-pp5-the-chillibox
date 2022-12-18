@@ -10,14 +10,14 @@
     <div>
         <!-- Category heading with add button for staff -->
         <div class="row d-flex flex-row align-items-center justify-content-between mb-3">
-            <h1 class="headings col-6 col-sm-4">{{ category }}</h1>
+            <h2 class="headings col-6 col-sm-4">{{ category }}</h2>
             {% if user.is_staff %}
             <div class="col-6 col-sm-4">
                 <a class="chilli-btn" href="{% url 'management:add_product' %}">Add Product</a>
             </div>
             {% endif %}
             <form class="col-12 col-sm-4" action="{% url 'products:category' category.slug %}" method="GET">
-                <select id="filter_subcat" name="filter_subcat" id="filter_subcat" class="border rounded-0">
+                <select id="filter_subcat" name="filter_subcat" class="border rounded-0">
                     <option value="default" {% if current_filterkey == "None" %}selected{% endif %}>All {{ category }}</option>
                     <option value="mild" {% if current_filterkey == "mild" %}selected{% endif %}>Mild</option>
                     <option value="medium" {% if current_filterkey == "medium" %}selected{% endif %}>Medium</option>

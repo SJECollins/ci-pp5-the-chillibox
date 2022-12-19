@@ -1,6 +1,9 @@
 # The Chillibox
 # Testing
 
+Below is the testing performed for the project. Wherever possible, screenshots were taken to document the testing.
+
+
 ## Lighthouse
 
 The site was tested using Lighthouse in Chrome DevTools to check performance, accessibiltiy, best practices and SEO. Where possible, errors and warnings were corrected so all final results were a minimum of 90. The final testing on Lighthouse was run on incognito mode. The results are below.
@@ -295,6 +298,7 @@ Python validation for PEP8 compliance was performed using [pycodestyle](https://
 ![Problems](readme-docs/testing/python_validation.webp)
 </details>
 
+
 ## Automated Testing
 
 Automated testig was performed using Django's testing tools and measured using coverage. The pages of the coverage report are below.
@@ -380,7 +384,31 @@ The fulfillment of acceptance criteria for user stories is not the focus of the 
 
 ## Browser Compatibility
 
+The website was tested on:
+
+- Chrome Version 108.0.5359.125
+- Firefox Version 108.0
+- Edge Version 108.0.1462.54
+- Safari iOS Version 16.1.1
+
+
 ## Bugs
 ### Fixed Bugs
 
+- Comment options:
+    - **Issue**: "Edit" and "Delete" options for comment available for everyone
+    - **Description**: On launch, the "Edit" and "Delete" options for every comment was available for everyone. This was due to a error in the if statement of the template checking the user. It check if the user matched the "comment.commenter" when it should have been checking against "comment.user".
+    - **Fix**: Edit template to check for "comment.user"
+
+- Accessing profile:
+    - **Issue**: Unable to access user profiles
+    - **Description**: Following changes to the order model when integrating Stripe webshooks, users were unable to access their profiles and user accounts were unable to be altered in admin. This was due to migrations not being done on the live site.
+    - **Fix**: Migrated tables on the live site.
+
+- Stock:
+    - **Issue**: Users able to add more items than in stock
+    - **Description**: When users added the maximum amount of stock to their cart, they were able to reload the page and even with 0 quantity of a product variant in stock they could add to their cart (but only 1 item). This was due to the "Add To Cart" button not being disabled when a variant was selected.
+    - **Fix**: Edit script to check for and disable "Add To Cart" when stock is 0
+
 ### Known Bugs
+There are currently no known bugs.

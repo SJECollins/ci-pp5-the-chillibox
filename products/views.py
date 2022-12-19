@@ -127,6 +127,11 @@ class SearchResults(ListView):
         )
         return product_list
 
+    def get_context_data(self, **kwargs):
+        context = super(SearchResults, self).get_context_data(**kwargs)
+        context['search_term'] = self.request.GET.get('q')
+        return context
+
 
 def current_stock(request):
     """

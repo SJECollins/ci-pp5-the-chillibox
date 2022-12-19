@@ -13,7 +13,7 @@ Search Results
             <!-- Display number of results or none -->
             <h1 class="headings headings-sm">
                 {% if product_list|length > 0 %}
-                {{ product_list|length }} products found
+                {{ product_list|length }} products found containing "{{ search_term }}"
                 {% else %}
                 No products found
                 {% endif %}

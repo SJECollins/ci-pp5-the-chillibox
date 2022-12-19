@@ -1034,6 +1034,8 @@ The final keywords used on the website were "chilli seeds, chilli plant, chilli 
 ## Marketing
 Based on Code Institute's Web Marketing, questions were collected to try to decide on marketing for the website.
 
+- What kind of business is it?
+  - B2C
 - Who are your customers?
   - Customers looking for locally made hot sauce or to grow plants to make their own
 - Which online platforms would you find lots of your users?

@@ -45,11 +45,11 @@ Dashboard
                     <table class="table table-hover">
                         <thead>
                             <tr class="table-secondary">
-                                <th colspan="2">Name</th>
+                                <th>Name</th>
                                 <th class="sm-prod-table">Thumbnail</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
-                                <th>Add Variant</th>
+                                <th colspan="2">Add Variant</th>
                             </tr>
                         </thead>
                         <!-- Product details -->
@@ -96,8 +96,8 @@ Dashboard
                                                 <td>{{ variant.size }}</td>
                                                 <td class="sm-prod-table">{{ variant.price }}</td>
                                                 <td>{{ variant.current_stock }}</td>
-                                                <td><a class="chilli-btn" data-hx-get="{% url 'management:update_stock' variant.pk %}"
-                                                        data-hx-target="#dialog">Update</a></td>
+                                                <td><button class="chilli-btn" data-hx-get="{% url 'management:update_stock' variant.pk %}"
+                                                        data-hx-target="#dialog" aria-label="Update {{ variant }} stock">Update</button></td>
                                                 <td>
                                                     <a class="chilli-btn" href="{% url 'management:edit_variant' variant.id %}">Edit</a>
                                                 </td>

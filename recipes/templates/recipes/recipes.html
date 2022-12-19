@@ -20,7 +20,7 @@ Recipes
                     <span class="small">Added on {{ recipe.created|date:'d/m/y' }}</span>
                     <p class="p-2">{{ recipe.excerpt }}</p>
                 </div>
-                {% if user.is_authenticated %}
+                {% if user.is_staff %}
                 <div class="d-flex flex-row justify-content-evenly">
                     <a class="chilli-btn chilli-go" href="{% url 'recipes:edit_recipe' recipe.pk %}">Edit recipe</a>
                     <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>

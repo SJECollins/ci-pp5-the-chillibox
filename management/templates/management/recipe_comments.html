@@ -48,7 +48,7 @@ Recipe Comments
                 <!-- Approve comment -->
                 <form action="{% url 'management:approve_comment' comment.pk %}" method="POST">
                     {% csrf_token %}
-                    <input type="checkbox">
+                    <input type="checkbox" aria-label="Approve comment">
                     <button type="submit" class="chilli-btn chilli-go">Approve</button>
                 </form>
                 {% endif %}

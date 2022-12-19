@@ -38,9 +38,9 @@
                 </div>
                 <div class="my-3">
                     {% if product.thumbnail %}
-                        <img class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
+                        <img width="160" height="160" class="pics thumbs" src="{{ product.thumbnail.url }}" alt="{{ product }}">
                     {% else %}
-                    <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
+                        <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                     {% endif %}
                 </div>
                 <div>
@@ -93,9 +93,9 @@
     </div>
 </section>
 <div>
-    <a id="scroll-btn" class="chilli-btn float-end me-5">
+    <button id="scroll-btn" class="chilli-btn float-end me-5" aria-label="Scroll to top">
         <i class="fas fa-arrow-up mx-auto my-auto"></i>
-    </a>	
+    </button>	
 </div>
 
 <!-- Return to top script -->

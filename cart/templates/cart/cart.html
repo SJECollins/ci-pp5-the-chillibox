@@ -62,7 +62,7 @@ Your Cart
                         <div class="row border mx-1">
                             <div class="col-4 text-center my-auto">
                                 {% if item.product.thumbnail %}
-                                <img class="pics cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ item.product }}">
+                                <img width="160" height="160" class="pics cart-pics" src="{{ item.product.thumbnail.url }}" alt="{{ item.product }}">
                                 {% else %}
                                 <img width="300" height="300" class="pics cart-pics" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ item.product }}">
                                 {% endif %}
@@ -76,12 +76,12 @@ Your Cart
                                     <input class="stock" data-item_id="{{ item.item_id }}" name="stock_{{ item.item_id }}" value="{{ item.variant.current_stock }}" hidden>
                                     <button type="button" id="dec_{{ item.item_id }}" class="chilli-btn decrease">-</button>
                                     <input class="text-center quantity" data-item_id="{{ item.item_id }}" name="quantity" id="qty_{{ item.item_id }}" type="number" value="{{ item.quantity }}" min="0"
-                                        max="99">
+                                        max="99" aria-label="Quantity">
                                     <button type="button" id="inc_{{ item.item_id }}" class="chilli-btn increase">+</button>
                                     <input id="product_variant" name="product_variant" value="{{ item.variant.id }}" hidden>
                                     {% csrf_token %}
                                 </form>
-                                <a class="chilli-btn chilli-go float-start update-btn">Update</a>
+                                <button class="chilli-btn chilli-go float-start update-btn">Update</button>
                                 <form class="float-end mb-2" method="POST" action="{% url 'cart:remove_item' item.item_id %}">
                                     {% csrf_token %}
                                     <input id="product_variant" name="product_variant" value="{{ item.variant.id }}" hidden>

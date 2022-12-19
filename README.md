@@ -674,7 +674,7 @@ def restock():
                 if not cart.held_items.exists():
                     cart.delete()
 ```
-Scheduling of this task is handled within updater.py and runs this function every 15 minutes.
+Scheduling of this task is handled within updater.py and runs this function every 15 minutes when the app is running.
 ```
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler

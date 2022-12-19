@@ -185,7 +185,6 @@ a {
     max-width: 400px;
     max-height: 400px;
     object-fit: contain;
-
     box-shadow: 0 4px 8px 0 var(--site-dark-green);
 }
 
@@ -201,10 +200,10 @@ a {
 }
 
 .recipe-pics {
-    max-width: 400px;
+    max-width: 300px;
     max-height: 300px;
     object-fit: contain;
-    margin: 1em
+    margin-bottom: 1em;
 }
 
 /* Cards */
@@ -389,5 +388,16 @@ footer {
     }
     .sm-prod-table {
         display: none;
+    }
+    .recipe-pics {
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 300px) {
+    .recipe-pics {
+        max-width: 160px;
+        max-height: 160px;
     }
 }

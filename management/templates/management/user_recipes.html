@@ -59,7 +59,7 @@ Submitted Recipes
                         <!-- Mark recipe as published if chosen to be used on site -->
                         <form action="{% url 'management:publish_submitted' recipe.pk %}" method="POST">
                             {% csrf_token %}
-                            <input type="checkbox">
+                            <input type="checkbox" aria-label="Publish recipe">
                             <button type="submit" class="chilli-btn chilli-go">Published</button>
                         </form>
                         <span><small>Mark as published if used.</small></span>

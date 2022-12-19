@@ -77,4 +77,4 @@ def handle_500(request):
     """
     Renders custom 500 page.
     """
-    return render(request, 'errors/500.html')
+    return render(request, 'errors/500.html', status=500)

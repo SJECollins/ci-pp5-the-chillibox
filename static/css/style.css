@@ -177,18 +177,22 @@ a {
 
 .thumbs {
     max-width: 160px;
-    height: auto;
+    max-height: 160px;
+    object-fit: cover;
 }
 
 .pics-lg {
     max-width: 400px;
     max-height: 400px;
+    object-fit: cover;
+
     box-shadow: 0 4px 8px 0 var(--site-dark-green);
 }
 
 .cart-pics {
     max-height: 80px;
     width: auto;
+    object-fit: cover;
 }
 
 .rate-pics {
@@ -199,6 +203,7 @@ a {
 .recipe-pics {
     max-width: 400px;
     max-height: 300px;
+    object-fit: cover;
     margin: 1em
 }
 

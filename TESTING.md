@@ -3,6 +3,141 @@
 
 ## Lighthouse
 
+The site was tested using Lighthouse in Chrome DevTools to check performance, accessibiltiy, best practices and SEO. Where possible, errors and warnings were corrected so all final results were a minimum of 90. The final testing on Lighthouse was run on incognito mode. The results are below.
+
+<details>
+<summary>Lighthouse Index</summary>
+
+![Index](readme-docs/testing/lighthouse_index.webp)
+</details>
+
+<details>
+<summary>Lighthouse FAQ</summary>
+
+![FAQ](readme-docs/testing/lighthouse_faq.webp)
+</details>
+
+<details>
+<summary>Lighthouse Privacy Policy</summary>
+
+![Privacy Policy](readme-docs/testing/lighthouse_privacy.webp)
+</details>
+
+<details>
+<summary>Lighthouse Contact Us</summary>
+
+![Contact Us](readme-docs/testing/lighthouse_contact.webp)
+</details>
+
+<details>
+<summary>Lighthouse Recipe List</summary>
+
+![Recipe List](readme-docs/testing/lighthouse_recipe_list.webp)
+</details>
+
+<details>
+<summary>Lighthouse Recipe Page</summary>
+
+![Recipe Page](readme-docs/testing/lighthouse_recipe.webp)
+</details>
+
+<details>
+<summary>Lighthouse Latest Products</summary>
+
+![Latest](readme-docs/testing/lighthouse_latest.webp)
+</details>
+
+<details>
+<summary>Lighthouse Category</summary>
+
+![Category](readme-docs/testing/lighthouse_category.webp)
+</details>
+
+<details>
+<summary>Lighthouse Product Page</summary>
+
+![Product](readme-docs/testing/lighthouse_product.webp)
+</details>
+
+<details>
+<summary>Lighthouse Cart</summary>
+
+![Cart](readme-docs/testing/lighthouse_cart.webp)
+</details>
+
+<details>
+<summary>Lighthouse Checkout</summary>
+
+![Checkout](readme-docs/testing/lighthouse_checkout.webp)
+</details>
+
+<details>
+<summary>Lighthouse Checkout Success</summary>
+
+![Checkout Success](readme-docs/testing/lighthouse_checkout_success.webp)
+</details>
+
+<details>
+<summary>Lighthouse Register</summary>
+
+![Register](readme-docs/testing/lighthouse_register.webp)
+</details>
+
+<details>
+<summary>Lighthouse Login</summary>
+
+![Login](readme-docs/testing/lighthouse_login.webp)
+</details>
+
+<details>
+<summary>Lighthouse User Profile</summary>
+
+![Profile](readme-docs/testing/lighthouse_profile.webp)
+</details>
+
+<details>
+<summary>Lighthouse Profile - User Reviews</summary>
+
+![Profile Reviews](readme-docs/testing/lighthouse_profile_reviews.webp)
+</details>
+
+<details>
+<summary>Lighthouse Profile - User Recipes</summary>
+
+![Profile Recipes](readme-docs/testing/lighthouse_profile_recipes.webp)
+</details>
+
+<details>
+<summary>Lighthouse Management Dashboard</summary>
+
+![Management](readme-docs/testing/lighthouse_management.webp)
+</details>
+
+<details>
+<summary>Lighthouse Management - User Reviews</summary>
+
+![Management Reviews](readme-docs/testing/lighthouse_management_reviews.webp)
+</details>
+
+<details>
+<summary>Lighthouse Management - Recipes List</summary>
+
+![Management Recipes](readme-docs/testing/lighthouse_management_recipe_list.webp)
+</details>
+
+<details>
+<summary>Lighthouse Management - Submitted Recipes</summary>
+
+![Management Submitted Recipes](readme-docs/testing/lighthouse_management_submitted.webp)
+</details>
+
+<details>
+<summary>Lighthouse Management - Recipe Comments</summary>
+
+![Comments](readme-docs/testing/lighthouse_management_comments.webp)
+</details>
+
+
 ## HTML Validator
 
 HTML was tested through validation by copying the source code of pages into the direct input on [W3C HTML Validator](https://validator.w3.org/#validate_by_input).

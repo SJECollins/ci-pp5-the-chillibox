@@ -50,7 +50,7 @@ User Reviews
                 <!-- Approve the review -->
                 <form action="{% url 'management:approve_review' review.pk %}" method="POST">
                     {% csrf_token %}
-                    <input type="checkbox">
+                    <input type="checkbox" aria-label="Approve review">
                     <button type="submit" class="chilli-btn chilli-go">Approve</button>
                 </form>
                 {% endif %}

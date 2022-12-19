@@ -127,6 +127,44 @@ class TestCheckoutCartFull(TestCase):
         self.assertTemplateUsed(response, 'includes/header.html')
         self.assertTemplateUsed(response, 'includes/footer.html')
 
+    def test_checkout_post(self):
+        """
+        Test checkout post data
+        """
+        session = self.client.session
+        session['cart'] = {
+            '1': {'items_by_size': {'small': 1}}
+        }
+        session.save()
+        data = {
+            'first_name': 'Test',
+            'last_name': 'User',
+            'email': 'test@email.com',
+            'phone_number': '1234567',
+            'country': 'IE',
+            'town_or_city': 'SomeTown',
+            'street_address1': '1 First St',
+            'street_address2': 'Apt 1',
+            'county': 'A county',
+            'postcode': '12345',
+            'client_secret': 'thisisa_clientsecret',
+        }
+        response = self.client.post(reverse('checkout:checkout'), data,
+                                    follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'checkout/checkout_success.html')
+        self.assertTemplateUsed(response, 'includes/header.html')
+        self.assertTemplateUsed(response, 'includes/footer.html')
+
+    def test_view_pdf(self):
+        """
+        Test reportlab pdf function view
+        """
+        order_id = self.order.id
+        response = self.client.get(
+            reverse('checkout:order_pdf', args=[order_id]))
+        self.assertEqual(response.status_code, 200)
+
 
 class TestCheckoutLoggedIn(TestCase):
     """

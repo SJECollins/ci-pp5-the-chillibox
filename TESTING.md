@@ -285,13 +285,38 @@ JavaScript validation was performed using [JSHint](https://jshint.com/) to check
 
 ## Python Testing
 
-<details>
-<summary></summary>
+Python validation for PEP8 compliance was performed using [pycodestyle](https://pycodestyle.pycqa.org/en/latest/index.html) to check linting errors. Where appropriate, in a small number of cases "# noqa" was used, especially for "errors" in Django generated files. 
 
-![]()
+[CI Python Linter](https://pep8ci.herokuapp.com/) was used to double check some pages by copy and pasting code, as a back up to confirm there were no linting issues.
+
+<details>
+<summary>Python Problems</summary>
+
+![Problems](readme-docs/testing/python_validation.webp)
 </details>
 
 ## Automated Testing
+
+Automated testig was performed using Django's testing tools and measured using coverage. The pages of the coverage report are below.
+
+<details>
+<summary>Coverage Pg1</summary>
+
+![Coverage 1](readme-docs/testing/coverage_one.webp)
+</details>
+
+<details>
+<summary>Coverage Pg2</summary>
+
+![Coverage 2](readme-docs/testing/coverage_two.webp)
+</details>
+
+<details>
+<summary>Coverage Pg3</summary>
+
+![Coverage 3](readme-docs/testing/coverage_three.webp)
+</details>
+
 
 ## Manual Testing
 Below the steps for manual testing of the site have been arranged into tables. User stories are matched to the manual tests which demonstrate their fulfillment in the User Story column. The User Story numbers can be found on the project board under their Epics or in the main README file under Agile Methodology - Epics & User Stories.

@@ -109,7 +109,52 @@ No errors were found in the CSS was manually copied into the [W3C CSS Validatory
 
 ## JavaScript Testing
 
+JavaScript validation was performed using [JSHint](https://jshint.com/) to check quality of the JS scripts. During validation the code "/* jshint -W033 *\/" to surpress warnings related to "missing semicolons", and "/\* globals exampleVariable */" was used to surpress warnings related to global variables. There remained two warnings related to "unused variables" in the script for the Google Map.
+
+<details>
+<summary>JSHint Modal</summary>
+
+![Modal](readme-docs/testing/jshint_modal.webp)
+</details>
+
+<details>
+<summary>JSHint Product Page Add To Cart</summary>
+
+![Product](readme-docs/testing/jshint_product_page.webp)
+</details>
+
+<details>
+<summary>JSHint Cart Adjust Quantity</summary>
+
+![Cart](readme-docs/testing/jshint_cart_quantity.webp)
+</details>
+
+<details>
+<summary>JSHint Checkout and Stripe</summary>
+
+![Stripe](readme-docs/testing/jshint_stripe.webp)
+</details>
+
+<details>
+<summary>JSHint EmailJS</summary>
+
+![EmailJS](readme-docs/testing/jshint_emailjs.webp)
+</details>
+
+<details>
+<summary>JSHint Google Map</summary>
+
+![Map](readme-docs/testing/jshint_gmap.webp)
+</details>
+
+
 ## Python Testing
+
+<details>
+<summary></summary>
+
+![]()
+</details>
 
 ## Automated Testing
 

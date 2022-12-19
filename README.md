@@ -156,6 +156,15 @@ The most immediate area of the website related to products is the "Newest Produc
 
 The products are displayed in "Product Cards" which are discussed in the section of the same name above.
 
+### Search Products
+<details>
+<summary>Search Products</summary>
+
+![Search Products](readme-docs/screens/search.webp)
+</details>
+
+The search form in the navbar has basic search functionality. It searches for matches in the product names and description and returns the results displayed as product cards. At the top of the page it informs the user of the number of products found that match the query and includes the query in the result so the user can be sure of what they searched.
+
 
 ### Latest Products
 <details>
@@ -748,6 +757,20 @@ Most of the functionality available on the main website to staff users is also a
 In some cases CRUD functionality is only available through the admin panel. For example, categories are registered with admin but there's no functionality available through the management dashboard on the main site. It was decided that because any addition to categories also may require changes to templates (e.g. navigation links, the latest products template), that it would beyond the scope of an average staff member to make any additions to categories and so this functionality should remain within admin where it can be accessed by an IT person.
 
 Similarly, users and user profiles can be managed through the admin panel, including changing passwords and deleting users, but this functionality is not present on the management dashboard to discourage staff from attempting to manipulate the user database. Users are able to edit their own profile details or delete their account themselves, but these options are available to them through their profile as they have the right to manage their own personal information.
+
+
+## Future Features
+
+1. __Improved Stock Management__:
+  - Stock management can be improved to allow users more control over their cart. Users could be allowed to keep their carts when logging, or, when logged in, be allowed to save their cart for a period of time.
+2. __Order Again__:
+  - For registered users you could offer an "Order Again" button for items in their order history. This could be as simple as clicking the button and adding the item to their cart like on a product page, with the function only having to check whether it is in stock or not.
+3. __Improved Category Filtering__: 
+  - Expanding category filtering beyond subcategory could include filtering by average user rating or popularity, if we were to expand the product model to track the number sold.
+4. __Plant Care Blog__:
+  - As part of marketing and providing content to users, a plant care blog may could expand the site further beyond products, giving users another reason to return to the site between purchases.
+5. __Expanded Product Range__:
+  - Providing products beyond seeds and sauces. Expanding the range to include items related to plant care or cooking could draw more users, and repeat users. This may require altering the current product models. 
 
 
 # Agile Methodology

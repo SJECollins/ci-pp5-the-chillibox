@@ -16,7 +16,7 @@
             </div>
             <div>
                 {% if product.image %}
-                    <img class="pics pics-lg" src="{{ product.image.url }}" alt="{{ product }}">
+                    <img width="300" height="300" class="pics pics-lg" src="{{ product.image.url }}" alt="{{ product }}">
                 {% else %}
                     <img width="300" height="300" class="pics pics-lg" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ product }}">
                 {% endif %}
@@ -126,10 +126,10 @@
                     <div class="my-3">
                         <label class="me-4"><strong>Select Quantity: </strong></label>
                         <div id="change_qty" class="d-inline">
-                            <button type="button" id="dec_qty" class="chilli-btn">-</button>
+                            <button type="button" id="dec_qty" class="chilli-btn" aria-label="Decrease quantity">-</button>
                             <input class="text-center" data-item_id="{{ product.id }}" name="quantity" id="product_qty"
-                                type="number" value="1" min="0" max="99">
-                            <button type="button" id="inc_qty" class="chilli-btn">+</button>
+                                type="number" value="1" min="0" max="99" aria-label="Quantity">
+                            <button type="button" id="inc_qty" class="chilli-btn" aria-label="Increase quantity">+</button>
                             <p id="qty_warning"><em>No more available</em></p>
                         </div>
                     </div>

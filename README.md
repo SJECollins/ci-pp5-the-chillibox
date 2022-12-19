@@ -994,6 +994,7 @@ Wireframes were created in Balsamiq. They were used for initial planning for the
 ![ERD](readme-docs/mockups/ERD.WEBP)
 </details>
 
+
 # SEO and Marketing
 
 ## SEO, Keywords
@@ -1031,6 +1032,7 @@ Keyword research was performed using [Wordtracker](https://www.wordtracker.com/s
 
 The final keywords used on the website were "chilli seeds, chilli plant, chilli growing, growing chillies, growing chilli seedsn, chilli pepper plant, chilli recipes, homemade hot sauce, hot sauce Ireland".
 
+
 ## Marketing
 Based on Code Institute's Web Marketing, questions were collected to try to decide on marketing for the website.
 
@@ -1047,7 +1049,10 @@ Based on Code Institute's Web Marketing, questions were collected to try to deci
 - Would your business have a budget to spend on advertising? Or would it need to work with free or low cost options to market itself?
   - Possibly a small budget. Hot sauce is popular but still a little niche in Ireland. Perhaps it would start with low cost options like social media and newsletters.
 
-The next sections discuss marketing in more depth
+The e-commerce businesses that inspired aspects of this website include:
+  - [Fatalii Seeds](https://fataliiseeds.net/)
+  - [Chilli Pepper Madness](https://www.chilipeppermadness.com/)
+
 
 ## Content Marketing
 

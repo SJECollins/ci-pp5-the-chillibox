@@ -12,8 +12,9 @@ The live site is available here: [The Chillibox](https://ci-pp5-the-chillibox.he
 - [Features](https://github.com/SJECollins/ci-pp5-the-chillibox#features)
 - [Agile Methodology](https://github.com/SJECollins/ci-pp5-the-chillibox#agile-methodology)
 - [Design](https://github.com/SJECollins/ci-pp5-the-chillibox#design)
+- [SEO and Marketing](https://github.com/SJECollins/ci-pp5-the-chillibox#seo-and-marketing)
 - [Technologies Used](https://github.com/SJECollins/ci-pp5-the-chillibox#technologies-used)
-- [Testing](TESTING.md)
+- [Testing](https://github.com/SJECollins/ci-pp5-the-chillibox/blob/main/TESTING.md)
 - [Deployment](https://github.com/SJECollins/ci-pp5-the-chillibox#deployment)
 - [Credits](https://github.com/SJECollins/ci-pp5-the-chillibox#credits)
 

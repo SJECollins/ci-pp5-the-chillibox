@@ -60,6 +60,10 @@
         <a class="chilli-btn chilli-dngr" href="{% url 'recipes:delete_recipe' recipe.pk %}">Delete recipe</a>
     </div>
     {% endif %}
+    <p class="text-contain">
+        If you want to let us know how you feel about the recipe, please leave a comment below.
+        If you have a great chilli pepper recipe of your own you'd like us to publish, please <a class="chilli-link" href="{% url 'account_signup' %}">register an account</a> or <a class="chilli-link" href="{% url 'account_login' %}">login</a> and go to your account to submit a recipe.
+    </p>
 </section>
 <hr>
 <section class="container-fluid">

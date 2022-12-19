@@ -18,7 +18,7 @@ Shop
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ sauce }}</h3>
                 {% if sauce.thumbnail %}
-                <img class="pics thumbs" src="{{ sauce.thumbnail.url }}" alt="{{ sauce }}">
+                <img width="160" height="160" class="pics thumbs" src="{{ sauce.thumbnail.url }}" alt="{{ sauce }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ sauce }}">
                 {% endif %}
@@ -49,7 +49,7 @@ Shop
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ saucebox }}</h3>
                 {% if saucebox.thumbnail %}
-                <img class="pics thumbs" src="{{ saucebox.thumbnail.url }}" alt="{{ saucebox }}">
+                <img width="160" height="160" class="pics thumbs" src="{{ saucebox.thumbnail.url }}" alt="{{ saucebox }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ saucebox }}">
                 {% endif %}
@@ -80,7 +80,7 @@ Shop
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seed }}</h3>
                 {% if seed.thumbnail %}
-                <img class="pics thumbs" src="{{ seed.thumbnail.url }}" alt="{{ seed }}">
+                <img width="160" height="160" class="pics thumbs" src="{{ seed.thumbnail.url }}" alt="{{ seed }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ seed }}">
                 {% endif %}
@@ -111,7 +111,7 @@ Shop
             <div class="chilli-card mx-auto text-center">
                 <h3 class="headings headings-sm">{{ seedbox }}</h3>
                 {% if seedbox.thumbnail %}
-                <img class="pics thumbs" src="{{ seedbox.thumbnail.url }}" alt="{{ seedbox }}">
+                <img width="160" height="160" class="pics thumbs" src="{{ seedbox.thumbnail.url }}" alt="{{ seedbox }}">
                 {% else %}
                 <img width="300" height="300" class="pics thumbs" src="{% static 'images/placeholder.png' %}" alt="No image available for {{ seedbox }}">
                 {% endif %}

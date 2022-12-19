@@ -1288,6 +1288,10 @@ The live site can be found here: [The Chillibox](https://ci-pp5-the-chillibox.he
   - [Purple Bell](https://pixabay.com/photos/farm-fresh-bell-peppers-pepper-bell-3896465/)
   - [Serrano](https://pixabay.com/photos/chilli-pepper-plant-hot-small-red-248556/) by francis goh
   - [Bottle](https://pixabay.com/photos/bottle-image-mockup-product-red-7458648/) by Personal_Graphic
+  - [Pasta Sauce](https://www.pexels.com/photo/jalapeno-poppers-on-wooden-board-4096902/) by joshuemd
+
+- Images from [Pexels](https://pexels.com):
+  - [Jalapeno Poppers](https://www.pexels.com/photo/jalapeno-poppers-on-wooden-board-4096902/) by Magda Ehlers
 
 - Images from [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page):
   - [Banana](https://commons.wikimedia.org/wiki/File:Peppers_Summer_2017_(252381621).jpeg) by Paul Zucker

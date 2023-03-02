@@ -107,9 +107,13 @@ Contact Us
     </div>
 </section>
 
-<script
+<!-- <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF3YYrvSP4ocz-eg3sbbAcf8lAqDnqO2g&callback=initMap&v=weekly"
-    defer></script>
+    defer></script> -->
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    defer
+></script>
 <script>
     // Script from https://mapsplatform.google.com/
     var map;
@@ -127,8 +131,8 @@ Contact Us
         const marker = new google.maps.Marker({
             position: ourLocation,
             map: map,
-            icon: chilli,
-            title: "The Chillibox"
+            // icon: chilli,
+            // title: "The Chillibox"
         });
     }
 </script>
